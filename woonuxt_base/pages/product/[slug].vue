@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 const route = useRoute();
+const router = useRouter()
 const { arraysEqual, formatArray, checkForVariationTypeOfAny } = useHelpers();
 const { addToCart, isUpdatingCart } = useCart();
 const { formatURI } = useHelpers();
 const slug = route.params.slug as string;
+
 
 const { data } = (await useAsyncGql('getProduct', { slug })) as { data: { value: { product: Product } } };
 const product = data?.value?.product;
@@ -45,6 +47,15 @@ const updateSelectedVariations = (variations: Attribute[]): void => {
   selectProductInput.value.variation = activeVariation.value ? attrValues.value : null;
   variation.value = variations;
 };
+//Direct Buy
+async function directBuy(productData){
+  try{
+   await addToCart(productData)
+   router.push("/checkout")
+  }catch(e){alert(e)}
+
+
+}
 </script>
 
 <template>
@@ -85,10 +96,12 @@ const updateSelectedVariations = (variations: Attribute[]): void => {
           </div>
         </div>
 
-        <div class="mb-8 font-light prose" v-html="product.description || product.shortDescription" />
+        <div class="mb-8 font-light prose" v-html="product.shortDescription || product.description" />
 
         <hr />
+        <div>
 
+        </div>
         <form @submit.prevent="addToCart(selectProductInput)">
           <AttributeSelections
             v-if="product.type == 'VARIABLE' && product.attributes && product.variations"
@@ -96,16 +109,25 @@ const updateSelectedVariations = (variations: Attribute[]): void => {
             :attrs="product.attributes.nodes"
             :variations="product.variations.nodes"
             @attrs-changed="updateSelectedVariations" />
+            
           <div class="fixed bottom-0 left-0 z-10 flex items-center w-full gap-4 p-4 mt-12 bg-white md:static md:bg-transparent bg-opacity-90 md:p-0">
-            <input
-              v-model="quantity"
-              type="number"
-              min="1"
-              aria-label="Quantity"
-              class="bg-white border rounded-lg flex text-left p-2.5 w-20 gap-4 items-center justify-center focus:outline-none" />
-            <AddToCartButton class="flex-1 w-full md:max-w-xs" :disabled="disabledAddToCart" :class="{ loading: isUpdatingCart }" />
+            <div class="w-full ">
+         <!--   <button  class="rounded-lg w-full font-bold bg-gray-800 text-white text-center p-2.5  focus:outline-none m-1" :disabled="disabledAddToCart" >Achtez Direct</button> -->  
+              <BuyDirectButton class=" w-full m-1" :disabled="disabledAddToCart" :class="{ loading: isUpdatingCart }" @click="directBuy(selectProductInput)"></BuyDirectButton>
+              <div class="flex items-center ">
+                <input
+                v-model="quantity"
+                type="number"
+                min="1"
+                aria-label="Quantity"
+                class="bg-white border rounded-lg flex text-left p-2.5  m-1 w-20 gap-4 items-center justify-center focus:outline-none" />
+              <AddToCartButton class="flex-1 w-full " :disabled="disabledAddToCart" :class="{ loading: isUpdatingCart }" />
+              </div>
+            </div>
+            
           </div>
         </form>
+
 
         <div class="grid gap-2 my-8 text-sm">
           <div class="flex items-center gap-2">
