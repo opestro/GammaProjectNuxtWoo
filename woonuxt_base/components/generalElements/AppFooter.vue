@@ -51,8 +51,8 @@ const versionInfo = `WooNuxt v${wooNuxtVersionInfo}`;
     <div class="container border-t">
       <div class="copywrite">
         <p class="py-4 text-xs text-center">
-          <a href="https://woonuxt.com" :title="versionInfo">{{ versionInfo }}</a> - by
-          <a href="https://scottyzen.com" title="Scott Kennedy - Web Developer" target="_blank">Scott Kennedy</a>
+          
+          <a href="https://scottyzen.com" title="Scott Kennedy - Web Developer" target="_blank">GamaOutillage</a>- All rights reserved
         </p>
       </div>
     </div>
