@@ -52,7 +52,7 @@ const versionInfo = `WooNuxt v${wooNuxtVersionInfo}`;
       <div class="copywrite">
         <p class="py-4 text-xs text-center">
           
-          <a href="https://scottyzen.com" title="Scott Kennedy - Web Developer" target="_blank">GamaOutillage</a>- All rights reserved
+          <a href="https://GamaOutillage.com" title="Scott Kennedy - Web Developer" target="_blank">GamaOutillage</a>- All rights reserved
         </p>
       </div>
     </div>
