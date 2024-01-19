@@ -43,6 +43,11 @@ serverDir: resolve('./server'),
         file: resolve('./pages/products.vue'),
       });
       pages.push({
+        name: 'product-page-pager',
+        path: '/produits/page/:pageNumber_0',
+        file: resolve('./pages/produits.vue'),
+      });
+      pages.push({
         name: 'product-category-page',
         path: '/product-category/:categorySlug',
         // file: resolve('./pages/products.vue'),
