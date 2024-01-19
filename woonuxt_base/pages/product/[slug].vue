@@ -9,7 +9,6 @@ const slug = route.params.slug as string;
 
 const { data } = (await useAsyncGql('getProduct', { slug })) as { data: { value: { product: Product } } };
 const product = data?.value?.product;
-console.log(product)
 useHead({
   title: product?.name ?? 'Product',
   meta: [{ hid: 'description', name: 'description', content: product?.shortDescription ?? '' }],
@@ -50,7 +49,6 @@ const updateSelectedVariations = (variations: Attribute[]): void => {
 //Direct Buy
 async function directBuy(productData){
   try{
-    console.log(productData)
    await addToCart(productData)
    router.push("/checkout")
   }catch(e){alert(e)}
