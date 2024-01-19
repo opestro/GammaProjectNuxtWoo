@@ -39,7 +39,7 @@ serverDir: resolve('./server'),
     'pages:extend'(pages) {
       pages.push({
         name: 'product-page-pager',
-        path: '/products/page/:pageNumber_0'||'/produits/page/:pageNumber_0',
+        path: '/products/page/:pageNumber_0',
         file: resolve('./pages/products.vue'),
       });
       pages.push({
