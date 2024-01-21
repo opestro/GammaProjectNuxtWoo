@@ -1,6 +1,3 @@
-<script setup lang="ts">
-const { isShowingSearch } = useSearching();
-</script>
 
 <template>
   <header class="sticky top-0 z-40 bg-white shadow-sm shadow-light-500">
@@ -29,6 +26,7 @@ const { isShowingSearch } = useSearching();
 </template>
 
 <script setup>
+const { isShowingSearch } = useSearching();
 
 useHead({
   script:[{src:'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV'}]
