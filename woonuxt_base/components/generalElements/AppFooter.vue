@@ -56,7 +56,7 @@ const versionInfo = `V1.2`;
           <a href="https://GamaOutillage.com" title="" target="_blank">GamaOutillage</a>- All rights reserved
 
           <a href="https://gamaoutillage.com" :title="versionInfo">{{ versionInfo }}</a> - by
-          <a href="https://gamaoutillage" title="All rights reserved at Gamaoutillage.com" target="_blank">-2024
+          <a href="https://gamaoutillage" title="All rights reserved at Gamaoutillage.com" target="_blank"></a>-2024
 
         </p>
       </div>
