@@ -41,34 +41,37 @@
 
         <card class=" rounded-xl  flex-shrink-0   shadow-lg p-2 w-60 " v-for="pds in ProductsStore.topProducts"
           :key="pds">
-          <div class=" items-end flex justify-end">
-            <div class="text-xs border-1 w-fit bg-pink-500 text-white m-2 px-4 py-1 rounded-full">Top</div>
-          </div>
-          <cardImage class="  justify-center flex ">
-            <NuxtImg class=" max-sm:w-40 sm:w-40 md:w-60 rounded-lg " quality="60" width="600" height="600"
-              :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
-              alt="" />
-          </cardImage>
-          <cardTitle class="flex p-2 m-2 items-center">
-            <h1 class=" text-sm"> {{ pds.name }}</h1>
-          </cardTitle>
-          <!-- if you want to display Product short description
+          <NuxtLink :to="`/product/${pds.slug}`" :title="pds.name">
+            <div class=" items-end flex justify-end">
+              <div class="text-xs border-1 w-fit bg-pink-500 text-white m-2 px-4 py-1 rounded-full">Top</div>
+            </div>
+            <cardImage class="  justify-center flex ">
+              <NuxtImg class=" max-sm:w-40 sm:w-40 md:w-60 rounded-lg " quality="60" width="600" height="600"
+                :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
+                alt="" />
+            </cardImage>
+            <cardTitle class="flex p-2 m-2 items-center">
+              <h1 class=" text-sm"> {{ pds.name }}</h1>
+            </cardTitle>
+            <!-- if you want to display Product short description
                   <cardInfo class="flex p-2 m-2">
                     <p>
                       {{pds.short_description}}
                     </p>
                   </cardInfo>
                   -->
+          </NuxtLink>
           <div class="flex justify-between items-center">
-              <h1 class=" text-md pl-2  flex justify-center"> <b>{{ pds.regular_price || 0 }} DA</b> </h1>
-              <nuxt-link :to="'/product/' + pds.slug">
-                <Button
-                  class="  border-1 bg-blue-500 text-white m-2 px-6 py-1 rounded-lg">{{ $t('messages.shop.buyNow') }}</Button>
-              </nuxt-link>
-
-           
+            <h1 class=" text-md pl-2  flex justify-center"> <b>{{ pds.regular_price || 0 }} DA</b> </h1>
+            <Button class="w-auto   border-1 bg-blue-500 text-white text-sm m-2 px-2 py-2 rounded-lg"
+              @click="directBuy(pds.id, 1)">{{
+                $t('messages.shop.addToCart') }}</Button>
           </div>
-
+          <Button  class="w-full flex justify-center  items-center  border-1 bg-gray-800 text-white px-6 py-1 rounded-lg"
+            @click="directBuy(pds.id, 0)">{{
+              $t('messages.shop.buyDirect')
+            }} </Button>
+         
         </card>
       </div>
     </topProductList>
@@ -78,46 +81,44 @@
       <span class="flex-shrink mx-4 text-2xl text-gray-950">{{ $t('messages.general.NewProducts') }}</span>
       <div class="flex-grow border-t border-gray-400"></div>
     </div>
-
     <newProductList>
       <div class=" flex justify-center items-center container">
         <div class=" ">
           <div
             class="grid   max-sm:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-lg:grid-cols-5 overflow-x-auto gap-y-5 gap-x-3 lg:gap-x-5    p-2   ">
-
             <card class=" rounded-xl  flex-shrink-0   shadow-lg p-2 max-sm:w-50 sm:w-50 md:w-60 "
               v-for="pds in ProductsStore.newProducts" :key="pds">
-              <div class=" items-end flex justify-end">
-                <div class="text-xs border-1 w-fit bg-pink-500 text-white m-2 px-4 py-1 rounded-full">New</div>
-              </div>
-              <cardImage class="  justify-center flex ">
-                <NuxtImg class=" max-sm:w-40  sm:w-40 md:w-60   rounded-lg  " quality="60" width="600" height="600"
-                  :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
-                  alt="" />
-              </cardImage>
-              <cardTitle class=" p-2 m-2 items-center">
-                <h1 class=" text-sm max-sm:text-xs"> {{ pds.name }}</h1>
-
-
-              </cardTitle>
-              <!-- if you want to display Product short description
+              <NuxtLink :to="`/product/${pds.slug}`" :title="pds.name">
+                <div class=" items-end flex justify-end">
+                  <div class="text-xs border-1 w-fit bg-pink-500 text-white m-2 px-4 py-1 rounded-full">New</div>
+                </div>
+                <cardImage class="  justify-center flex ">
+                  <NuxtImg class=" max-sm:w-40  sm:w-40 md:w-60   rounded-lg  " quality="60" width="600" height="600"
+                    :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
+                    alt="" />
+                </cardImage>
+                <cardTitle class=" p-2 m-2 items-center">
+                  <h1 class=" text-sm max-sm:text-xs"> {{ pds.name }}</h1>
+                </cardTitle>
+                <!-- if you want to display Product short description
                   <cardInfo class="flex p-2 m-2">
                     <p>
                       {{pds.short_description}}
                     </p>
                   </cardInfo>
                   -->
+               
+              </NuxtLink>
               <div class="flex justify-between items-center">
-                  <h1 class=" text-md  pl-2  flex justify-end"> <b>{{
-                    pds.regular_price }} DA</b> </h1>
-                  <nuxt-link :to="'/product/' + pds.slug">
-                    <Button
-                      class=" text-sm  border-1 bg-blue-500 text-white my-2 px-6 py-1 rounded-lg">{{ $t('messages.shop.buyNow') }}</Button>
-                  </nuxt-link>
-
-                
+                <h1 class=" text-md pl-2  flex justify-center"> <b>{{ pds.regular_price || 0 }} DA</b> </h1>
+                <Button class="w-auto   border-1 bg-blue-500 text-white text-sm m-2 px-2 py-2 rounded-lg"
+                  @click="directBuy(pds.id, 1)">{{
+                    $t('messages.shop.addToCart') }}</Button>
               </div>
-
+              <Button  class="w-full flex justify-center  items-center  border-1 bg-gray-800 text-white px-6 py-1 rounded-lg"
+                @click="directBuy(pds.id, 0)">{{
+                  $t('messages.shop.buyDirect')
+                }} </Button>
             </card>
           </div>
         </div>
@@ -129,10 +130,6 @@
           class=" border-1 px-3 border-gray-640000 outline-gray-400 text-gray-400 outline-1 outline text-center items-center align-middle rounded-full p-1">
           + {{ $t('messages.general.moreProducts') }}</button></span>
     </div>
-
-
-
-
     <section class="container grid gap-4 my-24 md:grid-cols-2 lg:grid-cols-4">
       <div class="flex items-center gap-8 p-8 bg-white rounded-lg">
         <img src="../../static/icons/box.svg" width="60" height="60" alt="Free Shipping" loading="lazy" />
@@ -168,20 +165,35 @@
 <script  setup>
 import { getProductsStore } from "~/stores/getProducts";
 const ProductsStore = getProductsStore()
-
+const { addToCart } = useCart();
+const router = useRouter()
 onMounted(async () => {
-  console.log(ProductsStore)
   await ProductsStore.getProductsData()
-  console.log(ProductsStore)
-
 });
-
 useHead({
   title: `Gama outillage | Vente outillage professionnel Algérie`,
   meta: [{ name: 'description', content: 'PINCE A CEINTRER 16*1 VIRAX · PINCE A CEINTRER 14*1 VIRAX · COUPE TUBE MINI 3-16MM VIRAX · COUPE TUBE CUIVRE C28 6-28MM VIRAX · COUPE TUBE CUIVRE C54 14-...' }],
   link: [{ rel: 'canonical', href: 'https://v3.woonuxt.com/' }],
   script:[{src:'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV'}]
 });
+async function directBuy(productId, ButtonActionId) {
+  // if ButtonActionId = 1 mean the product will be added to the cart
+  // if ButtonActionId = 0 mean the client will be directed to the cart directly
+  const product = {
+    productId: productId,
+    quantity: 1
+  }
+  try {
+    if (ButtonActionId == 1) {
+      await addToCart(product)
+    }
+    if (ButtonActionId == 0) {
+      await addToCart(product)
+      router.push("/checkout")
+    }
+  } catch (e) { alert(e) }
+}
+
 </script>
 <style scoped>
 .brand img {

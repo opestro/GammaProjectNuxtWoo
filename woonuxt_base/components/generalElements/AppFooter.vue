@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { wooNuxtVersionInfo } = useHelpers();
-const versionInfo = `WooNuxt v${wooNuxtVersionInfo}`;
+const versionInfo = `V1.2`;
 </script>
 
 <template>
@@ -51,8 +51,13 @@ const versionInfo = `WooNuxt v${wooNuxtVersionInfo}`;
     <div class="container border-t">
       <div class="copywrite">
         <p class="py-4 text-xs text-center">
-          <a href="https://woonuxt.com" :title="versionInfo">{{ versionInfo }}</a> - by
-          <a href="https://scottyzen.com" title="Scott Kennedy - Web Developer" target="_blank">Scott Kennedy</a>
+
+          
+          <a href="https://GamaOutillage.com" title="" target="_blank">GamaOutillage</a>- All rights reserved
+
+          <a href="https://gamaoutillage.com" :title="versionInfo">{{ versionInfo }}</a> - by
+          <a href="https://gamaoutillage" title="All rights reserved at Gamaoutillage.com" target="_blank">-2024
+
         </p>
       </div>
     </div>
