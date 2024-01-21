@@ -28,19 +28,9 @@ const { isShowingSearch } = useSearching();
   </header>
 </template>
 
-<script>
-export default {
-  name: 'App',
-  head: {
-    meta: [
-      // Other meta tags if needed
-    ],
-    script: [
-      {
-        defer: true,
-        src: 'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV',
-      },
-    ],
-  },
-};
+<script setup>
+
+useHead({
+  script:[{src:'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV'}]
+});
 </script>
