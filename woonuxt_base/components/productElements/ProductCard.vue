@@ -43,6 +43,7 @@ const colorVariableImage = computed(() => {
   <div class="relative product-card">
     <NuxtLink :to="`/product/${formatURI(node.slug)}`" :title="node.name">
       <SaleBadge :node="node" class="absolute top-2 right-2" />
+      <div v-if="node.stock_status == 'outofstock'" class="flex justify-center bg-red-500 text-white rounded-lg my-1">Out of Stock</div>
       <img
         v-if="colorVariableImage"
         :src="colorVariableImage"
@@ -52,7 +53,7 @@ const colorVariableImage = computed(() => {
       <NuxtImg
         :width="imgWidth"
         :height="imgHeight"
-        :src="mainImage || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
+        :src="mainImage || node.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
         :alt="node.image?.altText || node.name"
         :title="node.image?.title || node.name"
         :loading="index <= 3 ? 'eager' : 'lazy'"
@@ -61,11 +62,11 @@ const colorVariableImage = computed(() => {
         densities="x1 x2" />
     </NuxtLink>
     <div class="p-2">
-      <StarRating :rating="node.averageRating" :count="node.reviewCount" />
+    
       <NuxtLink :to="`/product/${formatURI(node.slug)}`" :title="node.name">
         <h2 class="mb-2 font-light leading-tight">{{ node.name }}</h2>
       </NuxtLink>
-      <ProductPrice class="text-sm" :sale-price="node.salePrice" :regular-price="node.regularPrice" />
+      <ProductPrice class="text-sm" :sale-price="node.sale_price" :regular-price="node.regular_price+'  DA'" />
     </div>
   </div>
 </template>

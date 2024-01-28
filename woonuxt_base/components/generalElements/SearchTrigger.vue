@@ -2,7 +2,7 @@
 const { toggleSearch } = useSearching();
 </script>
 
-<template>
+<template> 
   <div class="relative cursor-pointer sm:hidden" title="Cart" @click="toggleSearch">
     <Icon name="ion:search-outline" size="20" class="mr-1 md:mr-0" />
   </div>
