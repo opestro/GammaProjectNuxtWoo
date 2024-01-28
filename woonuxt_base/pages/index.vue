@@ -15,12 +15,17 @@
     </div>
 
     <section class="container mt-16">
+
       <div class="flex items-end justify-between">
         <h2 class="text-lg font-semibold md:text-2xl">{{ $t('messages.shop.shopByCategory') }}</h2>
         <NuxtLink class="text-primary" to="/categories">{{ $t('messages.general.viewAll') }}</NuxtLink>
       </div>
-
+      <div  v-if="ProductsStore.isLoading.categories == true" class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
+        <LoadingSkelton></LoadingSkelton>
+      </div>
       <div class="grid justify-center grid-cols-2 gap-4 mt-8 md:grid-cols-3 lg:grid-cols-6">
+       
+        
         <CategoryCard v-for="(category, i) in ProductsStore.categories" :key="i" class="w-full" :node="category" />
       </div>
     </section>
@@ -33,7 +38,8 @@
     </div>
     <topProductList class="  ">
       <div class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
-
+        <LoadingSkelton v-if="ProductsStore.isLoading.topProducts == true"></LoadingSkelton>
+       
         <card class=" rounded-xl  flex-shrink-0   shadow-lg p-2 w-60 " v-for="pds in ProductsStore.topProducts"
           :key="pds">
           <NuxtLink :to="`/product/${pds.slug}`" :title="pds.name">
@@ -62,11 +68,11 @@
               @click="directBuy(pds.id, 1)">{{
                 $t('messages.shop.addToCart') }}</Button>
           </div>
-          <Button  class="w-full flex justify-center  items-center  border-1 bg-gray-800 text-white px-6 py-1 rounded-lg"
+          <Button class="w-full flex justify-center  items-center  border-1 bg-gray-800 text-white px-6 py-1 rounded-lg"
             @click="directBuy(pds.id, 0)">{{
               $t('messages.shop.buyDirect')
             }} </Button>
-         
+
         </card>
       </div>
     </topProductList>
@@ -77,7 +83,11 @@
       <div class="flex-grow border-t border-gray-400"></div>
     </div>
     <newProductList>
+      <div  v-if="ProductsStore.isLoading.categories == true" class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
+        <LoadingSkelton></LoadingSkelton>
+      </div>
       <div class=" flex justify-center items-center container">
+      
         <div class=" ">
           <div
             class="grid   max-sm:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-lg:grid-cols-5 overflow-x-auto gap-y-5 gap-x-3 lg:gap-x-5    p-2   ">
@@ -102,7 +112,7 @@
                     </p>
                   </cardInfo>
                   -->
-               
+
               </NuxtLink>
               <div class="flex justify-between items-center">
                 <h1 class=" text-md pl-2  flex justify-center"> <b>{{ pds.regular_price || 0 }} DA</b> </h1>
@@ -110,7 +120,8 @@
                   @click="directBuy(pds.id, 1)">{{
                     $t('messages.shop.addToCart') }}</Button>
               </div>
-              <Button  class="w-full flex justify-center  items-center  border-1 bg-gray-800 text-white px-6 py-1 rounded-lg"
+              <Button
+                class="w-full flex justify-center  items-center  border-1 bg-gray-800 text-white px-6 py-1 rounded-lg"
                 @click="directBuy(pds.id, 0)">{{
                   $t('messages.shop.buyDirect')
                 }} </Button>
@@ -169,7 +180,7 @@ useHead({
   title: `Gama outillage | Vente outillage professionnel Algérie`,
   meta: [{ name: 'description', content: 'PINCE A CEINTRER 16*1 VIRAX · PINCE A CEINTRER 14*1 VIRAX · COUPE TUBE MINI 3-16MM VIRAX · COUPE TUBE CUIVRE C28 6-28MM VIRAX · COUPE TUBE CUIVRE C54 14-...' }],
   link: [{ rel: 'canonical', href: 'https://v3.woonuxt.com/' }],
-  script:[{src:'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV'}]
+  script: [{ src: 'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV' }]
 });
 async function directBuy(productId, ButtonActionId) {
   // if ButtonActionId = 1 mean the product will be added to the cart
@@ -195,4 +206,5 @@ async function directBuy(productId, ButtonActionId) {
   max-height: min(8vw, 120px);
   object-fit: contain;
   object-position: center;
-}</style>
+}
+</style>
