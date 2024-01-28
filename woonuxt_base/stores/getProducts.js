@@ -32,7 +32,7 @@ export const getProductsStore = defineStore('getProducts', () => {
         
         //   console.log('else')
        
-            const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': pageNumber || 1,'per_page': 4, 'search': searchKey } });
+            const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': pageNumber || 1,'per_page': 5, 'search': searchKey } });
           const productsBySearch = getNewProducts.value
            
         return {productsBySearch}
