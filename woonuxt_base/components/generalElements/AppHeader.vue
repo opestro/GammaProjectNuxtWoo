@@ -1,6 +1,4 @@
-<script setup lang="ts">
-const { isShowingSearch } = useSearching();
-</script>
+
 
 <template>
   <header class="sticky top-0 z-40 bg-white shadow-sm shadow-light-500">
@@ -28,10 +26,9 @@ const { isShowingSearch } = useSearching();
   </header>
 </template>
 
-<script>
-export default {
-  name: 'App',
-  head: {
+<script setup>
+
+useHead({
     meta: [
       // Other meta tags if needed
     ],
@@ -41,6 +38,6 @@ export default {
         src: 'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV',
       },
     ],
-  },
-};
+  })
+
 </script>

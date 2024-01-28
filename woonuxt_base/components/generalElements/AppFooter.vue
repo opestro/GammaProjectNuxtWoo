@@ -1,8 +1,3 @@
-<script setup lang="ts">
-const { wooNuxtVersionInfo } = useHelpers();
-const versionInfo = `V1.2`;
-</script>
-
 <template>
   <div class="bg-white">
     <div class="container flex flex-wrap justify-between gap-12 my-24 md:gap-24">
@@ -55,8 +50,8 @@ const versionInfo = `V1.2`;
           
           <a href="https://GamaOutillage.com" title="" target="_blank">GamaOutillage</a>- All rights reserved
 
-          <a href="https://gamaoutillage.com" :title="versionInfo">{{ versionInfo }}</a> - by
-          <a href="https://gamaoutillage" title="All rights reserved at Gamaoutillage.com" target="_blank">-2024
+          <a href="https://gamaoutillage.com" title="versionInfo">V1.2</a> - by
+          <a href="https://gamaoutillage" title="All rights reserved at Gamaoutillage.com" target="_blank">-2024</a>
 
         </p>
       </div>
