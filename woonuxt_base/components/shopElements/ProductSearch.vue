@@ -37,9 +37,9 @@ watch(getSearchQuery, (value) => {
       class="absolute z-10 w-full py-1 mt-1 bg-white border border-gray-300 rounded-md shadow-md top-10">
 
       <li v-for="result in searchData.filteredResults" :key="result"
-        class="flex px-4 py-2 cursor-pointer hover:bg-gray-100">
-        <NuxtLink :to="'/product/' + result.slug" @click="searchData.showResults= false , searchQuery = ''">
-          <NuxtImg v-if="result.images[0]" :src="result.images[0]?.src" class=" rounded-full w-10 h-10"></NuxtImg>
+        class=" px-4 py-2 cursor-pointer hover:bg-gray-100">
+        <NuxtLink :to="'/product/' + result.slug" @click="searchData.showResults= false , searchQuery = ''" class="flex items-center">
+          <NuxtImg v-if="result.images[0]" :src="result.images[0]?.src" class="border mr-2 rounded-full w-14 h-14"></NuxtImg>
           {{ result.name }}
         </NuxtLink>
       </li>
