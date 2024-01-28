@@ -28,7 +28,6 @@
 </template>
 
 <script setup>
-
 useHead({
     meta: [
       // Other meta tags if needed
@@ -40,5 +39,4 @@ useHead({
       },
     ],
   })
-
 </script>
