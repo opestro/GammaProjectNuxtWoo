@@ -19,7 +19,7 @@ export const getProductsStore = defineStore('getProducts', () => {
         if (!newProducts.value) {
             const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'date' } });
             newProducts.value = getNewProducts.value
-        }
+        } 
       //  console.log('else')
     }
 

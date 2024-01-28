@@ -14,8 +14,9 @@ const changeImage = (index: number | null): void => {
 </script>
 
 <template>
-  <div v-if="mainImage">
+  <div v-if="mainImage" >
     <SaleBadge :node="node" class="absolute text-base top-4 right-4" />
+    <div v-if="node.stockStatus == 'OUT_OF_STOCK'" class="flex justify-center items-center bg-red-600 text-white text-lg rounded-lg my-2 ">Repture de Stock</div>
     <NuxtImg
       v-show="imageToShow === null"
       class="rounded-xl object-contain w-full min-w-[350px]"
