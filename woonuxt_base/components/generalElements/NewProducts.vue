@@ -29,13 +29,6 @@
                                 <div class=" p-2  items-center">
                                     <h1 class=" text-sm max-sm:text-xs truncate "> {{ pds.name }}</h1>
                                 </div>
-                                <!-- if you want to display Product short description
-                        <cardInfo class="flex p-2 m-2">
-                          <p>
-                            {{pds.short_description}}
-                          </p>
-                        </cardInfo>
-                        -->
 
                             </NuxtLink>
                             <div class=" sm:flex-none md:flex justify-between items-center mx-2">
@@ -70,16 +63,31 @@
                     </div>
                 </div>
             </div>
-            <div v-if="newProducts.isNew == false && newProducts.isLoading == true"
-                class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
-                <LoadingSkelton></LoadingSkelton>
+            <div class=" flex justify-center items-center container">
+                <div v-if="newProducts.isNew == false && newProducts.isLoading == true"
+                    class="grid   max-sm:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-lg:grid-cols-5 overflow-x-auto gap-y-5 gap-x-3 lg:gap-x-5    p-2   ">
+                    <card class=" rounded-xl  flex-shrink-0   shadow-lg max-sm:w-50 sm:w-50 md:w-60 " v-for="i in i" :key="i">
+                       
+                            <cardTitle class="flex p-2 m-2 items-center">
+                                <div class="bg-gray-200 w-full animate-pulse h-52 rounded-2xl m-2"></div>
+                            </cardTitle>
+                            <cardTitle class=" p-2 m-2 items-center">
+                                <div class="bg-gray-200  animate-pulse h-3 w-10 rounded-2xl  m-2"></div>
+                                <div class="bg-gray-200 w-11/12 animate-pulse h-3   rounded-2xl m-2"></div>
+                                <div class="bg-gray-200 w-11/12 animate-pulse h-3 rounded-2xl m-2"></div>
+                                <div class="bg-gray-200 w-11/12 animate-pulse h-3 rounded-2xl m-2"></div>
+                            </cardTitle>
+                    </card>
+
+                </div>
             </div>
+
         </newProductList>
     </div>
 </template>
 
 <script setup>
-
+const i = [1,2,3,4,5]
 const props = defineProps({
     newProducts: { type: Object, default: null }
 })
