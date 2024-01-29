@@ -93,18 +93,7 @@ serverDir: resolve('./server'),
     
   },
   
-  vite: {
-    vue: {
-      customElement: true
-    },
-    vueJsx: {
-      mergeProps: true
-    }
-  },
 build: {
-  analyze: {
-    filename: "my-file.html",
-  },
   optimization: {
     minimize: true,
     splitChunks: {
