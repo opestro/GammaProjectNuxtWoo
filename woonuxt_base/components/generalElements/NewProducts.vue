@@ -10,11 +10,12 @@
                 <div class=" ">
                     <div
                         class="grid   max-sm:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-lg:grid-cols-5 overflow-x-auto gap-y-5 gap-x-3 lg:gap-x-5    p-2   ">
-                        <card class=" rounded-xl  flex-shrink-0   shadow-lg max-sm:w-50 sm:w-50 md:w-60 "
+                        <!-- Card -->
+                        <div class=" rounded-xl  flex-shrink-0   shadow-lg max-sm:w-50 sm:w-50 md:w-60 "
                             v-for="pds in newProducts.data" :key="pds">
                             <NuxtLink :to="`/product/${pds.slug}`" :title="pds.name">
-
-                                <cardImage class="  justify-center flex relative ">
+                                <!-- Card Image -->
+                                <div class="  justify-center flex relative ">
                                     <div v-if="newProducts.isNew == true"
                                         class=" absolute right-1 top-1 items-end flex justify-end">
                                         <div
@@ -24,7 +25,7 @@
                                     <NuxtImg format="webp" class=" max-sm:w-40  sm:w-40 md:w-60   rounded-lg  "  sizes="100vw sm:100px md:200px" 
                                         :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
                                         alt="" />
-                                </cardImage>
+                                </div>
                                 <div class=" p-2  items-center">
                                     <h1 class=" text-sm max-sm:text-xs truncate "> {{ pds.name }}</h1>
                                 </div>
@@ -57,7 +58,7 @@
                                     $t('messages.shop.buyDirect')
                                 }}</div>
                             </Button>
-                        </card>
+                        </div>
 
                     </div>
                 </div>

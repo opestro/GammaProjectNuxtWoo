@@ -91,7 +91,25 @@ serverDir: resolve('./server'),
 
     
   },
-
+build: {
+  optimization: {
+    minimize: true,
+    splitChunks: {
+      chunks: 'all',
+      automaticNameDelimiter: '.',
+      name: true,
+      maxSize: 244000,
+      cacheGroups: {
+        vendor: {
+          name: 'node_vendors',
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          maxSize: 244000
+        }
+      }
+    }
+  }
+},
   // Multilingual support
   i18n: {
     locales: [
