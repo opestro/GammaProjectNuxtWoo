@@ -3,6 +3,10 @@ import { createResolver } from '@nuxt/kit';
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
+  image: {
+    quality: 60,
+    format: ['webp']
+  },
   ssr: false,
   app: {
     head: {

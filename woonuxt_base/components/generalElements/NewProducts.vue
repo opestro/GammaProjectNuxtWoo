@@ -21,8 +21,7 @@
                                             class="text-xs border-1 w-fit bg-red-500 text-white m-2 px-4 py-1 rounded-full   border border-amber-500">
                                             New</div>
                                     </div>
-                                    <NuxtImg class=" max-sm:w-40  sm:w-40 md:w-60   rounded-lg  " quality="60" width="600"
-                                        height="600"
+                                    <NuxtImg format="webp" class=" max-sm:w-40  sm:w-40 md:w-60   rounded-lg  "  sizes="100vw sm:100px md:200px" 
                                         :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
                                         alt="" />
                                 </cardImage>
