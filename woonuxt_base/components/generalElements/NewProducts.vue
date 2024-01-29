@@ -66,7 +66,7 @@
             <div class=" flex justify-center items-center container">
                 <div v-if="newProducts.isNew == false && newProducts.isLoading == true"
                     class="grid   max-sm:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-lg:grid-cols-5 overflow-x-auto gap-y-5 gap-x-3 lg:gap-x-5    p-2   ">
-                    <card class=" rounded-xl  flex-shrink-0   shadow-lg max-sm:w-50 sm:w-50 md:w-60 " v-for="i in i" :key="i">
+                    <card class=" rounded-xl  flex-shrink-0  w-52  shadow-lg max-sm:w-50 sm:w-50 md:w-60 " v-for="i in i" :key="i">
                        
                             <cardTitle class="flex p-2 m-2 items-center">
                                 <div class="bg-gray-200 w-full animate-pulse h-52 rounded-2xl m-2"></div>
