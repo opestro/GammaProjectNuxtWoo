@@ -45,14 +45,14 @@
 
                             </div>
                             <Button v-if="pds.stock_status == 'instock'"
-                                class="w-full flex justify-center  items-center h-12 sm:text-sm  border-1 bg-amber-600 text-white py-1 rounded-lg rounded-tl-none rounded-tr-none"
+                                class="w-full flex justify-center  items-center h-12 sm:text-xs md:text-base truncate  border-1 bg-amber-600 text-white py-1 rounded-lg rounded-tl-none rounded-tr-none"
                                 @click="directBuy(pds.id, 0)">
                                 <Icon name="ion:cart-outline" size="20" class="mr-2" />{{
                                     $t('messages.shop.buyDirect')
                                 }}
                             </Button>
                             <Button v-else
-                                class="w-full flex justify-center  items-center h-12  border-1 bg-amber-600 text-white  py-1 rounded-lg rounded-tl-none rounded-tr-none disabled:cursor-not-allowed disabled:bg-gray-400 "
+                                class="w-full flex justify-center  items-center h-12 sm:text-xs  md:text-base truncate border-1 bg-amber-600 text-white  py-1 rounded-lg rounded-tl-none rounded-tr-none disabled:cursor-not-allowed disabled:bg-gray-400 "
                                 disabled @click="directBuy(pds.id, 0)">
                                 <Icon name="ion:cart-outline" size="20" class="mr-2" />{{
                                     $t('messages.shop.buyDirect')
