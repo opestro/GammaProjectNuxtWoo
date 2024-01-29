@@ -24,6 +24,7 @@
     "woocommerce-api": "^1.5.0"
   },
   "devDependencies": {
+    "@aceforth/nuxt-optimized-images": "^1.4.0",
     "@nuxt/image": "rc",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/i18n": "8.0.0-rc.5",
@@ -34,6 +35,9 @@
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-svgo": "^10.0.1",
     "nuxt": "^3.8.2",
     "nuxt-graphql-client": "^0.2.31",
     "nuxt-icon": "^0.6.7",
