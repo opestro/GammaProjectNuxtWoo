@@ -13,11 +13,14 @@
                         <card class=" rounded-xl  flex-shrink-0   shadow-lg max-sm:w-50 sm:w-50 md:w-60 "
                             v-for="pds in newProducts.data" :key="pds">
                             <NuxtLink :to="`/product/${pds.slug}`" :title="pds.name">
-                                <div v-if="newProducts.isNew == true" class=" items-end flex justify-end">
-                                    <div class="text-xs border-1 w-fit bg-red-500 text-white m-2 px-4 py-1 rounded-full">New
+
+                                <cardImage class="  justify-center flex relative ">
+                                    <div v-if="newProducts.isNew == true"
+                                        class=" absolute right-1 top-1 items-end flex justify-end">
+                                        <div
+                                            class="text-xs border-1 w-fit bg-red-500 text-white m-2 px-4 py-1 rounded-full   border border-amber-500">
+                                            New</div>
                                     </div>
-                                </div>
-                                <cardImage class="  justify-center flex ">
                                     <NuxtImg class=" max-sm:w-40  sm:w-40 md:w-60   rounded-lg  " quality="60" width="600"
                                         height="600"
                                         :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
@@ -43,7 +46,9 @@
                                 <h1 v-else class=" text-md text-red-600 items-center my-1 flex justify-center">
                                     <Icon name="ion:cube-outline" size="20" class="mr-2" />{{ pds.stock_status || 0 }}
                                 </h1>
-                                <h1 class="text-base  flex justify-center  "><b>{{ pds.regular_price + ' DA' || 0  + ' DA'}}</b></h1>
+                                <h1 class="text-base  flex justify-center  ">
+                                    <b>{{ pds.regular_price + ' DA' || 0 + ' DA' }}</b>
+                                </h1>
 
                             </div>
                             <Button v-if="pds.stock_status == 'instock'"
@@ -61,14 +66,14 @@
                                 }}
                             </Button>
                         </card>
-                        
+
                     </div>
                 </div>
             </div>
             <div v-if="newProducts.isNew == false && newProducts.isLoading == true"
-                            class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
-                            <LoadingSkelton></LoadingSkelton>
-                        </div>
+                class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
+                <LoadingSkelton></LoadingSkelton>
+            </div>
         </newProductList>
     </div>
 </template>
