@@ -3,6 +3,7 @@ import { createResolver } from '@nuxt/kit';
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
+
   ssr: false,
   app: {
     head: {
@@ -22,7 +23,9 @@ script:[
     pageTransition: { name: 'page', mode: 'out-in' },
   },
 
-  plugins: [resolve('./plugins/init.ts')],
+  plugins: [resolve('./plugins/init.ts'),
+  '~/plugins/vue-observe-visibility.js'
+],
 serverDir: resolve('./server'),
   components: [{ path: resolve('./components'), pathPrefix: false }],
 
@@ -31,7 +34,11 @@ serverDir: resolve('./server'),
   pinia: {
     storesDirs: ['./stores/**'],
   },
+  
+  
   image: {
+    quality: 60,
+    format: ['webp'],
     domains: process.env.NUXT_IMAGE_DOMAINS ? process.env.NUXT_IMAGE_DOMAINS.replace(/ /g, '').split(',') : [],
     dir: resolve('./static'),
   },
@@ -85,7 +92,26 @@ serverDir: resolve('./server'),
 
     
   },
-
+  
+build: {
+  optimization: {
+    minimize: true,
+    splitChunks: {
+      chunks: 'all',
+      automaticNameDelimiter: '.',
+      name: true,
+      maxSize: 244000,
+      cacheGroups: {
+        vendor: {
+          name: 'node_vendors',
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          maxSize: 244000
+        }
+      }
+    }
+  }
+},
   // Multilingual support
   i18n: {
     locales: [
