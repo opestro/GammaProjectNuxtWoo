@@ -3,10 +3,7 @@ import { createResolver } from '@nuxt/kit';
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
-  image: {
-    quality: 60,
-    format: ['webp']
-  },
+
   ssr: false,
   app: {
     head: {
@@ -37,7 +34,11 @@ serverDir: resolve('./server'),
   pinia: {
     storesDirs: ['./stores/**'],
   },
+  
+  
   image: {
+    quality: 60,
+    format: ['webp'],
     domains: process.env.NUXT_IMAGE_DOMAINS ? process.env.NUXT_IMAGE_DOMAINS.replace(/ /g, '').split(',') : [],
     dir: resolve('./static'),
   },
@@ -91,7 +92,19 @@ serverDir: resolve('./server'),
 
     
   },
+  
+  vite: {
+    vue: {
+      customElement: true
+    },
+    vueJsx: {
+      mergeProps: true
+    }
+  },
 build: {
+  analyze: {
+    filename: "my-file.html",
+  },
   optimization: {
     minimize: true,
     splitChunks: {

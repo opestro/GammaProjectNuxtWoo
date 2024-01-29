@@ -12,8 +12,10 @@
     "serve": "nuxi generate && npx serve .output/public -l 8080"
   },
   "dependencies": {
+    "@nuxt/vite-builder": "^3.9.3",
     "@pinia/nuxt": "^0.5.1",
     "@stripe/stripe-js": "^2.2.1",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vueform/slider": "^2.1.10",
     "@vueuse/core": "^10.7.0",
     "flowbite": "^2.2.1",
