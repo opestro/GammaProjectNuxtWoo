@@ -1,8 +1,8 @@
 
 
 <template>
-  <main>
-    <HeroBanner />
+  <main> 
+  <!--  <HeroBanner /> -->
 
     <div
       class="container flex flex-wrap items-center justify-center my-16 text-center gap-x-8 gap-y-4 brand lg:justify-between">
