@@ -1,19 +1,21 @@
 
 
 <template>
-  <main> 
-    <HeroBanner /> 
-
+  <main > 
+   
+    
+         
+    
     <div
-      class="container flex flex-wrap items-center justify-center my-16 text-center gap-x-8 gap-y-4 brand lg:justify-between">
-      <img src="../../static/images/logoipsum-211.svg" alt="Brand 1" width="132" height="35" />
-      <img src="../../static/images/logoipsum-221.svg" alt="Brand 2" width="119" height="30" />
-      <img src="../../static/images/logoipsum-225.svg" alt="Brand 3" width="49" height="48" />
-      <img src="../../static/images/logoipsum-280.svg" alt="Brand 4" width="78" height="30" />
-      <img src="../../static/images/logoipsum-284.svg" alt="Brand 5" width="70" height="44" />
-      <img src="../../static/images/logoipsum-215.svg" alt="Brand 6" width="132" height="40" />
+      class="container flex flex-wrap items-center justify-center my-16 md:my-32 text-center gap-x-8 gap-y-4 brand lg:justify-between ">
+      <img src="../static/images/logoipsum-211.svg" alt="Brand 1" width="132" height="35" />
+      <img src="../static/images/logoipsum-221.svg" alt="Brand 2" width="119" height="30" />
+      <img src="../static/images/logoipsum-225.svg" alt="Brand 3" width="49" height="48" />
+      <img src="../static/images/logoipsum-280.svg" alt="Brand 4" width="78" height="30" />
+      <img src="../static/images/logoipsum-284.svg" alt="Brand 5" width="70" height="44" />
+      <img src="../static/images/logoipsum-215.svg" alt="Brand 6" width="132" height="40" />
     </div>
-
+    <search-bar></search-bar>
     <section class="container mt-16">
 
       <div class="flex items-end justify-between">
@@ -95,7 +97,7 @@
   </main>
 </template>
 <script  setup>
-import { getProductsStore } from "~/stores/getProducts";
+import { getProductsStore } from "~/woonuxt_base/stores/getProducts";
 import InfiniteLoading from 'vue-infinite-loading';
 
 const ProductsStore = getProductsStore()
