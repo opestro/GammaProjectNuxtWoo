@@ -35,7 +35,7 @@
                         -->
 
                             </NuxtLink>
-                            <div class="flex justify-between items-center mx-2">
+                            <div class=" sm:flex-none md:flex justify-between items-center mx-2">
                                 <h1 v-if="pds.stock_status == 'instock'"
                                     class=" text-green-500 text-md items-center my-1  flex justify-center">
                                     <Icon name="ion:cube-outline" size="20" class="mr-2 " />{{ pds.stock_status || 0 }}
@@ -43,11 +43,11 @@
                                 <h1 v-else class=" text-md text-red-600 items-center my-1 flex justify-center">
                                     <Icon name="ion:cube-outline" size="20" class="mr-2" />{{ pds.stock_status || 0 }}
                                 </h1>
-                                <h1 class=" text-md  flex justify-center"> <b>DA {{ pds.regular_price || 0 }} </b> </h1>
+                                <h1 class="text-base  flex justify-center  "><b>{{ pds.regular_price + ' DA' || 0  + ' DA'}}</b></h1>
 
                             </div>
                             <Button v-if="pds.stock_status == 'instock'"
-                                class="w-full flex justify-center  items-center h-12  border-1 bg-amber-600 text-white py-1 rounded-lg rounded-tl-none rounded-tr-none"
+                                class="w-full flex justify-center  items-center h-12 sm:text-sm  border-1 bg-amber-600 text-white py-1 rounded-lg rounded-tl-none rounded-tr-none"
                                 @click="directBuy(pds.id, 0)">
                                 <Icon name="ion:cart-outline" size="20" class="mr-2" />{{
                                     $t('messages.shop.buyDirect')
