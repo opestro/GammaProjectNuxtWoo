@@ -20,12 +20,13 @@
         <h2 class="text-lg font-semibold md:text-2xl">{{ $t('messages.shop.shopByCategory') }}</h2>
         <NuxtLink class="text-primary" to="/categories">{{ $t('messages.general.viewAll') }}</NuxtLink>
       </div>
-      <div  v-if="ProductsStore.isLoading.categories == true" class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
+      <div v-if="ProductsStore.isLoading.categories == true"
+        class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
         <LoadingSkelton></LoadingSkelton>
       </div>
       <div class="grid justify-center grid-cols-2 gap-4 mt-8 md:grid-cols-3 lg:grid-cols-6">
-       
-        
+
+
         <CategoryCard v-for="(category, i) in ProductsStore.categories" :key="i" class="w-full" :node="category" />
       </div>
     </section>
@@ -36,106 +37,31 @@
       <span class="flex-shrink mx-4 text-2xl text-gray-950">{{ $t('messages.general.bestSellingProducts') }}</span>
       <div class="flex-grow border-t border-gray-400"></div>
     </div>
-    <topProductList class="  ">
-      <div class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
-        <LoadingSkelton v-if="ProductsStore.isLoading.topProducts == true"></LoadingSkelton>
-       
-        <card class=" rounded-xl  flex-shrink-0   shadow-lg p-2 w-60 " v-for="pds in ProductsStore.topProducts"
-          :key="pds">
-          <NuxtLink :to="`/product/${pds.slug}`" :title="pds.name">
-            <div class=" items-end flex justify-end">
-              <div class="text-xs border-1 w-fit bg-pink-500 text-white m-2 px-4 py-1 rounded-full">Top</div>
-            </div>
-            <cardImage class="  justify-center flex ">
-              <NuxtImg class=" max-sm:w-40 sm:w-40 md:w-60 rounded-lg " quality="60" width="600" height="600"
-                :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
-                alt="" />
-            </cardImage>
-            <cardTitle class="flex p-2 m-2 items-center">
-              <h1 class=" text-sm"> {{ pds.name }}</h1>
-            </cardTitle>
-            <!-- if you want to display Product short description
-                  <cardInfo class="flex p-2 m-2">
-                    <p>
-                      {{pds.short_description}}
-                    </p>
-                  </cardInfo>
-                  -->
-          </NuxtLink>
-          <div class="flex justify-between items-center">
-            <h1 class=" text-md pl-2  flex justify-center"> <b>{{ pds.regular_price || 0 }} DA</b> </h1>
-            <Button class="w-auto   border-1 bg-blue-500 text-white text-sm m-2 px-2 py-2 rounded-lg"
-              @click="directBuy(pds.id, 1)">{{
-                $t('messages.shop.addToCart') }}</Button>
-          </div>
-          <Button class="w-full flex justify-center  items-center  border-1 bg-gray-800 text-white px-6 py-1 rounded-lg"
-            @click="directBuy(pds.id, 0)">{{
-              $t('messages.shop.buyDirect')
-            }} </Button>
-
-        </card>
-      </div>
-    </topProductList>
+    <TopSell :topProducts="topProducts"></TopSell>
 
     <!-- newProductList -->
     <div class="container relative flex pt-5 items-center mt-10">
       <span class="flex-shrink mx-4 text-2xl text-gray-950">{{ $t('messages.general.NewProducts') }}</span>
       <div class="flex-grow border-t border-gray-400"></div>
     </div>
-    <newProductList>
-      <div  v-if="ProductsStore.isLoading.categories == true" class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
-        <LoadingSkelton></LoadingSkelton>
-      </div>
-      <div class=" flex justify-center items-center container">
-      
-        <div class=" ">
-          <div
-            class="grid   max-sm:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-lg:grid-cols-5 overflow-x-auto gap-y-5 gap-x-3 lg:gap-x-5    p-2   ">
-            <card class=" rounded-xl  flex-shrink-0   shadow-lg p-2 max-sm:w-50 sm:w-50 md:w-60 "
-              v-for="pds in ProductsStore.newProducts" :key="pds">
-              <NuxtLink :to="`/product/${pds.slug}`" :title="pds.name">
-                <div class=" items-end flex justify-end">
-                  <div class="text-xs border-1 w-fit bg-pink-500 text-white m-2 px-4 py-1 rounded-full">New</div>
-                </div>
-                <cardImage class="  justify-center flex ">
-                  <NuxtImg class=" max-sm:w-40  sm:w-40 md:w-60   rounded-lg  " quality="60" width="600" height="600"
-                    :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
-                    alt="" />
-                </cardImage>
-                <cardTitle class=" p-2 m-2 items-center">
-                  <h1 class=" text-sm max-sm:text-xs"> {{ pds.name }}</h1>
-                </cardTitle>
-                <!-- if you want to display Product short description
-                  <cardInfo class="flex p-2 m-2">
-                    <p>
-                      {{pds.short_description}}
-                    </p>
-                  </cardInfo>
-                  -->
 
-              </NuxtLink>
-              <div class="flex justify-between items-center">
-                <h1 class=" text-md pl-2  flex justify-center"> <b>{{ pds.regular_price || 0 }} DA</b> </h1>
-                <Button class="w-auto   border-1 bg-blue-500 text-white text-sm m-2 px-2 py-2 rounded-lg"
-                  @click="directBuy(pds.id, 1)">{{
-                    $t('messages.shop.addToCart') }}</Button>
-              </div>
-              <Button
-                class="w-full flex justify-center  items-center  border-1 bg-gray-800 text-white px-6 py-1 rounded-lg"
-                @click="directBuy(pds.id, 0)">{{
-                  $t('messages.shop.buyDirect')
-                }} </Button>
-            </card>
-          </div>
-        </div>
-      </div>
-    </newProductList>
+
+    <NewProducts :newProducts="newProducts"></NewProducts>
+    <NewProducts :newProducts="products"></NewProducts>
+    <div v-observe-visibility="visibilityChanged">
+      <!-- Your content here -->
+    </div>
     <div class="container relative flex p-5 items-center">
       <div class="flex-grow border-t border-gray-400"></div>
       <span class="flex-shrink mx-4 text-lg"><button
           class=" border-1 px-3 border-gray-640000 outline-gray-400 text-gray-400 outline-1 outline text-center items-center align-middle rounded-full p-1">
           + {{ $t('messages.general.moreProducts') }}</button></span>
     </div>
+
+
+
+
+
     <section class="container grid gap-4 my-24 md:grid-cols-2 lg:grid-cols-4">
       <div class="flex items-center gap-8 p-8 bg-white rounded-lg">
         <img src="../../static/icons/box.svg" width="60" height="60" alt="Free Shipping" loading="lazy" />
@@ -170,9 +96,15 @@
 </template>
 <script  setup>
 import { getProductsStore } from "~/stores/getProducts";
+import InfiniteLoading from 'vue-infinite-loading';
+
 const ProductsStore = getProductsStore()
 const { addToCart } = useCart();
 const router = useRouter()
+let topProducts = ref({ data: '', isLoading: true })
+let newProducts = ref({ data: '', isLoading: true , isNew : true})
+let products = ref({ data: '', isLoading: true , isNew : false})
+let page = 2
 onMounted(async () => {
   await ProductsStore.getProductsData()
 });
@@ -182,6 +114,27 @@ useHead({
   link: [{ rel: 'canonical', href: 'https://v3.woonuxt.com/' }],
   script: [{ src: 'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV' }]
 });
+
+if (!topProducts.value.data) {
+
+  const { data: getTopProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'popularity' }, });
+  topProducts.value.data = toRaw(getTopProducts.value)
+  topProducts.value.isLoading = false
+
+}
+
+if (!newProducts.value.data) {
+  const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'date' ,'per_page': 10 } });
+  newProducts.value.data = getNewProducts.value
+  newProducts.value.isLoading = false
+}
+async function visibilityChanged() {
+  products.value.isLoading = true
+  const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 10 } });
+  products.value.data = [...products.value.data, ...getNewProducts.value]
+  products.value.isLoading = false
+}
+
 async function directBuy(productId, ButtonActionId) {
   // if ButtonActionId = 1 mean the product will be added to the cart
   // if ButtonActionId = 0 mean the client will be directed to the cart directly

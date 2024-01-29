@@ -22,7 +22,9 @@ script:[
     pageTransition: { name: 'page', mode: 'out-in' },
   },
 
-  plugins: [resolve('./plugins/init.ts')],
+  plugins: [resolve('./plugins/init.ts'),
+  '~/plugins/vue-observe-visibility.js'
+],
 serverDir: resolve('./server'),
   components: [{ path: resolve('./components'), pathPrefix: false }],
 
