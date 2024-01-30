@@ -1,10 +1,10 @@
 <template>
     <div>
-        <topProductList class="  ">
+        <div class="  ">
             <div class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
               <LoadingSkelton v-if="topProducts.isLoading == true"></LoadingSkelton>
       
-              <card class="  rounded-xl  flex-shrink-0 relative  shadow-lg  w-60 " v-for="pds in topProducts.data" :key="pds">
+              <card  class="  rounded-xl  flex-shrink-0 relative  shadow-lg  w-60 " v-for="pds in topProducts.data" :key="pds">
                 <NuxtLink :to="`/product/${pds.slug}`" :title="pds.name">
                   <div class=" items-end flex justify-end  absolute right-2 top-2">
                     <div class="text-xs border-1  bg-red-500 text-white px-4 py-1 rounded-full">Top</div>
@@ -61,14 +61,32 @@
       
               </card>
             </div>
-          </topProductList>
+          </div>
     </div>
 </template>
 <script setup>
+const { addToCart } = useCart();
 const props = defineProps({
     topProducts: { type: Object, default: null },
 });
-
+watchEffect(props)
+async function directBuy(productId, ButtonActionId) {
+  // if ButtonActionId = 1 mean the product will be added to the cart
+  // if ButtonActionId = 0 mean the client will be directed to the cart directly
+  const product = {
+    productId: productId,
+    quantity: 1
+  }
+  try {
+    if (ButtonActionId == 1) {
+      await addToCart(product)
+    }
+    if (ButtonActionId == 0) {
+      await addToCart(product)
+      router.push("/checkout")
+    }
+  } catch (e) { alert(e) }
+}
 
 
 

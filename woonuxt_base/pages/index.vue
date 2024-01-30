@@ -1,11 +1,11 @@
 
 
 <template>
-  <main > 
-   
-    
-         
-    
+  <main>
+
+
+
+
     <div
       class="container flex flex-wrap items-center justify-center my-16 md:my-32 text-center gap-x-8 gap-y-4 brand lg:justify-between ">
       <img src="../static/images/logoipsum-211.svg" alt="Brand 1" width="132" height="35" />
@@ -22,14 +22,14 @@
         <h2 class="text-lg font-semibold md:text-2xl">{{ $t('messages.shop.shopByCategory') }}</h2>
         <NuxtLink class="text-primary" to="/categories">{{ $t('messages.general.viewAll') }}</NuxtLink>
       </div>
-      <div v-if="ProductsStore.isLoading.categories == true"
-        class="flex   overflow-x-auto justify-start gap-2 p-2 container my-5 ">
-        <LoadingSkelton></LoadingSkelton>
+      <div v-if="categories.isLoading == true"
+        class="grid justify-center grid-cols-2 gap-4 mt-8 md:grid-cols-3 lg:grid-cols-6">
+        <div v-for="i in categories" :key="i"
+          class="   bg-sky-500  animate-pulse h-7 w-48  rounded-full    shadow-lg  ">
+        </div>
       </div>
       <div class="grid justify-center grid-cols-2 gap-4 mt-8 md:grid-cols-3 lg:grid-cols-6">
-
-
-        <CategoryCard v-for="(category, i) in ProductsStore.categories" :key="i" class="w-full" :node="category" />
+        <CategoryCard v-for="(category, i) in categories.data" :key="i" class="w-full" :node="category" />
       </div>
     </section>
 
@@ -98,18 +98,19 @@
 </template>
 <script  setup>
 import { getProductsStore } from "~/woonuxt_base/stores/getProducts";
-import InfiniteLoading from 'vue-infinite-loading';
 
 const ProductsStore = getProductsStore()
-const { addToCart } = useCart();
-const router = useRouter()
+
+//const router = useRouter()
 let topProducts = ref({ data: '', isLoading: true })
-let newProducts = ref({ data: '', isLoading: true , isNew : true})
-let products = ref({ data: '', isLoading: true , isNew : false})
+let newProducts = ref({ data: '', isLoading: true, isNew: true })
+let categories = ref({ data: '', isLoading: true })
+let products = ref({ data: '', isLoading: true, isNew: false })
 let page = 2
 onMounted(async () => {
-  await ProductsStore.getProductsData()
+  await fetchData()
 });
+
 useHead({
   title: `Gama outillage | Vente outillage professionnel Algérie`,
   meta: [{ name: 'description', content: 'PINCE A CEINTRER 16*1 VIRAX · PINCE A CEINTRER 14*1 VIRAX · COUPE TUBE MINI 3-16MM VIRAX · COUPE TUBE CUIVRE C28 6-28MM VIRAX · COUPE TUBE CUIVRE C54 14-...' }],
@@ -117,43 +118,35 @@ useHead({
   script: [{ src: 'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV' }]
 });
 
-if (!topProducts.value.data) {
+async function fetchData() {
+  if (!categories.value.data) {
+    const { data: getCategories } = await useFetch('https://gama.soluve.cloud/categories', { params: { 'per_page': 12, 'page':1, 'hide_empty': true, "parent": 0 }, })
+    categories.value.data = toRaw(getCategories.value)
+    categories.value.isLoading = false
+  }
 
-  const { data: getTopProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'popularity' }, });
-  topProducts.value.data = toRaw(getTopProducts.value)
-  topProducts.value.isLoading = false
+  if (!topProducts.value.data) {
 
+    const { data: getTopProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'popularity' }, });
+    topProducts.value.data = getTopProducts.value
+    topProducts.value.isLoading = false
+
+  }
+  if (!newProducts.value.data) {
+    const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'date', 'per_page': 10 } });
+    newProducts.value.data = getNewProducts.value
+    newProducts.value.isLoading = false
+  }
 }
 
-if (!newProducts.value.data) {
-  const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'date' ,'per_page': 10 } });
-  newProducts.value.data = getNewProducts.value
-  newProducts.value.isLoading = false
-}
 async function visibilityChanged() {
   products.value.isLoading = true
-  const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 10 } });
+  const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { lazy: true, params: { 'page': page++, 'per_page': 10 } });
   products.value.data = [...products.value.data, ...getNewProducts.value]
   products.value.isLoading = false
 }
 
-async function directBuy(productId, ButtonActionId) {
-  // if ButtonActionId = 1 mean the product will be added to the cart
-  // if ButtonActionId = 0 mean the client will be directed to the cart directly
-  const product = {
-    productId: productId,
-    quantity: 1
-  }
-  try {
-    if (ButtonActionId == 1) {
-      await addToCart(product)
-    }
-    if (ButtonActionId == 0) {
-      await addToCart(product)
-      router.push("/checkout")
-    }
-  } catch (e) { alert(e) }
-}
+
 
 </script>
 <style scoped>

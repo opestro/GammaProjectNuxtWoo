@@ -87,9 +87,28 @@
 </template>
 
 <script setup>
+const { addToCart } = useCart();
 const i = [1,2,3,4,5]
-const props = defineProps({
+ const  props =  defineProps({
     newProducts: { type: Object, default: null }
 })
+watchEffect( props)
+async function directBuy(productId, ButtonActionId) {
+  // if ButtonActionId = 1 mean the product will be added to the cart
+  // if ButtonActionId = 0 mean the client will be directed to the cart directly
+  const product = {
+    productId: productId,
+    quantity: 1
+  }
+  try {
+    if (ButtonActionId == 1) {
+      await addToCart(product)
+    }
+    if (ButtonActionId == 0) {
+      await addToCart(product)
+      router.push("/checkout")
+    }
+  } catch (e) { alert(e) }
+}
 
 </script>
