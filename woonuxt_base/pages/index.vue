@@ -7,13 +7,13 @@
 
 
     <div
-      class="container flex flex-wrap items-center justify-center my-16 md:my-32 text-center gap-x-8 gap-y-4 brand lg:justify-between ">
-      <img src="../static/images/logoipsum-211.svg" alt="Brand 1" width="132" height="35" />
-      <img src="../static/images/logoipsum-221.svg" alt="Brand 2" width="119" height="30" />
-      <img src="../static/images/logoipsum-225.svg" alt="Brand 3" width="49" height="48" />
-      <img src="../static/images/logoipsum-280.svg" alt="Brand 4" width="78" height="30" />
-      <img src="../static/images/logoipsum-284.svg" alt="Brand 5" width="70" height="44" />
-      <img src="../static/images/logoipsum-215.svg" alt="Brand 6" width="132" height="40" />
+      class="container flex flex-wrap items-center justify-center mt-6 mb-16 md:my-24 text-center gap-x-8 gap-y-4 brand lg:justify-between ">
+      <img src="../static/images/BrandLogo1.png" alt="Brand 1" width="120"  />
+      <img src="../static/images/BrandLogo2.png" alt="Brand 2" width="120" />
+      <img src="../static/images/BrandLogo3.png" alt="Brand 3" width="120" />
+      <img src="../static/images/BrandLogo4.png" alt="Brand 4" width="120"  />
+      <img src="../static/images/BrandLogo5.png" alt="Brand 5" width="120" />
+      <img src="../static/images/BrandLogo6.png" alt="Brand 6" width="120" />
     </div>
     <search-bar></search-bar>
     <section class="container mt-16">

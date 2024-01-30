@@ -29,12 +29,6 @@ async function searchProducts() {
     <div>
         <div class=" ">
             <div class="flex items-center relative  bottom-2   justify-center ">
-
-
-                <div class=" flex justify-center absolute  bottom-0  w-full invisible md:visible ">
-                    <NuxtImg format="webp" quality="60" class=" opacity-10  w-full"
-                        src="https://media.leclercbrico.fr/c/26-category_default/outillage-a-main.jpg"></NuxtImg>
-                </div>
                 <div class="container absolute bottom-0 flex pt-5 items-center">
                     <div class="flex-grow border-t border-gray-400"></div>
                 </div>

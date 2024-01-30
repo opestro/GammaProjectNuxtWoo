@@ -12,7 +12,7 @@ const { node } = defineProps<Props>();
 
    <NuxtLink  v-if="node"
    :to="`/product-category/${formatURI(node.slug)}`"
-   class="flex justify-start items-center max-sm:text-xs text-base hover:text-black  border bg-sky-600 text-white  rounded-full px-2 py-1   hover:bg-amber-500 shadow-lg  ">
+   class="flex justify-start items-center max-sm:text-xs text-base hover:text-black  border bg-sky-600 text-white  rounded-lg px-2 py-1   hover:bg-amber-500 shadow-lg  ">
   <Icon name="ion:arrow-forward-outline" class="mx-1"></Icon> <span class="truncate">{{ node.name }}</span> 
   </NuxtLink>
   
