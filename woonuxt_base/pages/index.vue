@@ -140,7 +140,7 @@ async function fetchData() {
 }
 
 async function visibilityChanged() {
-  products.value.isLoading = true
+ 
   const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { lazy: true, params: { 'page': page++, 'per_page': 10 } });
   products.value.data = [...products.value.data, ...getNewProducts.value]
   products.value.isLoading = false
