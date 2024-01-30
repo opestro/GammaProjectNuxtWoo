@@ -7,7 +7,7 @@
 
 
     <div
-      class="container flex flex-wrap items-center justify-center mt-6 mb-16 md:my-24 text-center gap-x-8 gap-y-4 brand lg:justify-between ">
+      class="container flex max-sm:hidden flex-wrap items-center justify-center mt-6 mb-16 md:my-24 text-center gap-x-8 gap-y-4 brand lg:justify-between ">
       <img src="../static/images/BrandLogo1.png" alt="Brand 1" width="120"  />
       <img src="../static/images/BrandLogo2.png" alt="Brand 2" width="120" />
       <img src="../static/images/BrandLogo3.png" alt="Brand 3" width="120" />
@@ -15,8 +15,10 @@
       <img src="../static/images/BrandLogo5.png" alt="Brand 5" width="120" />
       <img src="../static/images/BrandLogo6.png" alt="Brand 6" width="120" />
     </div>
-    <search-bar></search-bar>
-    <section class="container mt-16">
+    <MobileBanner class=" container sm:hidden my-2"></MobileBanner>
+    <search-bar class=" max-sm:mb-6"></search-bar>
+    
+    <section class="container mt-16 max-sm:hidden ">
 
       <div class="flex items-end justify-between">
         <h2 class="text-lg font-semibold md:text-2xl">{{ $t('messages.shop.shopByCategory') }}</h2>
@@ -98,9 +100,13 @@
 </template>
 <script  setup>
 import { getProductsStore } from "~/woonuxt_base/stores/getProducts";
+useHead({
+  title: `Gama outillage | Vente outillage professionnel Algérie`,
+  meta: [{ name: 'description', content: 'PINCE A CEINTRER 16*1 VIRAX · PINCE A CEINTRER 14*1 VIRAX · COUPE TUBE MINI 3-16MM VIRAX · COUPE TUBE CUIVRE C28 6-28MM VIRAX · COUPE TUBE CUIVRE C54 14-...' }],
+  link: [{ rel: 'canonical', href: 'https://v3.woonuxt.com/' }]
+});
 
 const ProductsStore = getProductsStore()
-
 //const router = useRouter()
 let topProducts = ref({ data: '', isLoading: true })
 let newProducts = ref({ data: '', isLoading: true, isNew: true })
@@ -108,39 +114,14 @@ let categories = ref({ data: '', isLoading: true })
 let products = ref({ data: '', isLoading: true, isNew: false })
 let page = 2
 onMounted(async () => {
-  await fetchData()
+  const fetchData = await ProductsStore.getProductsData()
+  topProducts.value = fetchData.topProducts.value
+  newProducts.value = fetchData.newProducts.value
+  categories.value = fetchData.categories.value
+
 });
-
-useHead({
-  title: `Gama outillage | Vente outillage professionnel Algérie`,
-  meta: [{ name: 'description', content: 'PINCE A CEINTRER 16*1 VIRAX · PINCE A CEINTRER 14*1 VIRAX · COUPE TUBE MINI 3-16MM VIRAX · COUPE TUBE CUIVRE C28 6-28MM VIRAX · COUPE TUBE CUIVRE C54 14-...' }],
-  link: [{ rel: 'canonical', href: 'https://v3.woonuxt.com/' }],
-  script: [{ src: 'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV' }]
-});
-
-async function fetchData() {
-  if (!categories.value.data) {
-    const { data: getCategories } = await useFetch('https://gama.soluve.cloud/categories', { params: { 'per_page': 12, 'page':1, 'hide_empty': true, "parent": 0 }, })
-    categories.value.data = toRaw(getCategories.value)
-    categories.value.isLoading = false
-  }
-
-  if (!topProducts.value.data) {
-
-    const { data: getTopProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'popularity' }, });
-    topProducts.value.data = getTopProducts.value
-    topProducts.value.isLoading = false
-
-  }
-  if (!newProducts.value.data) {
-    const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'date', 'per_page': 10 } });
-    newProducts.value.data = getNewProducts.value
-    newProducts.value.isLoading = false
-  }
-}
 
 async function visibilityChanged() {
- 
   const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { lazy: true, params: { 'page': page++, 'per_page': 10 } });
   products.value.data = [...products.value.data, ...getNewProducts.value]
   products.value.isLoading = false
