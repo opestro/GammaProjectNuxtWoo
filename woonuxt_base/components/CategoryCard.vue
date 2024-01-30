@@ -5,29 +5,17 @@ interface Props {
 }
 
 const { node } = defineProps<Props>();
-const imageSrc = node.image?.sourceUrl || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg';
+  
 </script>
 
 <template>
-  <NuxtLink
-    v-if="node"
-    :to="`/product-category/${formatURI(node.slug)}`"
-    class="relative flex justify-center overflow-hidden border border-white rounded-xl item snap-mandatory snap-x">
-    <NuxtImg
-     
-      width="250"
-      height="300"
-      class="absolute inset-0 object-cover w-full h-full"
-      :src="imageSrc || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
-      :alt="node.image?.altText || node.name"
-      :title="node.image?.title || node.name"
-      loading="lazy"
-      fit="inside"
-      format="webp"
-      densities="x1 x2" />
-    <div class="absolute inset-x-0 bottom-0 opacity-50 bg-gradient-to-t from-black to-transparent h-1/2" />
-    <span class="relative z-10 mt-auto mb-2 p-2 text-sm font-semibold text-white capitalize md:text-base md:mb-4" v-html="node.name" />
+
+   <NuxtLink  v-if="node"
+   :to="`/product-category/${formatURI(node.slug)}`"
+   class="flex justify-start items-center max-sm:text-xs text-base hover:text-black  border bg-sky-600 text-white  rounded-lg px-2 py-1   hover:bg-amber-500 shadow-lg  ">
+  <Icon name="ion:arrow-forward-outline" class="mx-1"></Icon> <span class="truncate">{{ node.name }}</span> 
   </NuxtLink>
+  
 </template>
 
 <style lang="postcss" scoped>

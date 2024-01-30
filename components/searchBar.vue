@@ -29,12 +29,6 @@ async function searchProducts() {
     <div>
         <div class=" ">
             <div class="flex items-center relative  bottom-2   justify-center ">
-
-
-                <div class=" flex justify-center absolute  bottom-0  w-full invisible md:visible ">
-                    <NuxtImg format="webp" quality="60" class=" opacity-10  w-full"
-                        src="https://media.leclercbrico.fr/c/26-category_default/outillage-a-main.jpg"></NuxtImg>
-                </div>
                 <div class="container absolute bottom-0 flex pt-5 items-center">
                     <div class="flex-grow border-t border-gray-400"></div>
                 </div>
@@ -44,7 +38,7 @@ async function searchProducts() {
                             <Icon name="ion:search-outline" size="20" class="mr-2 md:mr-2" />
                             <input v-model="searchQuery" @input="searchProducts" type="text"
                                 :placeholder="$t('messages.shop.searchProducts')"
-                                class="w-full py-2  pr-10 border-0  rounded-md outline-none">
+                                class="w-full py-2  pr-10 border-0 bg-white  rounded-md outline-none">
                         </div>
                         <ul v-show="searchData.showResults && searchQuery !== ''" class="mt-2 divide-y divide-gray-200 ">
                             <li v-for="result in searchData.filteredResults" :key="result"
@@ -96,8 +90,8 @@ async function searchProducts() {
                   </div>
             </div>
         </div>
-        <div class="flex justify-center flex-col items-center mt-10">
-            <h1 class=" text-3xl"> <b> Gama Outillage </b></h1>
+        <div class="flex justify-center flex-col items-center md:mt-8 max-sm:mt-5 sm:mt-5">
+          
             <p class=" text-lg">Find your tool</p>
         </div>
 
