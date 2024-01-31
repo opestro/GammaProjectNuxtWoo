@@ -3,14 +3,10 @@ import { createResolver } from '@nuxt/kit';
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
-
-  ssr: false,
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
-script:[
-        {src:'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV'}
-      ],
+      script: [{ src: 'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV' }],
       // link: [{ rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
       link: [
         {
@@ -23,19 +19,16 @@ script:[
     pageTransition: { name: 'page', mode: 'out-in' },
   },
 
-  plugins: [resolve('./plugins/init.ts'),
-  '~/plugins/vue-observe-visibility.js'
-],
-serverDir: resolve('./server'),
+  plugins: [resolve('./plugins/init.ts'), '~/plugins/vue-observe-visibility.js'],
+  serverDir: resolve('./server'),
   components: [{ path: resolve('./components'), pathPrefix: false }],
 
-  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/image', '@nuxtjs/i18n', '@pinia/nuxt',  '@nuxtjs/pwa'],
-  
+  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/image', '@nuxtjs/i18n', '@pinia/nuxt', '@nuxtjs/pwa'],
+
   pinia: {
     storesDirs: ['./stores/**'],
   },
-  
-  
+
   image: {
     quality: 60,
     format: ['webp'],
@@ -81,16 +74,16 @@ serverDir: resolve('./server'),
     routeRules: {
       '/checkout/order-received/**': { ssr: false },
       '/order-summary/**': { ssr: false },
+      '/produit/**': { ssr: false },
+      '/product/**': { ssr: false },
     },
   },
 
   runtimeConfig: {
     public: {
       version: pkg.version || '0.0.0',
-      WP_API_KEY : process.env.WP_API_KEY
+      WP_API_KEY: process.env.WP_API_KEY,
     },
-
-    
   },
   // Multilingual support
   i18n: {
@@ -105,5 +98,5 @@ serverDir: resolve('./server'),
     langDir: 'locales',
     defaultLocale: 'en',
     strategy: 'no_prefix',
-  }
+  },
 });

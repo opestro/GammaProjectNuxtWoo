@@ -12,7 +12,7 @@
                   <cardImage class="  justify-center flex ">
                     <NuxtImg format="webp" class=" max-sm:w-40 sm:w-40 md:w-60 rounded-lg " sizes="100px" quality="80" width="600" height="600" :alt="pds.name"
                       :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
-                      alt="" />
+                       />
                   </cardImage>
                   <cardTitle class="flex p-2 m-2 items-center">
                     <h1 class=" text-sm max-sm:text-xs truncate "> {{ pds.name }}</h1>
