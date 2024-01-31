@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   serverDir: resolve('./server'),
   components: [{ path: resolve('./components'), pathPrefix: false }],
 
-  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/image', '@nuxtjs/i18n', '@pinia/nuxt', '@nuxtjs/pwa'],
+  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/image', '@nuxtjs/i18n', '@pinia/nuxt'],
 
   pinia: {
     storesDirs: ['./stores/**'],
