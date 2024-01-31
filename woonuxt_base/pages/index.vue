@@ -8,12 +8,12 @@
 
     <div
       class="container flex max-sm:hidden flex-wrap items-center justify-center mt-6 mb-16 md:my-24 text-center gap-x-8 gap-y-4 brand lg:justify-between ">
-      <img src="../static/images/BrandLogo1.webp" alt="Brand 1" width="120"  />
-      <img src="../static/images/BrandLogo2.webp" alt="Brand 2" width="120" />
-      <img src="../static/images/BrandLogo3.webp" alt="Brand 3" width="120" />
-      <img src="../static/images/BrandLogo4.webp" alt="Brand 4" width="120"  />
-      <img src="../static/images/BrandLogo5.webp" alt="Brand 5" width="120" />
-      <img src="../static/images/BrandLogo6.webp" alt="Brand 6" width="120" />
+      <img src="../static/images/BrandLogo1.webp" alt="CROWN" width="120"  />
+      <img src="../static/images/BrandLogo2.webp" alt="WORCRAFT" width="120" />
+      <img src="../static/images/BrandLogo3.webp" alt="FLUKE" width="120" />
+      <img src="../static/images/BrandLogo4.webp" alt="TOPTUL" width="120"  />
+      <img src="../static/images/BrandLogo5.webp" alt="BOSCH" width="120" />
+      <img src="../static/images/BrandLogo6.webp" alt="MAKITA" width="120" />
     </div>
     <MobileBanner class=" container sm:hidden my-2"></MobileBanner>
     <search-bar class=" max-sm:mb-6"></search-bar>
