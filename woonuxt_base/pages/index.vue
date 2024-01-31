@@ -51,10 +51,9 @@
 
 
     <NewProducts :newProducts="newProducts"></NewProducts>
-    <NewProducts :newProducts="products"></NewProducts>
-    <div v-if="newProducts.isLoading == false" v-observe-visibility="visibilityChanged">
-      <!-- Your content here -->
-    </div>
+    <NewProducts v-if="newProducts.isLoading == false" :newProducts="products"></NewProducts>
+    <LoadingSkelton v-if="newProducts.isLoading == false"></LoadingSkelton>
+    <div v-if="newProducts.isLoading == false" v-observe-visibility="visibilityChanged"></div>
     <div class="container relative flex p-5 items-center">
       <div class="flex-grow border-t border-gray-400"></div>
       <span class="flex-shrink mx-4 text-lg"><button
@@ -114,15 +113,19 @@ let categories = ref({ data: '', isLoading: true })
 let products = ref({ data: '', isLoading: true, isNew: false })
 let page = 2
 onMounted(async () => {
-  const fetchData = await ProductsStore.getProductsData()
-  topProducts.value = fetchData.topProducts.value
-  newProducts.value = fetchData.newProducts.value
-  categories.value = fetchData.categories.value
+  const fetchCategories = await ProductsStore.getCategoriesData()
+  categories.value = fetchCategories.categories.value
+  const fetchTopProducts = await ProductsStore.getTopProductsData()
+  topProducts.value = fetchTopProducts.topProducts.value
+  const fetchNewProducts = await ProductsStore.getNewProductsData()
+  newProducts.value = fetchNewProducts.newProducts.value
+  
+ // console.log(fetchData)
 
 });
 
 async function visibilityChanged() {
-  const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { lazy: true, params: { 'page': page++, 'per_page': 10 } });
+  const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 10, 'stock_status': 'instock' } });
   products.value.data = [...products.value.data, ...getNewProducts.value]
   products.value.isLoading = false
 }

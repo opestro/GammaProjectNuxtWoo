@@ -29,8 +29,8 @@ script:[
 serverDir: resolve('./server'),
   components: [{ path: resolve('./components'), pathPrefix: false }],
 
-  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/image', '@nuxtjs/i18n', '@pinia/nuxt'],
-
+  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/image', '@nuxtjs/i18n', '@pinia/nuxt',  '@nuxtjs/pwa'],
+  
   pinia: {
     storesDirs: ['./stores/**'],
   },
@@ -105,5 +105,5 @@ serverDir: resolve('./server'),
     langDir: 'locales',
     defaultLocale: 'en',
     strategy: 'no_prefix',
-  },
+  }
 });

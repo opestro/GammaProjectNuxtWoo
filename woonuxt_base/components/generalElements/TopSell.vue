@@ -38,12 +38,12 @@
                 <div v-if="pds.stock_status == 'instock'" class="flex">
                   <Button class="w-full flex justify-center  items-center h-12  border-1 bg-sky-600 text-white   py-1 rounded-bl-lg "
                   @click="directBuy(pds.id, 1)">
-                  <Icon name="ion:bag-add-outline" size="20" class="mr-2" />
+                  <Icon name="ion:bag-add-outline" size="20" class="mr-2" />ADD
                 </Button>
                 <Button
                   class="w-full flex justify-center  items-center h-12  border-1 bg-amber-600 text-white  py-1 rounded-br-lg"
                   @click="directBuy(pds.id, 0)">
-                  <Icon name="ion:cart-outline" size="20" class="mr-2" />
+                  <Icon name="ion:cart-outline" size="20" class="mr-2" />BUY
                 </Button>
                 </div>
                 <div v-else class="flex">
@@ -66,6 +66,7 @@
 </template>
 <script setup>
 const { addToCart } = useCart();
+const router = useRouter();
 const props = defineProps({
     topProducts: { type: Object, default: null },
 });
