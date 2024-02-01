@@ -4,7 +4,6 @@ const { isShowingCart, toggleCart } = useCart();
 const { isShowingMobileMenu, toggleMobileMenu } = useHelpers();
 const { addBodyClass, removeBodyClass } = useHelpers();
 useHead({
-  script:[{src:'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV'}]
 });
 const underlayCick = () => {
   toggleCart(false);

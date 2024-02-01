@@ -1,11 +1,10 @@
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: false,
   // Get all the pages, components, composables and plugins from the parent theme
   extends: ['./woonuxt_base'],
 app:{
   head:{
     script:[
-      {src:'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV'}
     ]
   }
 },
