@@ -8,16 +8,16 @@
 
     <div
       class="container flex max-sm:hidden flex-wrap items-center justify-center mt-6 mb-16 md:my-24 text-center gap-x-8 gap-y-4 brand lg:justify-between ">
-      <img src="../static/images/BrandLogo1.webp" alt="CROWN" width="120"  />
+      <img src="../static/images/BrandLogo1.webp" alt="CROWN" width="120" />
       <img src="../static/images/BrandLogo2.webp" alt="WORCRAFT" width="120" />
       <img src="../static/images/BrandLogo3.webp" alt="FLUKE" width="120" />
-      <img src="../static/images/BrandLogo4.webp" alt="TOPTUL" width="120"  />
+      <img src="../static/images/BrandLogo4.webp" alt="TOPTUL" width="120" />
       <img src="../static/images/BrandLogo5.webp" alt="BOSCH" width="120" />
       <img src="../static/images/BrandLogo6.webp" alt="MAKITA" width="120" />
     </div>
     <MobileBanner class=" container sm:hidden my-2"></MobileBanner>
     <search-bar class=" max-sm:mb-6"></search-bar>
-    
+
     <section class="container mt-16 max-sm:hidden ">
 
       <div class="flex items-end justify-between">
@@ -26,8 +26,7 @@
       </div>
       <div v-if="categories.isLoading == true"
         class="grid justify-center grid-cols-2 gap-4 mt-8 md:grid-cols-3 lg:grid-cols-6">
-        <div v-for="i in categories" :key="i"
-          class="   bg-sky-500  animate-pulse h-7 w-48  rounded-full    shadow-lg  ">
+        <div v-for="i in categories" :key="i" class="   bg-sky-500  animate-pulse h-7 w-48  rounded-full    shadow-lg  ">
         </div>
       </div>
       <div class="grid justify-center grid-cols-2 gap-4 mt-8 md:grid-cols-3 lg:grid-cols-6">
@@ -60,41 +59,6 @@
           class=" border-1 px-3 border-gray-640000 outline-gray-400 text-gray-400 outline-1 outline text-center items-center align-middle rounded-full p-1">
           + {{ $t('messages.general.moreProducts') }}</button></span>
     </div>
-
-
-
-
-
-    <section class="container grid gap-4 my-24 md:grid-cols-2 lg:grid-cols-4">
-      <div class="flex items-center gap-8 p-8 bg-white rounded-lg">
-        <img src="../../static/icons/box.svg" width="60" height="60" alt="Free Shipping" loading="lazy" />
-        <div>
-          <h3 class="text-xl font-semibold">Free Shipping</h3>
-          <p class="text-sm">Free shipping on order over €50</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-8 p-8 bg-white rounded-lg">
-        <img src="../../static/icons/moneyback.svg" width="60" height="60" alt="Money Back" loading="lazy" />
-        <div>
-          <h3 class="text-xl font-semibold">Peace of Mind</h3>
-          <p class="text-sm">30 days money back guarantee</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-8 p-8 bg-white rounded-lg">
-        <img src="../../static/icons/secure.svg" width="60" height="60" alt="Secure Payment" loading="lazy" />
-        <div>
-          <h3 class="text-xl font-semibold">100% Payment Secure</h3>
-          <p class="text-sm">Your payment are safe with us.</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-8 p-8 bg-white rounded-lg">
-        <img src="../../static/icons/support.svg" width="60" height="60" alt="Support 24/7" loading="lazy" />
-        <div>
-          <h3 class="text-xl font-semibold">Support 24/7</h3>
-          <p class="text-sm">24/7 Online support</p>
-        </div>
-      </div>
-    </section>
   </main>
 </template>
 <script  setup>
@@ -119,8 +83,8 @@ onMounted(async () => {
   topProducts.value = fetchTopProducts.topProducts.value
   const fetchNewProducts = await ProductsStore.getNewProductsData()
   newProducts.value = fetchNewProducts.newProducts.value
-  
- // console.log(fetchData)
+
+  // console.log(fetchData)
 
 });
 

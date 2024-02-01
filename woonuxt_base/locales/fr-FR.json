@@ -35,7 +35,10 @@
       "newsletter": "Newsletter",
       "customerService": "Service Client",
       "processing": "En cours de traitement",
-      "moreProducts": "Plus de produits"
+      "moreProducts": "Plus de produits",
+      "add": "Ajouter",
+      "buy": "Achetez",
+      "find_your_tool":"Recherchez votre outil"
     },
     "account": {
       "changePassword": "Modifier le mot de passe",

@@ -35,7 +35,10 @@
       "newsletter": "Newsletter",
       "customerService": "Customer Service",
       "processing": "Processing",
-      "moreProducts": "More Products"
+      "moreProducts": "More Products",
+      "add": "Add",
+      "buy": "Buy",
+      "find_your_tool":"Find your tool"
     },
     "account": {
       "changePassword": "Change Password",
