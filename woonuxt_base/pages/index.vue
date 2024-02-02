@@ -16,7 +16,16 @@
       <img src="../static/images/BrandLogo6.webp" alt="MAKITA" width="120" />
     </div>
     <MobileBanner class=" container sm:hidden my-2"></MobileBanner>
-    <search-bar class=" max-sm:mb-6"></search-bar>
+    <div>
+      <div class="flex items-center   relative   justify-center   ">
+        <div class="container absolute top-0   flex pt-5 items-center">
+          <div class="flex-grow border-t border-gray-400"></div>
+        </div>
+        <search-bar class="   max-sm:mb-6"></search-bar>
+      </div>
+
+    </div>
+
 
     <section class="container mt-16 max-sm:hidden ">
 

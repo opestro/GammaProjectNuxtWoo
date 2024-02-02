@@ -15,7 +15,7 @@ export const getProductsStore = defineStore('getProducts', () => {
     async function getTopProductsData() {
         if (!topProducts.value.data) {
 
-            const { data: getTopProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'popularity', 'stock_status': 'instock' , 'per_page': 6}, });
+            const { data: getTopProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'popularity', 'stock_status': 'instock', 'per_page': 6 }, });
             topProducts.value.data = getTopProducts.value
             topProducts.value.isLoading = false
             return { topProducts }
@@ -36,13 +36,30 @@ export const getProductsStore = defineStore('getProducts', () => {
 
         //   console.log('else')
 
-        const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': pageNumber || 1, 'per_page': 5, 'search': searchKey } });
-        const productsBySearch = getNewProducts.value
+        const { data: getProductsByKeyword } = await useFetch('https://gama.soluve.cloud/products/search', { params: { 'page': pageNumber || 1, 'per_page': 12, 'search': searchKey } });
+        let productsBySearch = getProductsByKeyword.value
 
-        return { productsBySearch }
+    /*    if (productsBySearch.length <= 0) {
+            const { data: getProductsBySku } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': pageNumber || 1, 'per_page': 12, 'sku': searchKey } });
+            productsBySearch = [...productsBySearch, ...getProductsBySku.value]
+        } */
+        console.log(productsBySearch)
+        // Sort products based on the name matching the search term
+      
+    /*    const searchTerms = searchKey.toLowerCase().split(' ').filter(term => term.trim() !== '');
+       const filteredProducts = productsBySearch.filter(product => {
+        const productName = product.name.toLowerCase();
+        // Check if all search terms are included in the product name
+        return searchTerms.every(term => productName.includes(term));
+      });
+   
+        console.log(filteredProducts ) */
+        // const { data: getProductsBySku } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': pageNumber || 1, 'per_page': 5, 'sku': searchKey } });
+        //productsBySearch = [...productsBySearch , ...getProductsBySku.value]
+        return { productsBySearch  }
 
         //  console.log('else')
     }
 
-    return { newProducts, getTopProductsData,getNewProductsData, searchingProduct,getCategoriesData, topProducts, categories }
+    return { newProducts, getTopProductsData, getNewProductsData, searchingProduct, getCategoriesData, topProducts, categories }
 })

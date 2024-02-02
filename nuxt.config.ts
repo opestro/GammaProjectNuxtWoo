@@ -16,11 +16,4 @@ app:{
    * @property {number} interval - How long to wait between prerendering pages
    * @property {boolean} failOnError - This stops the build from failing but the page will not be statically generated
    */
-  nitro: {
-    prerender: {
-      concurrency: 10,
-      interval: 1000,
-      failOnError: false,
-    },
-  }
 });
