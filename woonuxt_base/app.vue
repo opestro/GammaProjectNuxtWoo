@@ -3,8 +3,6 @@ const route = useRoute();
 const { isShowingCart, toggleCart } = useCart();
 const { isShowingMobileMenu, toggleMobileMenu } = useHelpers();
 const { addBodyClass, removeBodyClass } = useHelpers();
-useHead({
-});
 const underlayCick = () => {
   toggleCart(false);
   toggleMobileMenu(false);
