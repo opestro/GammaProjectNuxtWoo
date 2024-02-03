@@ -38,10 +38,10 @@
         <div v-for="i in categories" :key="i" class="   bg-sky-500  animate-pulse h-7 w-48  rounded-full    shadow-lg  ">
         </div>
       </div>
-      <div class=" justify-center  my-2">
-        <div class="flex   overflow-auto justify-start gap-2  container scroll-smooth focus:scroll-auto">
+      <div class="  justify-center  my-2">
+        <div class=" sm:flex sm:overflow-x-auto max-sm:flex max-sm:overflow-x-auto md:grid md:grid-cols-9 justify-start gap-2   container ">
 
-          <CategoryCard v-for="(category, i) in categories.data" :key="i" class="w-52 max-sm:w-36 flex-shrink-0 " :node="category" />
+          <CategoryCard v-for="(category, i) in categories.data" :key="i" class="md:w-full  sm:w-20 max-sm:w-20  max-sm:flex-shrink-0   sm:flex-shrink-0 " :node="category" />
         </div>
       </div>
     </section>
