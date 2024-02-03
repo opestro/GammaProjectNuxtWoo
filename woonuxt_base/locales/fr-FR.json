@@ -9,7 +9,10 @@
       "paymentMethod": "Méthode de paiement",
       "clearFilters": "Effacer les filtres",
       "up": "Plus",
+      "bestSellingProducts": "Meilleures ventes",
+      "NewProducts": "Nouveaux produits",
       "please": "Please",
+      "pleaseWait": "Veuillez patienter",
       "shipping": "Livraison",
       "shippingDetails": "Détails de livraison",
       "shippingSelect": "Sélectionner la méthode de livraison",
@@ -31,7 +34,11 @@
       "goHome": "Retour à l'accueil",
       "newsletter": "Newsletter",
       "customerService": "Service Client",
-      "processing": "En cours de traitement"
+      "processing": "En cours de traitement",
+      "moreProducts": "Plus de produits",
+      "add": "Ajouter",
+      "buy": "Achetez",
+      "find_your_tool":"Recherchez votre outil"
     },
     "account": {
       "changePassword": "Modifier le mot de passe",
@@ -60,7 +67,6 @@
       "availability": "Disponibilité",
       "inStock": "En stock",
       "outOfStock": "Rupture de stock",
-      "onBackorder": "En réapprovisionnement",
       "sku": "SKU",
       "price": "Prix",
       "category": "Catégorie | Catégories",
@@ -71,6 +77,7 @@
       "wishlistNoItems": "Vous n'avez aucun article dans vos favoris",
       "addToCart": "Ajouter au panier",
       "adding": "En cours d'ajout...",
+      "buyDirect": "Achetez maintenant",
       "productDescription": "Description",
       "productImage": "Image du produit",
       "productBestSellers": "Meilleures ventes",
@@ -87,7 +94,6 @@
       "submit": "Valider",
       "order": "Commande | Commandes",
       "orderSummary": "Récapitulatif de la commance",
-      "orderReceived": "Nous avons bien reçu votre commande.",
       "orderNote": "Note de commande | Notes de commande",
       "orderNotePlaceholder": "Notes sur votre commande, par exemple, des notes spéciales à propos de votre livraison.",
       "orderThanks": "Merci de votre commande. Nous vous enverrons un e-mail avec les détails de la commande.",
@@ -103,7 +109,8 @@
       "discount": "Remise",
       "giftCards": "Cartes cadeaux",
       "searchProducts": "Rechercher par produit...",
-      "couponCode": "Code du coupon de réduction"
+      "couponCode": "Code du coupon de réduction",
+      "buyNow": "Achetez"
     },
     "billing": {
       "billing": "Facturation",

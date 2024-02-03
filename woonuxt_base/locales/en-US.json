@@ -9,7 +9,10 @@
       "paymentMethod": "Payment Method",
       "clearFilters": "Clear Filters",
       "up": "Up",
+      "bestSellingProducts": "Best Selling",
+      "NewProducts": "New Products",
       "please": "Please",
+      "pleaseWait": "Please wait",
       "shipping": "Shipping",
       "shippingDetails": "Shipping Details",
       "shippingSelect": "Select Shipping Method",
@@ -31,7 +34,11 @@
       "goHome": "Go Home",
       "newsletter": "Newsletter",
       "customerService": "Customer Service",
-      "processing": "Processing"
+      "processing": "Processing",
+      "moreProducts": "More Products",
+      "add": "Add",
+      "buy": "Buy",
+      "find_your_tool":"Find your tool"
     },
     "account": {
       "changePassword": "Change Password",
@@ -60,7 +67,6 @@
       "availability": "Availability",
       "inStock": "In Stock",
       "outOfStock": "Out of Stock",
-      "onBackorder": "On Backorder",
       "sku": "SKU",
       "price": "Price",
       "category": "Category | Categories",
@@ -71,6 +77,7 @@
       "wishlistNoItems": "You have no items in your wishlist",
       "addToCart": "Add to Cart",
       "adding": "Adding...",
+      "buyDirect": "Buy Now",
       "productDescription": "Description",
       "productImage": "Product Image",
       "productBestSellers": "Best Sellers",
@@ -87,7 +94,6 @@
       "submit": "Submit",
       "order": "Order | Orders",
       "orderSummary": "Order Summary",
-      "orderReceived": "Order Received",
       "orderNote": "Order Note | Order Notes",
       "orderNotePlaceholder": "Notes about your order, e.g. special notes for delivery.",
       "orderThanks": "Thank you for your order. We will send you an email with the order details.",
@@ -103,7 +109,8 @@
       "discount": "Discount",
       "giftCards": "Gift Cards",
       "searchProducts": "Search Products...",
-      "couponCode": "Coupon Code"
+      "couponCode": "Coupon Code",
+      "buyNow": "Buy Now"
     },
     "billing": {
       "billing": "Billing",
