@@ -7,7 +7,8 @@ export const getProductsStore = defineStore('getProducts', () => {
     async function getCategoriesData() {
 
             const { data: getCategories } = await useFetch('https://gama.soluve.cloud/categories', { params: { 'per_page': 24, 'page': 1, 'hide_empty': true, "parent": 0 }, })
-            categories.value.data = toRaw(getCategories.value)
+            categories.value.data = toRaw(getCategories.value.filter(arrow => arrow.name !== 'Uncategorized'))
+            console.log(categories)
             categories.value.isLoading = false
             return { categories }
     
