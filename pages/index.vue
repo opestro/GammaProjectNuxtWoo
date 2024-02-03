@@ -4,16 +4,19 @@
   <main>
 
 
-
-
+    <div class=" container flex  items-center justify-center  my-7 max-sm:hidden  text-center  w-full h-full">
+      <NuxtImg src="http://gamaoutillage.net/wp-content/uploads/2024/02/bannerSectionHero-2.png" class="rounded-lg" ></NuxtImg>
+    </div>
+   
     <div
-      class="container flex max-sm:hidden flex-wrap items-center justify-center mt-6 mb-16 md:my-24 text-center gap-x-8 gap-y-4 brand lg:justify-between ">
-      <img src="../static/images/BrandLogo1.webp" alt="CROWN" width="120" />
-      <img src="../static/images/BrandLogo2.webp" alt="WORCRAFT" width="120" />
-      <img src="../static/images/BrandLogo3.webp" alt="FLUKE" width="120" />
-      <img src="../static/images/BrandLogo4.webp" alt="TOPTUL" width="120" />
-      <img src="../static/images/BrandLogo5.webp" alt="BOSCH" width="120" />
-      <img src="../static/images/BrandLogo6.webp" alt="MAKITA" width="120" />
+      class="container flex max-sm:hidden flex-wrap items-center justify-center mt-6 mb-16 md:my-14 text-center gap-x-8 gap-y-4 brand lg:justify-between  ">
+      
+      <img src="../static/images/BrandLogo1.webp" alt="CROWN" width="150" class="border-2 bg-white rounded-lg p-2" />
+      <img src="../static/images/BrandLogo2.webp" alt="WORCRAFT" width="150" class="border-2 bg-white rounded-lg p-2" />
+      <img src="../static/images/BrandLogo3.webp" alt="FLUKE" width="150"  class="border-2 bg-white rounded-lg p-2"/>
+      <img src="../static/images/BrandLogo4.webp" alt="TOPTUL" width="150" class="border-2 bg-white rounded-lg p-2"/>
+      <img src="../static/images/BrandLogo5.webp" alt="BOSCH" width="150" class="border-2 bg-white rounded-lg p-2"/>
+      <img src="../static/images/BrandLogo6.webp" alt="MAKITA" width="150" class="border-2 bg-white rounded-lg p-2"/>
     </div>
     <MobileBanner class=" container sm:hidden my-2"></MobileBanner>
     <div>
@@ -21,13 +24,13 @@
         <div class="container absolute top-0   flex pt-5 items-center">
           <div class="flex-grow border-t border-gray-400"></div>
         </div>
-        <search-bar class="   max-sm:mb-6"></search-bar>
+        <search-bar class=" mb-5  "></search-bar>
       </div>
 
     </div>
 
 
-    <section class="container mt-16  ">
+    <section class="container  ">
 
       <div class="flex items-end justify-between">
         <h2 class="text-lg font-semibold md:text-2xl">{{ $t('messages.shop.shopByCategory') }}</h2>

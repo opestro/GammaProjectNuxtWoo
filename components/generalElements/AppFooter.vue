@@ -1,8 +1,10 @@
 <template>
   <div class="bg-white">
-    <div class="container flex flex-wrap justify-between gap-12 my-24 md:gap-24">
-      <div class="mr-auto">
-        <Logo />
+    <div class="container flex flex-wrap justify-between gap-12 my-12 md:gap-24">
+      <div class="mr-auto ">
+        <NuxtLink to="/" class=" flex sm:justify-center  max-sm:justify-center md:justify-start">
+          <img  src="../../static/images/LogoLong.webp" alt="Logo" class="object-contain h-10"  />
+        </NuxtLink>
         <WebsiteShortDescription />
         <LangSwitcher class="mt-8" />
       </div>

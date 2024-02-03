@@ -99,7 +99,7 @@ async function searchProducts() {
                 </div>
         </div>
     </div>
-    <div class="flex justify-center flex-col items-center md:mt-8 max-sm:mt-5 sm:mt-5">
+    <div class="flex justify-center flex-col items-center md:mt-2 ">
 
         <p class=" text-lg">{{ $t('messages.general.find_your_tool') }}</p>
     </div>
