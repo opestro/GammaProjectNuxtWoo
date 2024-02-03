@@ -10,23 +10,25 @@ export const getProductsStore = defineStore('getProducts', () => {
             categories.value.data = toRaw(getCategories.value)
             categories.value.isLoading = false
             return { categories }
- 
+    
     }
     async function getTopProductsData() {
-    
+ 
 
             const { data: getTopProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'popularity', 'stock_status': 'instock', 'per_page': 6 }, });
             topProducts.value.data = getTopProducts.value
             topProducts.value.isLoading = false
-
+            return { topProducts }
+  
     }
     async function getNewProductsData() {
-  
+      
             const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': 1, 'orderby': 'date', 'per_page': 5, 'stock_status': 'instock' } });
             newProducts.value.data = getNewProducts.value
             newProducts.value.isLoading = false
             newProducts.value.isNew = true
             return { newProducts }
+     
 
         //  console.log('else')
     }
