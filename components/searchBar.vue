@@ -85,9 +85,9 @@ async function searchProducts() {
                                         class="px-4 py-2 cursor-pointer hover:bg-gray-100 flex">
                                         <NuxtLink :to="'/product/' + result.slug"
                                             @click="searchData.showResults = false, searchQuery = ''"
-                                            class="flex items-center">
+                                            class="flex items-center text-sm">
                                             <NuxtImg v-if="result.images[0]" :src="result.images[0]?.src"
-                                                class="border mr-2 rounded-full w-14 h-14"></NuxtImg>
+                                                class="border mr-2  rounded-full w-14 h-14"></NuxtImg>
                                             {{ result.name }}
                                         </NuxtLink>
                                     </li>
