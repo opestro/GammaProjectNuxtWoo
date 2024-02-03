@@ -5,29 +5,26 @@ interface Props {
 }
 
 const { node } = defineProps<Props>();
-const imageSrc = node.image?.sourceUrl || '/images/placeholder.jpg';
+const imageSrc = node.image?.src || '/images/placeholder.jpg';
+console.log(node)
 </script>
 
 <template>
-  <NuxtLink
-    v-if="node"
-    :to="`/product-category/${formatURI(node.slug)}`"
-    class="relative flex justify-center overflow-hidden border border-white rounded-xl item snap-mandatory snap-x">
-    <NuxtImg
-      v-if="node.image?.sourceUrl"
-      width="250"
-      height="300"
-      class="absolute inset-0 object-cover w-full h-full"
-      :src="imageSrc"
-      :alt="node.image?.altText || node.name"
-      :title="node.image?.title || node.name"
-      loading="lazy"
-      fit="inside"
-      format="webp"
-      densities="x1 x2" />
-    <div class="absolute inset-x-0 bottom-0 opacity-50 bg-gradient-to-t from-black to-transparent h-1/2" />
-    <span class="relative z-10 mt-auto mb-2 text-sm font-semibold text-white capitalize md:text-base md:mb-4" v-html="node.name" />
-  </NuxtLink>
+  <div class=" items-center ">
+    <NuxtLink v-if="node" :to="`/product-category/${formatURI(node.slug)}`"
+      class=" flex justify-center  border border-white bg-white hover:border-amber-500 hover:border-1  rounded-full ">
+      <NuxtImg width="300px" height="300px" v-if="node.image?.src" class=" w-32 h-32 p-5" :src="imageSrc"
+        :alt="node.image?.altText || node.name" :title="node.image?.title || node.name" loading="lazy" fit="inside"
+        format="webp" densities="x1 x2" />
+    </NuxtLink>
+    <div class=" flex justify-center  ">
+      <div class="text-sm font-semibold   capitalize md:text-base   truncate" >
+        {{ node.name }}
+      </div>
+    </div>
+    
+    
+  </div>
 </template>
 
 <style lang="postcss" scoped>

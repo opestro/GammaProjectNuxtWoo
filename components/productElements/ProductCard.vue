@@ -8,7 +8,6 @@ const props = defineProps({
 
 const imgWidth = 220;
 const imgHeight = Math.round(imgWidth * 1.125);
-
 // example: ?filter=pa_color[green,blue],pa_size[large]
 const filterQuery = ref(route.query.filter);
 const paColor = ref(filterQuery.value?.split('pa_color[')[1]?.split(']')[0]?.split(',') || []);
@@ -53,7 +52,7 @@ const colorVariableImage = computed(() => {
       <NuxtImg
         :width="imgWidth"
         :height="imgHeight"
-        :src="mainImage || node.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
+        :src="mainImage  || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
         :alt="node.image?.altText || node.name"
         :title="node.image?.title || node.name"
         :loading="index <= 3 ? 'eager' : 'lazy'"

@@ -27,7 +27,7 @@
     </div>
 
 
-    <section class="container mt-16 max-sm:hidden ">
+    <section class="container mt-16  ">
 
       <div class="flex items-end justify-between">
         <h2 class="text-lg font-semibold md:text-2xl">{{ $t('messages.shop.shopByCategory') }}</h2>
@@ -38,8 +38,11 @@
         <div v-for="i in categories" :key="i" class="   bg-sky-500  animate-pulse h-7 w-48  rounded-full    shadow-lg  ">
         </div>
       </div>
-      <div class="grid justify-center grid-cols-2 gap-4 mt-8 md:grid-cols-3 lg:grid-cols-6">
-        <CategoryCard v-for="(category, i) in categories.data" :key="i" class="w-full" :node="category" />
+      <div class=" justify-center  my-2">
+        <div class="flex   overflow-auto justify-start gap-2  container scroll-smooth focus:scroll-auto">
+
+          <CategoryCard v-for="(category, i) in categories.data" :key="i" class="w-52 max-sm:w-36 flex-shrink-0 " :node="category" />
+        </div>
       </div>
     </section>
 
