@@ -23,8 +23,6 @@ console.log(node)
         {{ node.name }}
       </div>
     </div>
-    
-    
   </div>
 </template>
 

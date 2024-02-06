@@ -5,7 +5,7 @@ const props = defineProps({
   node: { type: Object, default: null },
   index: { type: Number, default: 1 },
 });
-
+//console.log(props.node)
 const imgWidth = 220;
 const imgHeight = Math.round(imgWidth * 1.125);
 // example: ?filter=pa_color[green,blue],pa_size[large]
@@ -21,7 +21,7 @@ watch(
   },
 );
 
-const mainImage = computed(() => props.node?.image?.sourceUrl);
+const mainImage = computed(() => props.node?.images[0]?.src);
 
 const colorVariableImage = computed(() => {
   if (paColor.value.length) {

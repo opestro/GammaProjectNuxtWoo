@@ -2,8 +2,18 @@
 const route = useRoute();
 const { productsPerPage } = useHelpers();
 const { products } = useProducts();
-const page = ref(parseInt(route.params.pageNumber as string) || 1);
+let page = 1;
 const productsToShow = computed(() => products.value);
+const props = defineProps({
+  category: { type: Object, default: 0 }
+});
+console.log('props : ' + props.category )
+async function visibilityChanged() {
+  const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 20, 'stock_status': 'instock', 'orderby': 'popularity', 'category' : props.category  } });
+  products.value = [...products.value, ...getNewProducts.value]
+ // console.log(products)
+ // return products
+}
 
 </script>
 
@@ -13,7 +23,8 @@ const productsToShow = computed(() => products.value);
       <TransitionGroup name="shrink" tag="div" mode="in-out" class="product-grid">
         <ProductCard v-for="(node, i) in productsToShow" :key="node.id || i" :node="node" :index="i" />
       </TransitionGroup>
-      <Pagination />
+      <div  v-observe-visibility="visibilityChanged"></div> 
+  <!--  <Pagination /> -->  
     </section>
   </Transition>
 </template>

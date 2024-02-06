@@ -123,7 +123,7 @@ onMounted(async () => {
 });
 
 async function visibilityChanged() {
-  const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 10, 'stock_status': 'instock' } });
+  const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 20, 'stock_status': 'instock' } });
   products.value.data = [...products.value.data, ...getNewProducts.value]
   products.value.isLoading = false
 }
