@@ -42,10 +42,13 @@
               <span class=" m-2 text-base  flex justify-center items-center ">{{ $t('messages.general.buy') }} <LoadingIcon v-if="isLoading" stroke="4" size="12" color="#fff" /></span>
              
             </button>
-            <form method="dialog ">
-              <!-- if there is a button in form, it will close the modal -->
-              <button class=" btn bg-red-600 text-white ">Close</button>
-            </form>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class=" btn bg-red-600 text-white ">Close</button>
+              </form>
+            </div>
+        
           </div>
         </div>
 
