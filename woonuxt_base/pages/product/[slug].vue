@@ -59,6 +59,7 @@ const updateSelectedVariations = (variations: Attribute[]): void => {
 
 const stockStatus = computed(() => type.value?.stockStatus || StockStatusEnum.OUT_OF_STOCK);
 const disabledAddToCart = computed(() => !type.value || stockStatus.value === StockStatusEnum.OUT_OF_STOCK || isUpdatingCart.value);
+
 </script>
 
 <template>

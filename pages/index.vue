@@ -1,11 +1,62 @@
 
 
 <template>
-  <main>
+  <main class="">
+
+    <dialog id="my_modal_1" class="modal text-white ">
+      <div class="modal-box ">
+        <NuxtImg v-if="imageToShow" class="rounded-xl object-contain w-full " width="700" height="700" fit="outside"
+          format="webp" :src="imageToShow.src" :alt="imageToShow.name" :title="imageToShow.name" fetchpriority="high" />
+        <div v-if="productReceiver" class="my-4 gallery-images">
 
 
+          <NuxtImg v-for="galleryImg in productReceiver.images" :key="galleryImg" class="cursor-pointer rounded-xl"
+            width="110" height="140" fit="outside" format="webp" :src="galleryImg.src"
+            :alt="galleryImg.alt || galleryImg.title || galleryImg.name" :title="galleryImg.name"
+            @click="changeImage(galleryImg)" />
+        </div>
+        <div>
+          <div class="flex justify-between mb-4">
+            <div class="flex-1">
+              <h1 class="flex flex-wrap items-center gap-2 mb-2 text-base font-sesmibold">
+                {{ productReceiver.name }}
+                <WPAdminLink :link="`/wp-admin/post.php?post=${productReceiver.id}&action=edit`">Edit</WPAdminLink>
+              </h1>
+              <StarRating :rating="productReceiver.average_rating || 0" :count="productReceiver.reviewCount || 0" />
+
+            </div>
+
+            <div class="  ">
+              <button class="bg-yellow-400 rounded-lg   ">
+                <span class="m-2 text-lg text-gray-800"
+                  v-html="(productReceiver.sale_price || productReceiver.regular_price) + ' DA'"></span>
+              </button>
+
+            </div>
+
+          </div>
+          <span v-html="productReceiver.short_description" class=" my-2"></span>
+          <div class=" flex gap-1">
+
+            <button @click="directBuy(productReceiver.id)" class="btn bg-sky-500  text-white  rounded-lg w-10/12 h-10 ">
+              <span class=" m-2 text-lg   flex justify-center items-center ">{{ $t('messages.general.buy') }} <LoadingIcon v-if="isLoading" stroke="4" size="12" color="#fff" /></span>
+             
+            </button>
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class=" btn bg-red-600 text-white">Close</button>
+            </form>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </dialog>
     <div class=" container flex  items-center justify-center  my-7 max-sm:hidden  text-center  w-full h-full">
-      <NuxtImg src="http://gamaoutillage.net/wp-content/uploads/2024/02/bannerSectionHero-2.png" class="rounded-lg" alt="BanerHero">
+      <NuxtImg src="http://gamaoutillage.net/wp-content/uploads/2024/02/bannerSectionHero-2.png" class="rounded-lg"
+        alt="BanerHero">
       </NuxtImg>
     </div>
 
@@ -70,7 +121,7 @@
           </span></nuxt-link>
 
       </div>
-      <category-products-card :categoryId="category.id"></category-products-card>
+      <category-products-card :categoryId="category.id" @data="receiveProduct"></category-products-card>
 
     </div>
 
@@ -95,6 +146,9 @@
   </main>
 </template>
 <script  setup>
+const { addToCart } = useCart();
+const router = useRouter();
+let isLoading = ref(false)
 import { getProductsStore } from "~/stores/getProducts";
 useHead({
   title: `Gama outillage | Vente outillage professionnel Algérie`,
@@ -121,19 +175,48 @@ onMounted(async () => {
   // console.log(fetchData)
 
 });
-
-async function visibilityChanged() {
+let imageToShow = ref('');
+let productReceiver = ref('')
+async function receiveProduct(data) {
+  console.log(data)
+  productReceiver.value = await data
+  imageToShow.value = await data.images[0]
+  document.getElementById('my_modal_1').showModal()
+}
+/*async function visibilityChanged() {
   const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 20, 'stock_status': 'instock' } });
   products.value.data = [...products.value.data, ...getNewProducts.value]
   products.value.isLoading = false
+} */
+
+
+function changeImage(index) {
+  console.log(index)
+  imageToShow.value = index;
+};
+
+async function directBuy(productId) {
+  // if ButtonActionId = 1 mean the product will be added to the cart
+  // if ButtonActionId = 0 mean the client will be directed to the cart directly
+  isLoading.value = true
+  const product = {
+    productId: productId,
+    quantity: 1
+  }
+  try {
+    
+      await addToCart(product)
+      router.push("/checkout")
+  
+  } catch (e) { alert(e) }
 }
 
-
-
+watch(productReceiver, imageToShow,isLoading)
 </script>
 <style scoped>
 .brand img {
   max-height: min(8vw, 120px);
   object-fit: contain;
   object-position: center;
-}</style>
+}
+</style>
