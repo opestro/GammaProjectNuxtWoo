@@ -59,12 +59,10 @@ const colorVariableImage = computed(() => {
         fit="outside"
         format="webp"
         densities="x1 x2" />
-    </NuxtLink>
-    <div class="p-2">
     
-      <NuxtLink :to="`/product/${formatURI(node.slug)}`" :title="node.name">
+    <div class="p-2">
         <h2 class="mb-2 font-light leading-tight">{{ node.name }}</h2>
-      </NuxtLink>
+      
       <ProductPrice class="text-sm" :sale-price="node.sale_price" :regular-price="node.regular_price+'  DA'" />
     </div>
 </NuxtLink>
