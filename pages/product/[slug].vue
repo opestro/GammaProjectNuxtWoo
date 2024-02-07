@@ -111,13 +111,13 @@ async function directBuy(productData) {
             class="fixed bottom-0 left-0 z-10 flex items-center w-full gap-4 p-4 mt-12 bg-white md:static md:bg-transparent bg-opacity-90 md:p-0">
             <div class="w-full ">
               <!--   <button  class="rounded-lg w-full font-bold bg-gray-800 text-white text-center p-2.5  focus:outline-none m-1" :disabled="disabledAddToCart" >Achtez Direct</button> -->
-              <BuyDirectButton class=" w-full m-1" :disabled="disabledAddToCart" :class="{ loading: isUpdatingCart }"
+              <BuyDirectButton class=" w-full m-1 " :disabled="disabledAddToCart" 
                 @click="directBuy(selectProductInput)"></BuyDirectButton>
               <div class="flex items-center ">
                 <input v-model="quantity" type="number" min="1" aria-label="Quantity"
                   class="bg-white border rounded-lg flex text-left p-2.5  m-1 w-20 gap-4 items-center justify-center focus:outline-none" />
                 <AddToCartButton class="flex-1 w-full " :disabled="disabledAddToCart"
-                  :class="{ loading: isUpdatingCart }" />
+                 />
               </div>
             </div>
 

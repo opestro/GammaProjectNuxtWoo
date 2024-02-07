@@ -21,7 +21,7 @@ watch(
   },
 );
 
-const mainImage = computed(() => props.node?.images[0]?.src);
+const mainImage = computed(() => props.node?.image?.sourceUrl || props.node?.images[0]?.src  );
 
 const colorVariableImage = computed(() => {
   if (paColor.value.length) {
