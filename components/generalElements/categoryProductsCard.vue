@@ -35,28 +35,31 @@
                   </h1>
                   <h1 class=" text-md  flex justify-center"> <b>DA {{ pds.regular_price || 0 }} </b> </h1>
                 </div>
-                <div v-if="pds.stock_status == 'instock'" class="flex">
-                  <Button class="w-full flex justify-center  items-center h-12  border-1 bg-sky-600 text-white   py-1 rounded-bl-lg "
-                  @click="directBuy(pds.id, 1)">
-                    <Icon name="ion:bag-add-outline" size="20" class="mr-2 max-sm:mr-1" />{{ $t('messages.general.add') }}
-                </Button>
-                <Button
-                  class="w-full flex justify-center  items-center h-12  border-1 bg-amber-600 text-white  py-1 rounded-br-lg"
-                  @click="directBuy(pds.id, 0)">
-                  <Icon name="ion:cart-outline" size="20" class="mr-2 max-sm:mr-1" />{{ $t('messages.general.buy') }}
-                </Button>
+                <div class="hidden ">
+                  <div v-if="pds.stock_status == 'instock'" class="flex">
+                    <Button class="w-full flex justify-center  items-center h-12  border-1 bg-sky-600 text-white   py-1 rounded-bl-lg "
+                    @click="directBuy(pds.id, 1)">
+                      <Icon name="ion:bag-add-outline" size="20" class="mr-2 max-sm:mr-1" />{{ $t('messages.general.add') }}
+                  </Button>
+                  <Button
+                    class="w-full flex justify-center  items-center h-12  border-1 bg-amber-600 text-white  py-1 rounded-br-lg"
+                    @click="directBuy(pds.id, 0)">
+                    <Icon name="ion:cart-outline" size="20" class="mr-2 max-sm:mr-1" />{{ $t('messages.general.buy') }}
+                  </Button>
+                  </div>
+                  <div v-else class="flex">
+                    <Button class="w-full flex justify-center  items-center h-12  border-1 bg-sky-600 text-white  rounded-bl-lg py-1 disabled:cursor-not-allowed disabled:bg-gray-400 " disabled
+                    @click="directBuy(pds.id, 1)">
+                    <Icon name="ion:bag-add-outline" size="20" class="mr-2" />
+                  </Button>
+                  <Button
+                    class="w-full flex justify-center  items-center h-12  border-1 bg-amber-600 text-white  py-1 rounded-br-lg disabled:cursor-not-allowed disabled:bg-gray-400 " disabled
+                    @click="directBuy(pds.id, 0)">
+                    <Icon name="ion:cart-outline" size="20" class="mr-2" />
+                  </Button>
+                  </div>
                 </div>
-                <div v-else class="flex">
-                  <Button class="w-full flex justify-center  items-center h-12  border-1 bg-sky-600 text-white  rounded-bl-lg py-1 disabled:cursor-not-allowed disabled:bg-gray-400 " disabled
-                  @click="directBuy(pds.id, 1)">
-                  <Icon name="ion:bag-add-outline" size="20" class="mr-2" />
-                </Button>
-                <Button
-                  class="w-full flex justify-center  items-center h-12  border-1 bg-amber-600 text-white  py-1 rounded-br-lg disabled:cursor-not-allowed disabled:bg-gray-400 " disabled
-                  @click="directBuy(pds.id, 0)">
-                  <Icon name="ion:cart-outline" size="20" class="mr-2" />
-                </Button>
-                </div>
+                
                
       
               </card>
@@ -105,8 +108,9 @@ async function directBuy(productId, ButtonActionId) {
 </script>
 <style type="text/css">
 ::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
+
 }
 ::-webkit-scrollbar-button {
   width: 49px;
@@ -115,7 +119,7 @@ async function directBuy(productId, ButtonActionId) {
 ::-webkit-scrollbar-thumb {
   background: #999999;
   border: 0px none #ff0000;
-  border-radius: 30px;
+  border-radius: 15px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #006ce0;
@@ -126,7 +130,7 @@ async function directBuy(productId, ButtonActionId) {
 ::-webkit-scrollbar-track {
   background: #fafafa;
   border: 0px none #ffffff;
-  border-radius: 30px;
+  border-radius: 15px;
 }
 ::-webkit-scrollbar-track:hover {
   background: #ff9500;

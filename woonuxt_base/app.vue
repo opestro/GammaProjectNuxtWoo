@@ -23,6 +23,8 @@ watch(
 
 <template>
   <div class="flex flex-col min-h-screen">
+    <NuxtLoadingIndicator height="6" />
+
     <AppHeader />
 
     <Transition name="slide-from-right">
