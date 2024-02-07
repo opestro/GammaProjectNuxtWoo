@@ -35,16 +35,16 @@
             </div>
 
           </div>
-          <span v-html="productReceiver.short_description" class=" my-2"></span>
-          <div class=" flex gap-1">
+          <span v-html="productReceiver.short_description" class=" text-sm  "></span>
+          <div class=" flex gap-1 ">
 
-            <button @click="directBuy(productReceiver.id)" class="btn bg-sky-500  text-white  rounded-lg w-10/12 h-10 ">
-              <span class=" m-2 text-lg   flex justify-center items-center ">{{ $t('messages.general.buy') }} <LoadingIcon v-if="isLoading" stroke="4" size="12" color="#fff" /></span>
+            <button @click="directBuy(productReceiver.id)" class="btn bg-sky-500  text-white  rounded-lg max-sm:w-9/12 sm:w-10/12 md:w-10/12 h-10 ">
+              <span class=" m-2 text-base  flex justify-center items-center ">{{ $t('messages.general.buy') }} <LoadingIcon v-if="isLoading" stroke="4" size="12" color="#fff" /></span>
              
             </button>
-            <form method="dialog">
+            <form method="dialog ">
               <!-- if there is a button in form, it will close the modal -->
-              <button class=" btn bg-red-600 text-white">Close</button>
+              <button class=" btn bg-red-600 text-white ">Close</button>
             </form>
           </div>
         </div>
