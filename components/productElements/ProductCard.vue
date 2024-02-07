@@ -40,7 +40,7 @@ const colorVariableImage = computed(() => {
 
 <template>
   <div class="relative product-card">
-    <NuxtLink :to="`/product/${formatURI(node.slug)}`" :title="node.name">
+    <NuxtLink :to="'/product/'+node.slug" :title="node.name">
       <SaleBadge :node="node" class="absolute top-2 right-2" />
       <div v-if="node.stock_status == 'outofstock'" class="flex justify-center bg-red-500 text-white rounded-lg my-1">Out of Stock</div>
       <img
@@ -67,6 +67,7 @@ const colorVariableImage = computed(() => {
       </NuxtLink>
       <ProductPrice class="text-sm" :sale-price="node.sale_price" :regular-price="node.regular_price+'  DA'" />
     </div>
+</NuxtLink>
   </div>
 </template>
 
