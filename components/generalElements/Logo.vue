@@ -5,6 +5,6 @@ const logoUrl = runtimeConfig?.public?.LOGO || null;
 
 <template>
   <NuxtLink to="/">
-    <img  src="../../static/images/LogoLong.webp" alt="Logo" class="object-contain h-full"  />
+    <img  src="../../static/images/LogoLong.webp" alt="Logo" class=""  />
   </NuxtLink>
 </template>
