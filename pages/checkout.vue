@@ -154,7 +154,7 @@ const checkEmailOnInput = (email) => {
 
         <OrderSummary>
           <button
-            class="flex items-center justify-center w-full gap-3 p-3 mt-4 font-semibold text-center text-white rounded-lg shadow-md bg-primary hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-50"
+            class="flex items-center justify-center w-full gap-3 p-3 mt-4 font-semibold text-center text-white rounded-lg shadow-md bg-sky-500 hover:bg-amber-500 disabled:cursor-not-allowed disabled:opacity-50"
             :disabled="isCheckoutDisabled">
             {{ buttonText }}
             <LoadingIcon v-if="isProcessingOrder" color="#fff" size="18" />

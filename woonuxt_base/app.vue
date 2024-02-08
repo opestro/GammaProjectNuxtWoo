@@ -49,7 +49,7 @@ watch(
 html,
 body {
   @apply bg-gray-100 text-gray-900;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 img {
