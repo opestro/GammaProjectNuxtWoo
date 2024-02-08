@@ -5,7 +5,7 @@
     <div class="container flex items-center justify-between py-4">
       <div class="flex items-center">
         <MenuTrigger class="lg:hidden" />
-        <Logo class="md:w-48 sm:w-44 max-sm:w-44" />
+        <Logo class="md:w-48 sm:w-44 max-sm:w-36" />
       </div>
       <MainMenu class="items-center hidden gap-6 text-sm text-gray-500 lg:flex lg:px-4" />
       <div class="flex gap-4 justify-end items-center md:w-[160px] flex-1 ml-auto">
