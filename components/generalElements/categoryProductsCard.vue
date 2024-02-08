@@ -8,23 +8,18 @@
         <card class="  rounded-xl  flex-shrink-0   shadow-lg mx-2 max-sm:mx-1  md:w-60 max-sm:w-40 sm:w-40"
           v-for="pds in products.data" :key="pds">
 
-
-          <cardImage class=" relative   ">
-            <div
-              class=" text-amber-500 opacity-0 hover:opacity-80  text-md items-center my-1 bg-gray-700  flex justify-center  absolute  max-sm:w-40 max-sm:h-40 sm:w-40 sm:h-40 md:w-60 md:h-60 rounded-lg">
-
-              <button class="btn text-amber-500 bg-transparent" @click="$emit('data', pds)">
+          <button class=" text-amber-500 bg-transparent" @click="$emit('data', pds)">
+            <cardImage class=" relative   ">
+              <div
+                class=" text-amber-500 opacity-0 hover:opacity-80  text-md items-center my-1 bg-gray-700  flex justify-center  absolute  max-sm:w-40 max-sm:h-40 sm:w-40 sm:h-40 md:w-60 md:h-60 rounded-lg">
                 <Icon name="ion:eye" size="50" class="mr-2 " />
-              </button>
-
-            </div>
-
-            <NuxtLink :to="`/product/${pds.slug}`" :title="pds.name">
+              </div>
               <NuxtImg format="webp" class=" max-sm:w-40 sm:w-40 md:w-60 rounded-lg " sizes="100px" quality="80"
                 width="600" height="600" :alt="pds.name"
                 :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'" />
-            </NuxtLink>
-          </cardImage>
+            </cardImage>
+          </button>
+          <NuxtLink :to="`/product/${pds.slug}`" :title="pds.name">
           <cardTitle class="flex p-2 m-2 items-center">
             <h1 class=" text-sm max-sm:text-xs truncate "> {{ pds.name }}</h1>
           </cardTitle>
@@ -35,18 +30,19 @@
                           </p>
                         </cardInfo>
                         -->
-
-          <div class="flex justify-between items-center px-2">
-            <h1 v-if="pds.stock_status == 'instock'"
-              class=" text-green-500 text-md items-center my-1  flex justify-center">
-              <Icon name="ion:cube-outline" size="20" class="mr-2 " />{{ pds.stock_status || 0 }}
-            </h1>
-            <h1 v-else class=" text-md text-red-600 items-center my-1 flex justify-center">
-              <Icon name="ion:cube-outline" size="20" class="mr-2 " />{{ pds.stock_status || 0 }}
-            </h1>
-            <h1 class=" md:text-md  sm:text-sm max-sm:text-sm flex justify-center"> <b>DA {{ pds.regular_price || 0 }}
-              </b> </h1>
-          </div>
+        
+            <div class="flex justify-between items-center px-2">
+              <h1 v-if="pds.stock_status == 'instock'"
+                class=" text-green-500 text-md items-center my-1  flex justify-center">
+                <Icon name="ion:cube-outline" size="20" class="mr-2 " />{{ pds.stock_status || 0 }}
+              </h1>
+              <h1 v-else class=" text-md text-red-600 items-center my-1 flex justify-center">
+                <Icon name="ion:cube-outline" size="20" class="mr-2 " />{{ pds.stock_status || 0 }}
+              </h1>
+              <h1 class=" md:text-md  sm:text-sm max-sm:text-sm flex justify-center"> <b>DA {{ pds.regular_price || 0 }}
+                </b> </h1>
+            </div>
+          </NuxtLink>
           <!--    <div class="  ">
             <div v-if="pds.stock_status == 'instock'" class="flex ">
               <Button

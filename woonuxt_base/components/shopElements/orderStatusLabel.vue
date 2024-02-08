@@ -1,6 +1,15 @@
-<script setup lang="ts">
-const props = defineProps<{ status: string }>();
-const readableStatus = computed(() => props.status.replace(/_/g, ' '));
+<script setup >
+const props = defineProps({
+  status: { type: String, default: null },
+});
+const readableStatus = computed(() => {
+    if (props.status) {
+        return props.status.replace(/_/g, ' ');
+    } else {
+        return ''; // or any default value you prefer
+    }
+});
+
 </script>
 
 <template>

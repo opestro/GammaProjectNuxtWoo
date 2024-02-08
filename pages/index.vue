@@ -4,7 +4,12 @@
   <main class="">
 
     <dialog id="my_modal_1" class="modal text-white ">
-      <div class="modal-box ">
+     
+      <div class="modal-box relative ">
+        <form method="dialog" class="absolute right-2 top-2 shadow-xl rounded-xl ">
+          <!-- if there is a button in form, it will close the modal -->
+          <button class=" btn bg-red-600 text-white border-0 rounded-xl"><Icon name="ion:close-outline" size="20" class="mx-2" /></button>
+        </form>
         <NuxtImg v-if="imageToShow" class="rounded-xl object-contain w-full " width="700" height="700" fit="outside"
           format="webp" :src="imageToShow.src" :alt="imageToShow.name" :title="imageToShow.name" fetchpriority="high" />
         <div v-if="productReceiver" class="my-4 gallery-images">
@@ -38,15 +43,12 @@
           <span v-html="productReceiver.short_description" class=" text-sm  "></span>
           <div class=" flex gap-1 ">
 
-            <button @click="directBuy(productReceiver.id)" class="btn bg-sky-500  text-white  rounded-lg max-sm:w-9/12 sm:w-10/12 md:w-10/12 h-10 ">
+            <button @click="directBuy(productReceiver.id)" class="btn bg-sky-500  text-white  rounded-lg w-full h-10 ">
               <span class=" m-2 text-base  flex justify-center items-center ">{{ $t('messages.general.buy') }} <LoadingIcon v-if="isLoading" stroke="4" size="12" color="#fff" /></span>
              
             </button>
           
-              <form method="dialog">
-                <!-- if there is a button in form, it will close the modal -->
-                <button class=" btn bg-red-600 text-white "><Icon name="ion:close-outline" size="20" class="mx-2" /></button>
-              </form>
+            
          
         
           </div>

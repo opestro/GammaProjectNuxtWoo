@@ -5,7 +5,7 @@ const { query, params, name } = useRoute();
 const { customer } = useAuth();
 const { formatDate, formatPrice } = useHelpers();
 
-const order = ref<Order>({});
+const order: any = ref<Order>({});
 const fetchDelay = ref<boolean>(query.fetch_delay === 'true');
 const delayLength = 2500;
 const isLoaded = ref<boolean>(false);
@@ -16,7 +16,8 @@ const isSummaryPage = computed(() => name === 'order-summary');
 const isCheckoutPage = computed(() => name === 'order-received');
 const showRefreshButton = computed(() => order.value.status !== OrderStatusEnum.COMPLETED);
 
-onBeforeMount(() => {
+onBeforeMount(async() => {
+  
   /**
    * This is to close the child PayPal window we open on the checkout page.
    * It will fire off an event that redirects the parent window to the order summary page.
@@ -25,7 +26,9 @@ onBeforeMount(() => {
 });
 
 onMounted(async () => {
+  console.log(isCheckoutPage)
   await getOrder();
+
   /**
    * WooCommerce sometimes takes a while to update the order status.
    * This is a workaround to fetch the order again after a delay.
@@ -41,8 +44,10 @@ onMounted(async () => {
 
 async function getOrder() {
   try {
-    const data = await GqlGetOrder({ id: params.orderId as string });
-    if (data.order) order.value = data.order;
+    const { data: getOrderInfo } = await useFetch('https://gama.soluve.cloud/orders/order', { params: { 'id':params.orderId } });
+  //  const data = await GqlGetOrder({ id: params.orderId as string });
+    console.log(getOrderInfo)
+    order.value = getOrderInfo?.value;
   } catch (err: any) {
     errorMessage.value = err?.gqlErrors?.[0].message || 'Could not find order';
   }
@@ -89,11 +94,11 @@ const refreshOrder = async () => {
         <div class="flex justify-between items-center">
           <div>
             <div class="text-xs text-gray-400 uppercase mb-2">{{ $t('messages.shop.order') }}</div>
-            <div class="leading-none">#{{ order.databaseId! }}</div>
+            <div class="leading-none">#{{ order.id! }}</div>
           </div>
           <div>
             <div class="text-xs text-gray-400 uppercase mb-2">{{ $t('messages.general.date') }}</div>
-            <div class="leading-none">{{ formatDate(order.date!) }}</div>
+            <div class="leading-none">{{ formatDate(order.date_created!) }}</div>
           </div>
           <div>
             <div class="text-xs text-gray-400 uppercase mb-2">{{ $t('messages.general.status') }}</div>
@@ -101,45 +106,45 @@ const refreshOrder = async () => {
           </div>
           <div>
             <div class="text-xs text-gray-400 uppercase mb-2">{{ $t('messages.general.paymentMethod') }}</div>
-            <div class="leading-none">{{ order.paymentMethodTitle }}</div>
+            <div class="leading-none">{{ order.payment_method_title }}</div>
           </div>
         </div>
 
         <hr class="my-8" />
 
         <div class="grid gap-2">
-          <div v-if="order.lineItems" v-for="item in order.lineItems.nodes" :key="item.product?.databaseId!" class="flex items-center justify-between gap-8">
+          <div v-if="order.line_items" v-for="item in order.line_items" :key="item" class="flex items-center justify-between gap-8">
             <img
-              v-if="item.product?.node"
+              v-if="item.image"
               class="w-16 h-16 rounded-xl"
-              :src="item.variation?.node?.image?.sourceUrl || item.product.node?.image?.sourceUrl || '/images/placeholder.png'"
-              :alt="item.variation?.node?.image?.altText || item.product.node?.image?.altText || 'Product image'"
-              :title="item.variation?.node?.image?.title || item.product.node?.image?.title || 'Product image'"
+              :src="item.image?.src || '/images/placeholder.png'"
+              :alt=" 'Product image'"
+              :title="'Product image'"
               width="64"
               height="64"
               loading="lazy" />
             <div class="flex-1 leading-tight">
-              {{ item.variation ? item.variation?.node?.name : item.product?.node.name! }}
+              {{ item.variation ? item.variation?.node?.name : item.name }}
             </div>
             <div class="text-sm text-gray-600">Qty. {{ item.quantity }}</div>
-            <span class="text-sm font-semibold">{{ formatPrice(item.total!) }}</span>
+            <span class="text-sm font-semibold">{{ formatPrice(item.price!) }}</span>
           </div>
         </div>
 
         <hr class="my-8" />
 
         <div>
-          <div class="flex justify-between">
+       <!--   <div class="flex justify-between">
             <span>{{ $t('messages.shop.subtotal') }}</span>
             <span>{{ order.subtotal }}</span>
-          </div>
+          </div> -->
           <div class="flex justify-between">
             <span>{{ $t('messages.general.tax') }}</span>
-            <span>{{ order.totalTax }}</span>
+            <span>{{ order.total_tax }}</span>
           </div>
           <div class="flex justify-between">
             <span>{{ $t('messages.general.shipping') }}</span>
-            <span>{{ order.shippingTotal }}</span>
+            <span>{{ order.shipping_total }}</span>
           </div>
           <hr class="my-8" />
           <div class="flex justify-between">

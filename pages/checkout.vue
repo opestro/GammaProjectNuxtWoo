@@ -46,8 +46,8 @@ const payNow = async () => {
   } catch (error) {
     buttonText.value = t('messages.shop.placeOrder');
   }
-
-  proccessCheckout();
+  console.log(customer.value.billing.email)
+ proccessCheckout();
 };
 
 const checkEmailOnBlur = (email) => {
@@ -83,7 +83,7 @@ const checkEmailOnInput = (email) => {
                 :class="{ 'has-error': isInvalidEmail }"
                 @blur="checkEmailOnBlur(customer.billing.email)"
                 @input="checkEmailOnInput(customer.billing.email)"
-                required />
+              />
               <Transition name="scale-y" mode="out-in">
                 <div v-if="isInvalidEmail" class="mt-1 text-sm text-red-500">Invalid email address</div>
               </Transition>
