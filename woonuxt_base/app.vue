@@ -23,6 +23,7 @@ watch(
 
 <template>
   <div class="flex flex-col min-h-screen  " data-theme="light">
+    <VitePwaManifest />
     <NuxtLoadingIndicator height="6" />
 
     <AppHeader />

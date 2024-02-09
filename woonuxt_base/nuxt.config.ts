@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/image', '@nuxtjs/i18n' , '@pinia/nuxt', '@vite-pwa/nuxt'],
   pwa : {
     workbox : {
-      enabled : true
+  
     }
   },
   image: {
