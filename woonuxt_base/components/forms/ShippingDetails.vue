@@ -7,6 +7,8 @@ const props = defineProps({
 });
 
 const shipping = toRef(props, 'modelValue');
+console.log('shipping')
+console.log(shipping)
 </script>
 
 <template>
@@ -33,7 +35,7 @@ const shipping = toRef(props, 'modelValue');
 
     <div class="w-full">
       <label for="city">{{ $t('messages.billing.city') }}</label>
-      <input v-model="shipping.city" placeholder="Dublin" type="text" required />
+      <input v-model="shipping.city" placeholder="Dublin" type="text"  />
     </div>
 
     <div class="w-full">

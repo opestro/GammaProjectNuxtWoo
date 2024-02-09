@@ -84,7 +84,7 @@ async function getVille() {
 
     <div class="w-full col-span-full">
       <label for="phone">{{ $t('messages.billing.phone') }} ({{ $t('messages.general.optional') }})</label>
-      <input v-model="billing.phone" @input="validatePhoneNumber" placeholder="+353871234567" type="tel" />
+      <input v-model="billing.phone" @input="validatePhoneNumber" placeholder="0562335566" type="tel" required />
       <p v-if="billing.phone?.length !== 10" class="text-red-500">Phone number must be 10 digits long.</p>
     </div>
   </div>
