@@ -17,7 +17,11 @@ export default defineNuxtConfig({
   components: [{ path: resolve('./components'), pathPrefix: false }],
 
   modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/image', '@nuxtjs/i18n' , '@pinia/nuxt', '@vite-pwa/nuxt'],
-
+  pwa : {
+    workbox : {
+      enabled : true
+    }
+  },
   image: {
     domains: process.env.NUXT_IMAGE_DOMAINS ? process.env.NUXT_IMAGE_DOMAINS.replace(/ /g, '').split(',') : [],
   },
