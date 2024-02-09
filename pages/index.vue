@@ -6,12 +6,29 @@
     <dialog id="my_modal_2" class="modal">
      
       <div class="modal-box relative">
-        <form method="dialog" class="absolute right-2 top-2 shadow-xl rounded-xl ">
+        <form method="dialog" class="absolute right-2 top-2 rounded-xl ">
           <!-- if there is a button in form, it will close the modal -->
-          <button class=" btn bg-red-600 text-white  border-0 rounded-xl"><Icon name="ion:close-outline" size="20" class="mx-2" /></button>
+          <button class=" btn bg-red-600 text-white  border-0 rounded-xl" @click="isImageToShow = false"><Icon name="ion:close-outline" size="20" class="mx-2" /></button>
         </form>
-      
-        <NuxtImg v-if="imageToShow" class="rounded-xl object-contain w-full " width="700" height="700" fit="outside"
+        <div class="flex justify-center  " >
+          <div class="carousel w-full  "   v-show="!isImageToShow" >
+            <div v-for="image in productReceiver.images" :key="image" class="carousel-item w-full">
+              <NuxtImg
+              
+              class="rounded-xl object-contain w-full "
+              width="700"
+              height="700"
+              fit="outside"
+              format="webp"
+              :src="image.src"
+              :alt="image.alt || image.title || image.name"
+              :title="image.alt || image.title || image.name"
+              fetchpriority="high" 
+              />
+            </div>
+          </div>
+        </div>
+        <NuxtImg v-if="imageToShow && isImageToShow" class="rounded-xl object-contain w-full " width="700" height="700" fit="outside"
           format="webp" :src="imageToShow.src" :alt="imageToShow.name" :title="imageToShow.name" fetchpriority="high" />
         <div v-if="productReceiver" class="my-4 gallery-images">
 
@@ -184,6 +201,7 @@ onMounted(async () => {
   // console.log(fetchData)
 
 });
+let isImageToShow = ref(false);
 let imageToShow = ref('');
 let productReceiver = ref('')
 async function receiveProduct(data) {
@@ -200,8 +218,9 @@ async function receiveProduct(data) {
 
 
 function changeImage(index) {
-  console.log(index)
+ // console.log(index)
   imageToShow.value = index;
+  isImageToShow.value = true
 };
 
 async function directBuy(productId) {
