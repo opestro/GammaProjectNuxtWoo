@@ -7,9 +7,9 @@ const props = defineProps({
 });
 
 const imageToShow = ref<number | null>(0);
-console.log(props.gallery.nodes)
+//console.log(props.gallery.nodes)
 let imgCounter = [ ...[{'sourceUrl' : props.mainImage}] , ...props.gallery.nodes]
-console.log(imgCounter)
+//console.log(imgCounter)
 const changeImage = (index: number | null): void => {
   imageToShow.value = index ;
 };

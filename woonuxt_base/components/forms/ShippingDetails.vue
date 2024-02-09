@@ -7,8 +7,8 @@ const props = defineProps({
 });
 
 const shipping = toRef(props, 'modelValue');
-console.log('shipping')
-console.log(shipping)
+//console.log('shipping')
+//console.log(shipping)
 </script>
 
 <template>

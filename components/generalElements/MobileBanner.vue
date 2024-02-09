@@ -1,13 +1,23 @@
 <template>
-    <div>
-        <div class="carousel w-full rounded-xl">
-            <div id="slide1" class="carousel-item relative w-full">
-              <img src="../../static/images/unnamed.webp" class="w-full" alt="Banner" />
-              <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-               <!-- <a href="#slide4" class="btn bg-amber-500 btn-ghost">❮</a> 
-                <a href="#slide2" class="btn bg-amber-500 btn-ghost">❯</a>  -->
-              </div>
-            </div>
-          </div>
+  <div>
+    <div class="carousel carousel-center w-full  p-4 space-x-2 bg-gamaO rounded-lg">
+      <div id="slide1" class="carousel-item relative ">
+        <img src="../../static/images/unnamed.webp" class="w-80 h-40  rounded-lg" alt="Banner" />
+   
+       
+      </div>
+      <div id="slide2" class="carousel-item relative">
+        <img src="../../static/images/GAMAOUTILLAGE-BANNER.MAKITA01jpg.webp" class="w-80 h-40 rounded-lg" alt="Banner" />
+    
+      </div>
+      <div id="slide3" class="carousel-item relative">
+        <img src="../../static/images/GAMAOUTILLAGE-BANNER.WORCRAFTjpg.webp" class="w-80 h-40 rounded-lg" alt="Banner" />
+       
+      </div>
+      <div id="slide4" class="carousel-item relative">
+        <img src="../../static/images/GAMAOUTILLAGE-BANNER.CROWN-jpg.webp" class="w-80 h-40 rounded-lg" alt="Banner" />
+     
+      </div>
     </div>
+  </div>
 </template>

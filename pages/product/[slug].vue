@@ -9,7 +9,7 @@ const slug = route.params.slug as string;
 
 const { data } = (await useAsyncGql('getProduct', { slug })) as { data: { value: { product: Product } } };
 const product = data?.value?.product;
-console.log(product)
+//console.log(product)
 watch(product)
 useHead({
   title: product?.name ?? 'Product',
@@ -25,7 +25,9 @@ const attrValues = ref();
 const type = computed(() => (activeVariation.value ? activeVariation.value : product));
 const selectProductInput = computed(() => ({ productId: type.value.databaseId, quantity: quantity.value })) as ComputedRef<AddToCartInput>;
 const disabledAddToCart = computed(() => (!activeVariation.value && !!product.variations) || type.value.stockStatus !== 'IN_STOCK');
-
+//console.log('type', {...type})
+//console.log('activeVariation', {...activeVariation})
+//console.log('product', {...product})
 onMounted(() => {
   if (product.variations) indexOfTypeAny.push(...checkForVariationTypeOfAny(product));
 });

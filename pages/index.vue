@@ -177,9 +177,9 @@ const router = useRouter();
 let isLoading = ref(false)
 import { getProductsStore } from "~/stores/getProducts";
 useHead({
-  title: `Gama outillage | Vente outillage professionnel Algérie`,
-  meta: [{ name: 'description', content: 'PINCE A CEINTRER 16*1 VIRAX · PINCE A CEINTRER 14*1 VIRAX · COUPE TUBE MINI 3-16MM VIRAX · COUPE TUBE CUIVRE C28 6-28MM VIRAX · COUPE TUBE CUIVRE C54 14-...' }],
-  link: [{ rel: 'canonical', href: 'https://v3.woonuxt.com/' }]
+  title: `Home page`,
+  meta: [{ name: 'description', content: "Vente outillage professionnel Algérie" }],
+  link: [{ rel: 'canonical', href: 'https://gamaoutillage.net/' }]
 });
 
 const ProductsStore = getProductsStore()
@@ -205,7 +205,7 @@ let isImageToShow = ref(false);
 let imageToShow = ref('');
 let productReceiver = ref('')
 async function receiveProduct(data) {
-  console.log(data)
+ // console.log(data)
   productReceiver.value = await data
   imageToShow.value = await data.images[0]
   document.getElementById('my_modal_2').showModal()

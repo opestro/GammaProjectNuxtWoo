@@ -46,7 +46,7 @@ const payNow = async () => {
   } catch (error) {
     buttonText.value = t('messages.shop.placeOrder');
   }
-  console.log(customer.value.billing.email)
+ // console.log(customer.value.billing.email)
  proccessCheckout();
 };
 

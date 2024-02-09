@@ -14,6 +14,8 @@ export default <Partial<Config>>{
           DEFAULT: process.env.PRIMARY_COLOR || '#7F54B2',
           dark: '#754fa3',
         },
+        gamaO : '#ed7a11',
+        gamaB : '#1c71b6'
       },
       screens: {
         '2xl': '1400px',
