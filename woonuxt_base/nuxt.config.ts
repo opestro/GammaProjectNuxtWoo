@@ -6,8 +6,8 @@ export default defineNuxtConfig({
   app: {
     head: {
       titleTemplate: `${process.env.SITE_TITLE } | %s `,
-      htmlAttrs: { lang: 'en' },
-      link: [{ rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
+      htmlAttrs: { lang: 'fr' },
+      link: [{ rel: 'icon', href: 'http://gamaoutillage.net/wp-content/uploads/2024/02/1665343934977-1-e1707519912918.webp', type: 'image/webp' }],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
   },
@@ -76,7 +76,7 @@ export default defineNuxtConfig({
       { code: 'pt', file: 'pt-BR.json', name: 'Português 🇧🇷' },
     ],
     langDir: 'locales',
-    defaultLocale: 'en',
+    defaultLocale: 'fr',
     strategy: 'no_prefix',
   },
 });
