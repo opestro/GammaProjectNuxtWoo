@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   firstImage: { type: String, required: true },
   mainImage: { type: String, required: true },
   gallery: { type: Object, required: true },
@@ -7,10 +7,16 @@ defineProps({
 });
 
 const imageToShow = ref<number | null>(0);
-
+console.log(props.gallery.nodes)
+let imgCounter = [ ...[{'sourceUrl' : props.mainImage}] , ...props.gallery.nodes]
+console.log(imgCounter)
 const changeImage = (index: number | null): void => {
-  imageToShow.value = index;
+  imageToShow.value = index ;
 };
+const carouselImage = (index: number | null): void => {
+  imageToShow.value = index ;
+};
+
 </script>
 
 <template>
@@ -26,10 +32,30 @@ const changeImage = (index: number | null): void => {
       :src="firstImage"
       :alt="node.name"
       :title="node.name"
-      fetchpriority="high" />
-    <NuxtImg
+      @click.native="carouselImage(0)"
+      fetchpriority="high" 
+      />
+      <div class="flex justify-center  " >
+        <div class="carousel max-sm:w-12/12 w-96 sm:hidden  "   v-show="imageToShow === 0" >
+          <div v-for="image in imgCounter" :key="image" class="carousel-item w-full">
+            <NuxtImg
+            
+            class="rounded-xl object-contain w-full min-w-[350px]"
+            width="700"
+            height="700"
+            fit="outside"
+            format="webp"
+            :src="image.sourceUrl"
+            :alt="node.name"
+            :title="node.name"
+            fetchpriority="high" 
+            />
+          </div>
+        </div>
+      </div>
+      <NuxtImg
       v-show="imageToShow === 0"
-      class="rounded-xl object-contain w-full min-w-[350px]"
+      class="rounded-xl object-contain w-full min-w-[350px] max-sm:hidden"
       width="700"
       height="700"
       fit="outside"
@@ -37,7 +63,9 @@ const changeImage = (index: number | null): void => {
       :src="mainImage"
       :alt="node.name"
       :title="node.name"
-      fetchpriority="high" />
+      fetchpriority="high" 
+      />
+  
     <NuxtImg
       v-for="(galleryImg, i) in gallery.nodes"
       v-show="imageToShow === i + 1"
@@ -49,7 +77,8 @@ const changeImage = (index: number | null): void => {
       format="webp"
       :alt="galleryImg.altText || galleryImg.title || node.name"
       :title="galleryImg.title || node.name"
-      :src="galleryImg.sourceUrl || '/images/placeholder.jpg'" />
+      :src="galleryImg.sourceUrl || '/images/placeholder.jpg'"
+      @click.native="carouselImage(0)" />
     <div v-if="gallery.nodes.length" class="my-4 gallery-images">
       <NuxtImg class="cursor-pointer rounded-xl" width="110" height="140" format="webp" :src="firstImage" @click.native="changeImage(null)" :alt="node.name" :title="node.name" />
       <NuxtImg
