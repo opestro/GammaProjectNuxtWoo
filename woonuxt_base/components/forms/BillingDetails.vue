@@ -59,7 +59,7 @@ async function getVille() {
       <label for="city">{{ $t('messages.billing.city') }}</label>
       <select v-if="cities"  v-model="billing.city">
         <option v-for="city in cities" :key="city" :value="city.name" type="text" placeholder="State" >
-          {{ state.name }}
+          {{ city.name }}
         </option>
       </select>
       <input v-else v-model="billing.city" type="text" placeholder="State" />
