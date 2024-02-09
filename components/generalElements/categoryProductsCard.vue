@@ -10,9 +10,9 @@
 
           <button class=" text-amber-500 bg-transparent" @click="$emit('data', pds)">
             <cardImage class=" relative   ">
-              <div
+              <div alt="test"
                 class=" text-amber-500 opacity-0 hover:opacity-80  text-md items-center my-1 bg-gray-700  flex justify-center  absolute  max-sm:w-40 max-sm:h-40 sm:w-40 sm:h-40 md:w-60 md:h-60 rounded-lg">
-                <Icon name="ion:eye" size="35" class="mr-2 "/>
+                <Icon name="ion:eye" size="35" class="mr-2 " />
             
               </div>
               <NuxtImg format="webp" class=" max-sm:w-40 sm:w-40 md:w-60 rounded-lg " sizes="100px" quality="80"

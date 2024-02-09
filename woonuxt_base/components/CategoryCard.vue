@@ -19,7 +19,7 @@ console.log(node)
         format="webp" densities="x1 x2" />
     </NuxtLink>
     <div class=" flex justify-center  ">
-      <div class="text-sm font-semibold   capitalize md:text-base   truncate" >
+      <div class=" max-sm:text-xs sm:text-sm text-base sm:font-semibold   capitalize md:text-sm   truncate" >
         {{ node.name }}
       </div>
     </div>

@@ -3,13 +3,14 @@
 <template>
   <main class="">
 
-    <dialog id="my_modal_1" class="modal">
+    <dialog id="my_modal_2" class="modal">
      
       <div class="modal-box relative">
         <form method="dialog" class="absolute right-2 top-2 shadow-xl rounded-xl ">
           <!-- if there is a button in form, it will close the modal -->
           <button class=" btn bg-red-600 text-white  border-0 rounded-xl"><Icon name="ion:close-outline" size="20" class="mx-2" /></button>
         </form>
+      
         <NuxtImg v-if="imageToShow" class="rounded-xl object-contain w-full " width="700" height="700" fit="outside"
           format="webp" :src="imageToShow.src" :alt="imageToShow.name" :title="imageToShow.name" fetchpriority="high" />
         <div v-if="productReceiver" class="my-4 gallery-images">
@@ -58,6 +59,9 @@
 
 
       </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
     </dialog>
     <div class=" container flex  items-center justify-center  my-7 max-sm:hidden  text-center  w-full h-full">
       <NuxtImg src="http://gamaoutillage.net/wp-content/uploads/2024/02/bannerSectionHero-2.png" class="rounded-lg"
@@ -186,7 +190,7 @@ async function receiveProduct(data) {
   console.log(data)
   productReceiver.value = await data
   imageToShow.value = await data.images[0]
-  document.getElementById('my_modal_1').showModal()
+  document.getElementById('my_modal_2').showModal()
 }
 /*async function visibilityChanged() {
   const { data: getNewProducts } = await useLazyFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 20, 'stock_status': 'instock' } });
