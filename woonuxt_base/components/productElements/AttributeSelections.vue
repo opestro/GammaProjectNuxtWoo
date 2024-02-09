@@ -33,9 +33,9 @@ onMounted(() => {
     <div v-for="(attr, i) in attrs" :key="i" class="flex flex-wrap py-2 relative justify-between">
       <!-- COLOR SWATCHES -->
       <div v-if="attr.name == 'pa_color' || attr.name == 'color'" class="grid gap-2">
-        <div class="text-sm">
+        <div class="text-sm ">
           {{ $t('messages.general.color') }}
-          <span v-if="activeVariations.length" class="text-gray-400 capitalize">{{ formatURI(activeVariations[i].value) }}</span>
+          <span v-if="activeVariations.length" class="text-gray-400 capitalize font-semibold ">{{ formatURI(activeVariations[i].value) }}</span>
         </div>
         <div class="flex gap-2">
           <span v-for="(option, optionIndex) in attr.options" :key="optionIndex">
@@ -49,7 +49,7 @@ onMounted(() => {
                 :name="attr.name"
                 :value="option"
                 @change="updateAttrs" />
-              <span class="color-button" :class="`color-${option}`" :title="`${attr.name}: ${option}`"></span>
+              <span class="color-button " :class="`color-${option}`" :title="`${attr.name}: ${option}`"></span>
             </label>
           </span>
         </div>
@@ -57,10 +57,10 @@ onMounted(() => {
 
       <!-- DROPDOWN -->
       <div v-else-if="attr.options && attr.options?.length > 8" class="grid gap-2">
-        <div class="text-sm">
-          {{ attr.label }} <span v-if="activeVariations.length" class="text-gray-400 capitalize">{{ formatURI(activeVariations[i].value) }}</span>
+        <div class="text-base font-semibold">
+         <span class=" text-red-500 text-xl">***</span> {{ attr.label }} <span v-if="activeVariations.length" class="text-gray-400 capitalize">{{ formatURI(activeVariations[i].value) }}</span>
         </div>
-        <select :id="attr.name" :ref="attr.name" :name="attr.name" required class="border-white shadow" @change="updateAttrs">
+        <select :id="attr.name" :ref="attr.name" :name="attr.name" required class="border-sky-500  shadow" @change="updateAttrs">
           <option disabled hidden>{{ $t('messages.general.choose') }} {{ formatURI(attr.label) }}</option>
           <option v-for="(option, dropdownIndex) in attr.options" :key="option" :value="option" v-html="option" :selected="dropdownIndex == 0" />
         </select>

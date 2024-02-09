@@ -85,7 +85,11 @@ async function directBuy(productData) {
         </div>
 
         <div class="grid gap-2 my-8 text-sm">
-          <div class="flex items-center gap-2">
+          
+          <div class=" items-center gap-2">
+            <AttributeSelections v-if="product.type == 'VARIABLE' && product.attributes && product.variations"
+            class=" max-sm:visible sm:visible invisible" :attrs="product.attributes.nodes" :variations="product.variations.nodes"
+            @attrs-changed="updateSelectedVariations" />
             <span class="text-gray-400">{{ $t('messages.shop.availability') }}: </span>
             <span v-if="type.stockStatus == 'IN_STOCK'" class="text-green-600">{{ $t('messages.shop.inStock') }}</span>
             <span v-else class="text-red-600">{{ $t('messages.shop.outOfStock') }}</span>
@@ -103,9 +107,7 @@ async function directBuy(productData) {
 
         </div>
         <form @submit.prevent="addToCart(selectProductInput)">
-          <AttributeSelections v-if="product.type == 'VARIABLE' && product.attributes && product.variations"
-            class="mt-4 mb-8" :attrs="product.attributes.nodes" :variations="product.variations.nodes"
-            @attrs-changed="updateSelectedVariations" />
+          
 
           <div
             class="fixed bottom-0 left-0 z-10 flex items-center w-full gap-4 p-4 mt-12 bg-white md:static md:bg-transparent bg-opacity-90 md:p-0">
