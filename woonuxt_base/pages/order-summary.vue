@@ -90,7 +90,7 @@ const refreshOrder = async () => {
         </template>
         <hr class="my-8" />
       </div>
-      <div v-if="order && !isGuest" class="w-full flex-1">
+      <div v-if="order " class="w-full flex-1">
         <div class="flex justify-between items-center">
           <div>
             <div class="text-xs text-gray-400 uppercase mb-2">{{ $t('messages.shop.order') }}</div>

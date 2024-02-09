@@ -9,7 +9,7 @@ const props = defineProps({
 });
 
 const billing = toRef(props, 'modelValue');
-let city = ref([])
+let cities = ref([])
 let zipcode = ref([])
 function validatePhoneNumber() {
   if (billing.value.phone) {
@@ -18,16 +18,16 @@ function validatePhoneNumber() {
 }
 watch(billing, validatePhoneNumber(), props)
 async function getVille() {
-   setTimeout(async() => {
+  setTimeout(async () => {
     // Simulated data retrieval
-  
-    city.value = await userData.filter(user => user.wilaya_id === billing.value.state);
-   // zipcode.value = await  userData.filter(user => user.name === billing.value.city)
+
+    cities.value = await userData.filter(user => user.wilaya_id === billing.value.state);
+    // zipcode.value = await  userData.filter(user => user.name === billing.value.city)
     //billing.value.postcode = zipcode.value[0].post_code
 
   }, 1000);
 
- 
+
 
 }
 
@@ -57,13 +57,12 @@ async function getVille() {
 
     <div class="w-full">
       <label for="city">{{ $t('messages.billing.city') }}</label>
-      <select v-if="city"  v-model="billing.city">
-        <option v-for="state in city" :key="state.code" :value="state.name">
+      <select v-if="cities"  v-model="billing.city">
+        <option v-for="city in cities" :key="city" :value="city.name" type="text" placeholder="State" >
           {{ state.name }}
         </option>
       </select>
-      <input v-else  v-model="billing.city" type="text" placeholder="State" /> 
-  <!--   <input v-model="billing.city" placeholder="Dublin" type="text" required /> --> 
+      <input v-else v-model="billing.city" type="text" placeholder="State" />
     </div>
 
     <div class="w-full">
