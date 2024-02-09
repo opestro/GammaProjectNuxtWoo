@@ -1,12 +1,36 @@
 <script setup>
+import commune from '@/static/Commune_Of_Algeria.json'
 const { allowedCountries } = await GqlGetStates({ country: 'IE' });
 const { updateShippingLocation } = useCheckout();
+const userData = commune;
 const props = defineProps({
   modelValue: { type: Object, required: true },
   sameAsShippingAddress: { type: Boolean, default: true },
 });
 
 const billing = toRef(props, 'modelValue');
+let city = ref([])
+let zipcode = ref([])
+function validatePhoneNumber() {
+  if (billing.value.phone) {
+    billing.value.phone = billing.value.phone.replace(/\D/g, '').slice(0, 10);
+  }
+}
+watch(billing, validatePhoneNumber(), props)
+async function getVille() {
+   setTimeout(async() => {
+    // Simulated data retrieval
+  
+    city.value = await userData.filter(user => user.wilaya_id === billing.value.state);
+   // zipcode.value = await  userData.filter(user => user.name === billing.value.city)
+    //billing.value.postcode = zipcode.value[0].post_code
+
+  }, 1000);
+
+ 
+
+}
+
 </script>
 
 <template>
@@ -33,17 +57,25 @@ const billing = toRef(props, 'modelValue');
 
     <div class="w-full">
       <label for="city">{{ $t('messages.billing.city') }}</label>
-      <input v-model="billing.city" placeholder="Dublin" type="text" required />
+      <select v-if="city"  v-model="billing.city">
+        <option v-for="state in city" :key="state.code" :value="state.name">
+          {{ state.name }}
+        </option>
+      </select>
+      <input v-else  v-model="billing.city" type="text" placeholder="State" /> 
+  <!--   <input v-model="billing.city" placeholder="Dublin" type="text" required /> --> 
     </div>
 
     <div class="w-full">
-      <label for="country">County</label>
-      <LazyStateSelect v-model="billing.state" :default-value="billing.state" :country-code="billing.country" @change="updateShippingLocation" />
+      <label for="country">WILAYA</label>
+      <LazyStateSelect v-model="billing.state" :default-value="billing.state" :country-code="billing.country"
+        @change="updateShippingLocation" @input="getVille()" />
     </div>
 
     <div class="w-full">
       <label for="country">{{ $t('messages.billing.country') }}</label>
-      <LazyCountrySelect v-model="billing.country" :default-value="billing.country" :allowed-countries="allowedCountries" @change="updateShippingLocation" />
+      <LazyCountrySelect v-model="billing.country" :default-value="billing.country" :allowed-countries="allowedCountries"
+        @change="updateShippingLocation" />
     </div>
 
     <div class="w-full">
@@ -53,7 +85,8 @@ const billing = toRef(props, 'modelValue');
 
     <div class="w-full col-span-full">
       <label for="phone">{{ $t('messages.billing.phone') }} ({{ $t('messages.general.optional') }})</label>
-      <input v-model="billing.phone" placeholder="+353871234567" type="tel" />
+      <input v-model="billing.phone" @input="validatePhoneNumber" placeholder="+353871234567" type="tel" />
+      <p v-if="billing.phone?.length !== 10" class="text-red-500">Phone number must be 10 digits long.</p>
     </div>
   </div>
 </template>

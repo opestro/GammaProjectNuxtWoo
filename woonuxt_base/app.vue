@@ -22,7 +22,7 @@ watch(
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen  " data-theme="light">
     <NuxtLoadingIndicator height="6" />
 
     <AppHeader />

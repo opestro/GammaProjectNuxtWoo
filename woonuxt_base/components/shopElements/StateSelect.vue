@@ -16,6 +16,7 @@ async function updateState() {
   try {
     const { countryStates } = await GqlGetStates({ country: props.countryCode });
     states.value = countryStates;
+   // console.log(states)
   } catch (error) {
     console.error(error);
   }

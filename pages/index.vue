@@ -3,19 +3,19 @@
 <template>
   <main class="">
 
-    <dialog id="my_modal_1" class="modal text-white ">
+    <dialog id="my_modal_1" class="modal">
      
-      <div class="modal-box relative ">
+      <div class="modal-box relative">
         <form method="dialog" class="absolute right-2 top-2 shadow-xl rounded-xl ">
           <!-- if there is a button in form, it will close the modal -->
-          <button class=" btn bg-red-600 text-white border-0 rounded-xl"><Icon name="ion:close-outline" size="20" class="mx-2" /></button>
+          <button class=" btn bg-red-600 text-white  border-0 rounded-xl"><Icon name="ion:close-outline" size="20" class="mx-2" /></button>
         </form>
         <NuxtImg v-if="imageToShow" class="rounded-xl object-contain w-full " width="700" height="700" fit="outside"
           format="webp" :src="imageToShow.src" :alt="imageToShow.name" :title="imageToShow.name" fetchpriority="high" />
         <div v-if="productReceiver" class="my-4 gallery-images">
 
 
-          <NuxtImg v-for="galleryImg in productReceiver.images" :key="galleryImg" class="cursor-pointer rounded-xl"
+          <NuxtImg v-for="galleryImg in productReceiver.images" :key="galleryImg" class="cursor-pointer rounded-xl border border-sky-500"
             width="110" height="140" fit="outside" format="webp" :src="galleryImg.src"
             :alt="galleryImg.alt || galleryImg.title || galleryImg.name" :title="galleryImg.name"
             @click="changeImage(galleryImg)" />
