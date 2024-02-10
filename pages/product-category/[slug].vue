@@ -5,13 +5,13 @@ const { updateProductList , setProducts} = useProducts();
 const { isQueryEmpty } = useHelpers();
 const route = useRoute();
 const slug = route.params.slug;
-console.log(slug)
+//console.log(slug)
 const  fetchCategory_id = await useFetch('https://gama.soluve.cloud/categories',
  {
   params: { 'slug': slug }
 })
 const category_id = fetchCategory_id.data.value[0]?.id || 1
-console.log(fetchCategory_id)
+//console.log(fetchCategory_id)
 const  products = await useFetch('https://gama.soluve.cloud/products',
  {
   params: {'page': 1,'per_page': 20, 'stock_status': 'instock', 'orderby': 'popularity' , 'category': category_id }
