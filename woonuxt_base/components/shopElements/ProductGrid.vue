@@ -21,7 +21,7 @@ async function visibilityChanged() {
   <Transition name="fade" mode="out-in">
     <section v-if="!!products.length" class="relative w-full">
       <TransitionGroup name="shrink" tag="div" mode="in-out" class="product-grid">
-        <ProductCard v-for="(node, i) in productsToShow" :key="node.id || i" :node="node" :index="i" />
+        <ProductCard v-for="(node, i) in productsToShow" :key="node.id || i" :node="node" :index="i"  />
       </TransitionGroup>
       <div  v-observe-visibility="visibilityChanged"></div> 
   <!--  <Pagination /> -->  

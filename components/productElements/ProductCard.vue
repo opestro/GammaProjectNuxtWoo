@@ -21,7 +21,7 @@ watch(
   },
 );
 
-const mainImage = computed(() => props.node?.image?.sourceUrl || props.node?.images[0]?.src  );
+const mainImage = computed(() => props.node?.image?.sourceUrl || props.node?.images[0]?.src);
 
 const colorVariableImage = computed(() => {
   if (paColor.value.length) {
@@ -39,33 +39,24 @@ const colorVariableImage = computed(() => {
 </script>
 
 <template>
-  <div class="relative product-card">
-    <NuxtLink :to="'/product/'+node.slug" :title="node.name">
+  <div class="relative product-card border-sky-100 border shadow-lg p-1 rounded-lg">
+    <NuxtLink :to="'/product/' + node.slug" :title="node.name">
       <SaleBadge :node="node" class="absolute top-2 right-2" />
-      <div v-if="node.stock_status == 'outofstock'" class="flex justify-center bg-red-500 text-white rounded-lg my-1">Out of Stock</div>
-      <img
-        v-if="colorVariableImage"
-        :src="colorVariableImage"
-        :alt="node.image?.altText ?? node.name"
-        :title="node.image?.title || node.name"
-        :loading="index <= 3 ? 'eager' : 'lazy'" />
-      <NuxtImg
-        :width="imgWidth"
-        :height="imgHeight"
-        :src="mainImage  || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
-        :alt="node.image?.altText || node.name"
-        :title="node.image?.title || node.name"
-        :loading="index <= 3 ? 'eager' : 'lazy'"
-        fit="outside"
-        format="webp"
-        densities="x1 x2" />
-    
-    <div class="p-2">
+      <div v-if="node.stock_status == 'outofstock'" class="flex justify-center bg-red-500 text-white rounded-lg my-1">Out
+        of Stock</div>
+      <img v-if="colorVariableImage" :src="colorVariableImage" :alt="node.image?.altText ?? node.name"
+        :title="node.image?.title || node.name" :loading="index <= 3 ? 'eager' : 'lazy'" />
+      <NuxtImg :width="imgWidth" :height="imgHeight"
+        :src="mainImage || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
+        :alt="node.image?.altText || node.name" :title="node.image?.title || node.name"
+        :loading="index <= 3 ? 'eager' : 'lazy'" fit="outside" format="webp" densities="x1 x2" />
+
+      <div class="p-2">
         <h2 class="mb-2 font-light leading-tight">{{ node.name }}</h2>
-      
-      <ProductPrice class="text-sm" :sale-price="node.sale_price" :regular-price="node.regular_price+'  DA'" />
-    </div>
-</NuxtLink>
+
+        <ProductPrice class="text-sm" :sale-price="node.sale_price" :regular-price="node.regular_price + '  DA'" />
+      </div>
+    </NuxtLink>
   </div>
 </template>
 
@@ -74,6 +65,7 @@ const colorVariableImage = computed(() => {
   @apply rounded-lg object-top object-cover w-full;
   aspect-ratio: 1/1.125;
 }
+
 .product-card:hover {
   h2 {
     @apply text-primary;

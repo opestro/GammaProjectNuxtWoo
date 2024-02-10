@@ -48,6 +48,11 @@ export default defineNuxtConfig({
         path: '/order-summary/:orderId',
         file: resolve('./pages/order-summary.vue'),
       });
+      pages.push({
+        name: 'product-category-page',
+        path: '/categorie/:categorySlug',
+        file: resolve('./pages/product-category/[slug].vue'),
+      });
     },
   },
 
