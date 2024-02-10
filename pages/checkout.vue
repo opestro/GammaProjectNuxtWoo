@@ -57,7 +57,7 @@ const payNow = async () => {
   }
  // console.log(customer.value.billing.email)
  const phoneLength = phoneNumber.value
- console.log(phoneLength)
+ //console.log(phoneLength)
  if ( phoneLength?.length >= 10) {
   proccessCheckout();
  } else {
@@ -119,7 +119,7 @@ watch(phoneNumber)
 
           <div>
             <h2 class="w-full mb-3 text-2xl font-semibold">{{ $t('messages.billing.billingDetails') }}</h2>
-            <BillingDetails v-model="customer.billing" :sameAsShippingAddress="orderInput.shipToDifferentAddress" @getPhoneNumberLength="getPhoneNumberLength"   @change="console.log(customer.billing.phone)"/>
+            <BillingDetails v-model="customer.billing" :sameAsShippingAddress="orderInput.shipToDifferentAddress" @getPhoneNumberLength="getPhoneNumberLength" />
            
           </div>
       

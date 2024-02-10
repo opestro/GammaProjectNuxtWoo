@@ -21,7 +21,7 @@ async function searchProducts() {
     filteredResults: toRaw(toRaw(data).productsBySearch)
   }
 
-  console.log(searchData)
+ // console.log(searchData)
 }
 </script>
 

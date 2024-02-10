@@ -6,7 +6,7 @@ const currentPage =  route.params.pageNumber
 const { isQueryEmpty } = useHelpers();
 const runtimeConfig = useRuntimeConfig();
 const page = route.params.pageNumber || '1'
-console.log(page)
+//console.log(page)
 
 const  products = await useFetch('https://gama.soluve.cloud/products',
  {
