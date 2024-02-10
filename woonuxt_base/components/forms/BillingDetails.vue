@@ -7,13 +7,19 @@ const props = defineProps({
   modelValue: { type: Object, required: true },
   sameAsShippingAddress: { type: Boolean, default: true },
 });
+import mitt from 'mitt'
+
+const emitter = mitt()
+
 
 const billing = toRef(props, 'modelValue');
 let cities = ref([])
 let zipcode = ref([])
 function validatePhoneNumber() {
-  if (billing.value.phone) {
+
+  if (billing.value.phone > 10) {
     billing.value.phone = billing.value.phone.replace(/\D/g, '').slice(0, 10);
+   
   }
 }
 watch(billing, validatePhoneNumber(), props)
@@ -54,23 +60,20 @@ async function getVille() {
       <label for="address2">{{ $t('messages.billing.address2') }}</label>
       <input v-model="billing.address2" placeholder="Dublin 1" type="text" />
     </div>
-
-    <div class="w-full">
-      <label for="city">{{ $t('messages.billing.city') }}</label>
-      <select v-if="cities"  v-model="billing.city">
-        <option v-for="city in cities" :key="city" :value="city.name" type="text" placeholder="State" >
-          {{ city.name }}
-        </option>
-      </select>
-      <input v-else v-model="billing.city" type="text" placeholder="State" />
-    </div>
-
     <div class="w-full">
       <label for="country">WILAYA</label>
       <LazyStateSelect v-model="billing.state" :default-value="billing.state" :country-code="billing.country"
         @change="updateShippingLocation" @input="getVille()" />
     </div>
-
+    <div class="w-full">
+      <label for="city">{{ $t('messages.billing.city') }}</label>
+      <select v-if="cities"  v-model="billing.city">
+        <option v-for="city in cities" :key="city" :value="city.name"  type="text" placeholder="State" >
+          {{ city.name }}
+        </option>
+      </select>
+      <input v-else v-model="billing.city" type="text" placeholder="State" />
+    </div>
     <div class="w-full">
       <label for="country">{{ $t('messages.billing.country') }}</label>
       <LazyCountrySelect v-model="billing.country" :default-value="billing.country" :allowed-countries="allowedCountries"
@@ -84,7 +87,7 @@ async function getVille() {
 
     <div class="w-full col-span-full">
       <label for="phone">{{ $t('messages.billing.phone') }} ({{ $t('messages.general.optional') }})</label>
-      <input v-model="billing.phone" @input="validatePhoneNumber" placeholder="0562335566" type="tel" required />
+      <input v-model="billing.phone" @input="validatePhoneNumber"  @change="$emit('getPhoneNumberLength', billing.phone)" placeholder="0562335566" type="tel" required />
       <p v-if="billing.phone?.length !== 10" class="text-red-500">Phone number must be 10 digits long.</p>
     </div>
   </div>

@@ -36,7 +36,7 @@ onMounted(() => {
 
 <template>
   <select @change="select" v-if="states.length">
-    <option v-for="state in states" :key="state.code" :value="state.code" :selected="state.code === props.modelValue">
+    <option v-for="state in states" :key="state.code" :value="state.code" >
       {{ state.name }}
     </option>
   </select>

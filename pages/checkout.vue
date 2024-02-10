@@ -1,7 +1,8 @@
 <script setup>
 import { StripeElements, StripeElement } from 'vue-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-
+import mitt from 'mitt'
+const emitter = mitt()
 const { t } = useI18n();
 const { cart, toggleCart, isUpdatingCart, paymentGateways } = useCart();
 const { customer, viewer } = useAuth();
@@ -14,6 +15,8 @@ const isCheckoutDisabled = computed(() => isProcessingOrder.value || isUpdatingC
 
 const emailRegex = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$');
 const isInvalidEmail = ref(false);
+
+
 
 const instanceOptions = ref({});
 const elementsOptions = ref({});
@@ -34,9 +37,14 @@ onBeforeMount(() => {
     stripeLoaded.value = true;
   });
 });
-
+const phoneNumber = ref()
+async function  getPhoneNumberLength(phoneValue) {
+  phoneNumber.value =  await phoneValue
+  return phoneNumber
+}
 const payNow = async () => {
   buttonText.value = t('messages.general.processing');
+ await getPhoneNumberLength
   try {
     if (orderInput.value.paymentMethod === 'stripe') {
       const cardElement = card.value.stripeElement;
@@ -45,9 +53,17 @@ const payNow = async () => {
     }
   } catch (error) {
     buttonText.value = t('messages.shop.placeOrder');
+    
   }
  // console.log(customer.value.billing.email)
- proccessCheckout();
+ const phoneLength = phoneNumber.value
+ console.log(phoneLength)
+ if ( phoneLength?.length >= 10) {
+  proccessCheckout();
+ } else {
+  alert('Verifier votre numero de telefone')
+ }
+// proccessCheckout();
 };
 
 const checkEmailOnBlur = (email) => {
@@ -57,6 +73,9 @@ const checkEmailOnBlur = (email) => {
 const checkEmailOnInput = (email) => {
   if (email || isInvalidEmail.value) isInvalidEmail.value = !emailRegex.test(email);
 };
+
+watch(phoneNumber)
+
 </script>
 
 <template>
@@ -100,7 +119,7 @@ const checkEmailOnInput = (email) => {
 
           <div>
             <h2 class="w-full mb-3 text-2xl font-semibold">{{ $t('messages.billing.billingDetails') }}</h2>
-            <BillingDetails v-model="customer.billing" :sameAsShippingAddress="orderInput.shipToDifferentAddress" />
+            <BillingDetails v-model="customer.billing" :sameAsShippingAddress="orderInput.shipToDifferentAddress" @getPhoneNumberLength="getPhoneNumberLength"   @change="console.log(customer.billing.phone)"/>
            
           </div>
       
@@ -152,11 +171,11 @@ const checkEmailOnInput = (email) => {
               :placeholder="$t('messages.shop.orderNotePlaceholder')"></textarea>
           </div>
         </div>
-
-        <OrderSummary>
+        {{phoneNumber}}
+        <OrderSummary >
           <button
             class="flex items-center justify-center w-full gap-3 p-3 mt-4 font-semibold text-center text-white rounded-lg shadow-md bg-sky-500 hover:bg-amber-500 disabled:cursor-not-allowed disabled:opacity-50"
-            :disabled="isCheckoutDisabled">
+            :disabled="isCheckoutDisabled" >
             {{ buttonText }}
             <LoadingIcon v-if="isProcessingOrder" color="#fff" size="18" />
           </button>
