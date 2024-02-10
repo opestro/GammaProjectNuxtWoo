@@ -9,6 +9,8 @@ const slug = route.params.slug as string;
 
 const { data } = (await useAsyncGql('getProduct', { slug })) as { data: { value: { product: Product } } };
 const product = data?.value?.product;
+//console.log(product)
+watch(product)
 useHead({
   title: product?.name ?? 'Product',
   meta: [{ hid: 'description', name: 'description', content: product?.shortDescription ?? '' }],
@@ -23,7 +25,9 @@ const attrValues = ref();
 const type = computed(() => (activeVariation.value ? activeVariation.value : product));
 const selectProductInput = computed(() => ({ productId: type.value.databaseId, quantity: quantity.value })) as ComputedRef<AddToCartInput>;
 const disabledAddToCart = computed(() => (!activeVariation.value && !!product.variations) || type.value.stockStatus !== 'IN_STOCK');
-
+//console.log('type', {...type})
+//console.log('activeVariation', {...activeVariation})
+//console.log('product', {...product})
 onMounted(() => {
   if (product.variations) indexOfTypeAny.push(...checkForVariationTypeOfAny(product));
 });
@@ -47,28 +51,22 @@ const updateSelectedVariations = (variations: Attribute[]): void => {
   variation.value = variations;
 };
 //Direct Buy
-async function directBuy(productData){
-  try{
-   await addToCart(productData)
-   router.push("/checkout")
-  }catch(e){alert(e)}
-
-
+async function directBuy(productData) {
+  try {
+    await addToCart(productData)
+    router.push("/checkout")
+  } catch (e) { alert(e) }
 }
 </script>
 
 <template>
   <main class="container relative py-6 xl:max-w-7xl" v-if="product">
-    <Breadcrumb :product="product" class="mb-6" />
+    <!-- <Breadcrumb :product="product" class="mb-6" /> -->
 
     <div class="flex flex-col gap-10 md:flex-row md:justify-between lg:gap-24">
-      <ProductImageGallery
-        v-if="product.image?.sourceUrl"
-        class="relative flex-1"
-        :first-image="product.image.sourceUrl"
+      <ProductImageGallery v-if="product.image?.sourceUrl" class="relative flex-1" :first-image="product.image.sourceUrl"
         :main-image="type.image ? type.image?.sourceUrl || product.image.sourceUrl : '/images/placeholder.jpg'"
-        :gallery="product.galleryImages!"
-        :node="type" />
+        :gallery="product.galleryImages!" :node="type" />
       <NuxtImg v-else class="relative flex-1" src="/images/placeholder.jpg" :alt="product?.name || 'Product'" />
 
       <div class="lg:max-w-md xl:max-w-lg md:py-2">
@@ -80,11 +78,20 @@ async function directBuy(productData){
             </h1>
             <StarRating :rating="product.averageRating || 0" :count="product.reviewCount || 0" />
           </div>
-          <ProductPrice class="text-xl" :sale-price="type.salePrice" :regular-price="type.regularPrice" />
+          <div>
+            <button class="bg-yellow-400 rounded-lg   ">
+              <ProductPrice class="m-2 text-lg" :sale-price="type.salePrice" :regular-price="type.regularPrice" />
+            </button>
+
+          </div>
         </div>
 
         <div class="grid gap-2 my-8 text-sm">
-          <div class="flex items-center gap-2">
+          
+          <div class=" items-center gap-2">
+            <AttributeSelections v-if="product.type == 'VARIABLE' && product.attributes && product.variations"
+            class=" max-sm:visible sm:visible invisible" :attrs="product.attributes.nodes" :variations="product.variations.nodes"
+            @attrs-changed="updateSelectedVariations" />
             <span class="text-gray-400">{{ $t('messages.shop.availability') }}: </span>
             <span v-if="type.stockStatus == 'IN_STOCK'" class="text-green-600">{{ $t('messages.shop.inStock') }}</span>
             <span v-else class="text-red-600">{{ $t('messages.shop.outOfStock') }}</span>
@@ -102,28 +109,22 @@ async function directBuy(productData){
 
         </div>
         <form @submit.prevent="addToCart(selectProductInput)">
-          <AttributeSelections
-            v-if="product.type == 'VARIABLE' && product.attributes && product.variations"
-            class="mt-4 mb-8"
-            :attrs="product.attributes.nodes"
-            :variations="product.variations.nodes"
-            @attrs-changed="updateSelectedVariations" />
-            
-          <div class="fixed bottom-0 left-0 z-10 flex items-center w-full gap-4 p-4 mt-12 bg-white md:static md:bg-transparent bg-opacity-90 md:p-0">
+          
+
+          <div
+            class="fixed bottom-0 left-0 z-10 flex items-center w-full gap-4 p-4 mt-12 bg-white md:static md:bg-transparent bg-opacity-90 md:p-0">
             <div class="w-full ">
-         <!--   <button  class="rounded-lg w-full font-bold bg-gray-800 text-white text-center p-2.5  focus:outline-none m-1" :disabled="disabledAddToCart" >Achtez Direct</button> -->  
-              <BuyDirectButton class=" w-full m-1" :disabled="disabledAddToCart" :class="{ loading: isUpdatingCart }" @click="directBuy(selectProductInput)"></BuyDirectButton>
+              <!--   <button  class="rounded-lg w-full font-bold bg-gray-800 text-white text-center p-2.5  focus:outline-none m-1" :disabled="disabledAddToCart" >Achtez Direct</button> -->
+              <BuyDirectButton class=" w-full m-1 " :disabled="disabledAddToCart" 
+                @click="directBuy(selectProductInput)"></BuyDirectButton>
               <div class="flex items-center ">
-                <input
-                v-model="quantity"
-                type="number"
-                min="1"
-                aria-label="Quantity"
-                class="bg-white border rounded-lg flex text-left p-2.5  m-1 w-20 gap-4 items-center justify-center focus:outline-none" />
-              <AddToCartButton class="flex-1 w-full " :disabled="disabledAddToCart" :class="{ loading: isUpdatingCart }" />
+                <input v-model="quantity" type="number" min="1" aria-label="Quantity"
+                  class="bg-white border rounded-lg flex text-left p-2.5  m-1 w-20 gap-4 items-center justify-center focus:outline-none" />
+                <AddToCartButton class="flex-1 w-full " :disabled="disabledAddToCart"
+                 />
               </div>
             </div>
-            
+
           </div>
         </form>
 
@@ -132,14 +133,9 @@ async function directBuy(productData){
           <div class="flex items-center gap-2">
             <span class="text-gray-400">{{ $t('messages.shop.category', 2) }}:</span>
             <div class="product-categories" v-if="product.productCategories">
-              <NuxtLink
-                v-for="category in product.productCategories.nodes"
-                :key="category.slug"
-                :to="`/product-category/${formatURI(category.slug)}`"
-                class="hover:text-primary"
-                :title="category.name"
-                >{{ category.name }}<span class="comma">, </span></NuxtLink
-              >
+              <NuxtLink v-for="category in product.productCategories.nodes" :key="category.slug"
+                :to="`/product-category/${formatURI(category.slug)}`" class="hover:text-primary" :title="category.name">{{
+                  category.name }}<span class="comma">, </span></NuxtLink>
             </div>
           </div>
         </div>
@@ -161,7 +157,7 @@ async function directBuy(productData){
 </template>
 
 <style scoped>
-.product-categories > a:last-child .comma {
+.product-categories>a:last-child .comma {
   display: none;
 }
 

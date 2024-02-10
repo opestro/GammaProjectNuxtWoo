@@ -14,7 +14,7 @@ const category_id = fetchCategory_id.data.value[0]?.id || 1
 console.log(fetchCategory_id)
 const  products = await useFetch('https://gama.soluve.cloud/products',
  {
-  params: {'page': 1,'per_page': 20, 'stock_status': 'instock', 'orderby': 'popularity' , 'category': category_id }
+  params: {'page': 1,'per_page': 50, 'stock_status': 'instock', 'orderby': 'popularity' , 'category': category_id }
 })
 
 setProducts(products.data?.value || []);
