@@ -7,7 +7,7 @@ interface Props {
 const { node } = defineProps<Props>();
 const imageSrc = node.image?.src || '../static/images/logoOutline.webp';
 const imgD = ref('https://gamaoutillage.net/wp-content/uploads/2024/02/logoOutline.png')
-console.log(node)
+//console.log(node)
 </script>
 
 <template>
