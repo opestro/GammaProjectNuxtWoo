@@ -23,7 +23,7 @@
                                             New</div>
                                     </div>
                                     <NuxtImg format="webp" class=" max-sm:w-40  sm:w-40 md:w-60   rounded-lg  " sizes="100px"  :alt="pds.name"
-                                        :src="pds.images[0]?.src || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
+                                        :src="pds.images[0]?.src || 'https://wp.gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
                                          />
                                 </div>
                                 <div class=" p-2  items-center">

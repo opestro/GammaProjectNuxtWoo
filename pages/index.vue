@@ -81,9 +81,9 @@
       </form>
     </dialog>
     <div class=" container flex  items-center justify-center  my-7 max-sm:hidden  text-center  w-full h-full">
-      <NuxtImg src="http://gamaoutillage.net/wp-content/uploads/2024/02/bannerSectionHero-2.png" class="rounded-lg"
+      <img src="http://wp.gamaoutillage.net/wp-content/uploads/2024/02/bannerSectionHero-2.png" class="rounded-lg"
         alt="BanerHero">
-      </NuxtImg>
+      </img>
     </div>
 
     <div
@@ -179,7 +179,7 @@ import { getProductsStore } from "~/stores/getProducts";
 useHead({
   title: `Home page`,
   meta: [{ name: 'description', content: "Vente outillage professionnel Algérie" }],
-  link: [{ rel: 'canonical', href: 'https://gamaoutillage.net/' }]
+  link: [{ rel: 'canonical', href: 'https://wp.gamaoutillage.net/' }]
 });
 
 const ProductsStore = getProductsStore()

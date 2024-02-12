@@ -47,7 +47,7 @@ const colorVariableImage = computed(() => {
       <img v-if="colorVariableImage" :src="colorVariableImage" :alt="node.image?.altText ?? node.name"
         :title="node.image?.title || node.name" :loading="index <= 3 ? 'eager' : 'lazy'" />
       <NuxtImg :width="imgWidth" :height="imgHeight"
-        :src="mainImage || 'https://gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
+        :src="mainImage || 'https://wp.gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'"
         :alt="node.image?.altText || node.name" :title="node.image?.title || node.name"
         :loading="index <= 3 ? 'eager' : 'lazy'" fit="outside" format="webp" densities="x1 x2" />
 

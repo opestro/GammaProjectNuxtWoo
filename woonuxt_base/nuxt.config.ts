@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     head: {
       titleTemplate: `${process.env.SITE_TITLE } | %s `,
       htmlAttrs: { lang: 'fr' },
-      link: [{ rel: 'icon', href: 'https://gamaoutillage.net/wp-content/uploads/2024/02/1665343934977-1-e1707519912918.webp', type: 'image/webp' }],
+      link: [{ rel: 'icon', href: 'https://wp.gamaoutillage.net/wp-content/uploads/2024/02/1665343934977-1-e1707519912918.webp', type: 'image/webp' }],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
   },
@@ -55,8 +55,6 @@ export default defineNuxtConfig({
     routeRules: {
       '/checkout/order-received/**': { ssr: false },
       '/order-summary/**': { ssr: false },
-      '/produit/**': { ssr: false },
-      '/product/**': { ssr: false }
     },
   },
 
