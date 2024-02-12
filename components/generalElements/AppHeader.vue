@@ -29,15 +29,5 @@
 </template>
 
 <script setup>
-useHead({
-    meta: [
-      // Other meta tags if needed
-    ],
-    script: [
-      {
-        defer: true,
-        src: 'https://msmgo.line.pm/pixel/3zPkNxNOzvolJuRV',
-      },
-    ],
-  })
+
 </script>
