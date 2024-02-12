@@ -80,7 +80,7 @@ export function useCheckout() {
       state: customer.value.shipping?.state,
     };
     //const { checkout } = await GqlCheckout(checkoutPayload);
-    console.log(lineItems)
+    //console.log(lineItems)
     
     try {
       const isCheckout = await useFetch('https://gama.soluve.cloud/checkout', {

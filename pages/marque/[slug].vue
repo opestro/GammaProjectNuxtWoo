@@ -6,7 +6,7 @@ const currentPage =  route.params.pageNumber
 const { isQueryEmpty } = useHelpers();
 const runtimeConfig = useRuntimeConfig();
 const slug = route?.params.slug || '1'
-console.log(slug)
+//console.log(slug)
 
 
  const  products = await useFetch('https://gama.soluve.cloud/products',
@@ -15,7 +15,7 @@ console.log(slug)
 })
 
 const allProducts = products.data?.value?? [];
-console.log(products)
+//console.log(products)
  setProducts(allProducts);
 
 onMounted(() => {
