@@ -19,10 +19,10 @@ const currentQuery = computed(() => {
 const page = ref(route.params.pageNumber ? parseInt(route.params.pageNumber as string) : 1);
 let numberOfPages: number = parseInt(route.params.pageNumber as string)
 
-console.log('p')
-console.log(products.value.length)
+//console.log('p')
+//console.log(products.value.length)
 const productsCount = products.value.length
-console.log(page)
+//console.log(page)
 const prevSrc = (pageNumber: number) => {
   if (currentQuery.value === '') {
     return formatURI(`/products/page/${pageNumber > 1 ? pageNumber - 1 : pageNumber}`);

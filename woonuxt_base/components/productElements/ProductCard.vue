@@ -5,7 +5,7 @@ const { node } = defineProps({
   node: { type: Object, default: null },
   index: { type: Number, default: 1 },
 });
-console.log(props.node)
+//console.log(props.node)
 const imgWidth = 220;
 const imgHeight = Math.round(imgWidth * 1.125);
 

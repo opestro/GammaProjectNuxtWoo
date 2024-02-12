@@ -9,7 +9,7 @@ const slug = route.params.slug as string;
 
 const { data } = (await useAsyncGql('getProduct', { slug })) as { data: { value: { product: Product } } };
 const product = data?.value?.product;
-console.log(product)
+//console.log(product)
 watch(product)
 useHead({
   title: product?.name ?? 'Product',

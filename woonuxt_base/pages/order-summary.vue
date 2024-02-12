@@ -26,7 +26,7 @@ onBeforeMount(async() => {
 });
 
 onMounted(async () => {
-  console.log(isCheckoutPage)
+  //console.log(isCheckoutPage)
   await getOrder();
 
   /**
@@ -46,7 +46,7 @@ async function getOrder() {
   try {
     const { data: getOrderInfo } = await useFetch('https://gama.soluve.cloud/orders/order', { params: { 'id':params.orderId } });
   //  const data = await GqlGetOrder({ id: params.orderId as string });
-    console.log(getOrderInfo)
+    //console.log(getOrderInfo)
     order.value = getOrderInfo?.value;
   } catch (err: any) {
     errorMessage.value = err?.gqlErrors?.[0].message || 'Could not find order';

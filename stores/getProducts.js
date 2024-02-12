@@ -8,7 +8,7 @@ export const getProductsStore = defineStore('getProducts', () => {
 
             const { data: getCategories } = await useFetch('https://gama.soluve.cloud/categories', { params: { 'per_page': 24, 'page': 1, 'hide_empty': true, "parent": 0 }, })
             categories.value.data = toRaw(getCategories.value.filter(arrow => arrow.name !== 'Uncategorized'))
-            console.log(categories)
+           // console.log(categories)
             categories.value.isLoading = false
             return { categories }
     
@@ -44,7 +44,7 @@ export const getProductsStore = defineStore('getProducts', () => {
             const { data: getProductsBySku } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': pageNumber || 1, 'per_page': 12, 'sku': searchKey } });
             productsBySearch = [...productsBySearch, ...getProductsBySku.value]
         } */
-        console.log(productsBySearch)
+       // console.log(productsBySearch)
         // Sort products based on the name matching the search term
       
     /*    const searchTerms = searchKey.toLowerCase().split(' ').filter(term => term.trim() !== '');
@@ -54,7 +54,7 @@ export const getProductsStore = defineStore('getProducts', () => {
         return searchTerms.every(term => productName.includes(term));
       });
    
-        console.log(filteredProducts ) */
+      //  console.log(filteredProducts ) */
         // const { data: getProductsBySku } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': pageNumber || 1, 'per_page': 5, 'sku': searchKey } });
         //productsBySearch = [...productsBySearch , ...getProductsBySku.value]
         return { productsBySearch  }
