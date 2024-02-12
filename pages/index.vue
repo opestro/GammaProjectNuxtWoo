@@ -31,8 +31,6 @@
         <NuxtImg v-if="imageToShow && isImageToShow" class="rounded-xl object-contain w-full " width="700" height="700" fit="outside"
           format="webp" :src="imageToShow.src" :alt="imageToShow.name" :title="imageToShow.name" fetchpriority="high" />
         <div v-if="productReceiver" class="my-4 gallery-images">
-
-
           <NuxtImg v-for="galleryImg in productReceiver.images" :key="galleryImg" class="cursor-pointer rounded-xl border border-sky-500"
             width="110" height="140" fit="outside" format="webp" :src="galleryImg.src"
             :alt="galleryImg.alt || galleryImg.title || galleryImg.name" :title="galleryImg.name"
