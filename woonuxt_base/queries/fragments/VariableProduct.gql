@@ -22,7 +22,7 @@ fragment VariableProduct on VariableProduct {
   stockStatus
   totalSales
   stockQuantity
-  attributes {
+  attributes{
     nodes {
       name
       options
@@ -30,13 +30,13 @@ fragment VariableProduct on VariableProduct {
       visible
     }
   }
-  defaultAttributes {
+  defaultAttributes(first: 1000) {
     nodes {
       name
       attributeId
     }
   }
-  variations {
+  variations(first: 1000) {
     nodes {
       name
       databaseId
