@@ -139,7 +139,8 @@ export function useCheckout() {
       }
 
       const { checkout } = await GqlCheckout(checkoutPayload);
-      const isCheckout = useFetch('https://wp.gamaoutillage.net/wp-json/wc/v3/orders', {
+      const isCheckout = useFetch('https://wp.gamaoutillage.net/wp-json/wc/v3/orders',
+      {
         method: 'post',
         body: {},
       });
