@@ -15,7 +15,7 @@
                 <Icon name="ion:eye" size="35" class="mr-2 " />
             
               </div>
-              <img format="webp" class=" max-sm:w-40 sm:w-40 md:w-60 rounded-lg " sizes="100px" quality="80"
+              <NuxtImg format="webp" class=" max-sm:w-40 sm:w-40 md:w-60 rounded-lg " sizes="100px" quality="80"
                 width="600" height="600" :alt="pds.name"
                 :src="pds.images[0]?.src || 'https://wp.gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg'" />
             </cardImage>
