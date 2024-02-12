@@ -79,7 +79,7 @@
       </form>
     </dialog>
     <div class=" container flex  items-center justify-center  my-7 max-sm:hidden  text-center  w-full h-full">
-      <NuxtImg src="http://wp.gamaoutillage.net/wp-content/uploads/2024/02/bannerSectionHero-2.png"   class="rounded-lg"
+      <NuxtImg src="http://wp.gamaoutillage.net/wp-content/uploads/2024/02/bannerSectionHero-2.png" class="rounded-lg"
         alt="BanerHero" />
      
     </div>
@@ -87,12 +87,12 @@
     <div
       class="container flex max-sm:hidden flex-wrap items-center justify-center mt-6 mb-16 md:my-14 text-center gap-x-8 gap-y-4 brand lg:justify-between  ">
 
-      <img  src="../static/images/BrandLogo1.webp" alt="CROWN" width="150"   class="border-2  bg-white rounded-lg p-2" />
-      <img  src="../static/images/BrandLogo2.webp" alt="WORCRAFT" width="150" class="border-2 bg-white rounded-lg p-2" />
-      <img  src="../static/images/BrandLogo3.webp" alt="FLUKE" width="150" class="border-2 bg-white rounded-lg p-2" />
-      <img  src="../static/images/BrandLogo4.webp" alt="TOPTUL" width="150" class="border-2 bg-white rounded-lg p-2" />
-      <img  src="../static/images/BrandLogo5.webp" alt="BOSCH" width="150" class="border-2 bg-white rounded-lg p-2" />
-      <img  src="../static/images/BrandLogo6.webp" alt="MAKITA" width="150" class="border-2 bg-white rounded-lg p-2" />
+      <NuxtImg  src="/images/BrandLogo1.webp" alt="CROWN" width="150" class="border-2 bg-white rounded-lg p-2"  />
+      <NuxtImg  src="/images/BrandLogo2.webp" alt="WORCRAFT" width="150" class="border-2 bg-white rounded-lg p-2" :placeholder="blurredImage" />
+      <NuxtImg  src="/images/BrandLogo3.webp" alt="FLUKE" width="150" class="border-2 bg-white rounded-lg p-2" :placeholder="blurredImage" />
+      <NuxtImg  src="/images/BrandLogo4.webp" alt="TOPTUL" width="150" class="border-2 bg-white rounded-lg p-2" :placeholder="blurredImage" />
+      <NuxtImg  src="/images/BrandLogo5.webp" alt="BOSCH" width="150" class="border-2 bg-white rounded-lg p-2" :placeholder="blurredImage" />
+      <NuxtImg  src="/images/BrandLogo6.webp" alt="MAKITA" width="150" class="border-2 bg-white rounded-lg p-2" :placeholder="blurredImage" />
     </div>
     <MobileBanner class=" container sm:hidden my-2"></MobileBanner>
     <div>
@@ -170,26 +170,16 @@
   </main>
 </template>
 <script  setup>
-import { getProductsStore } from "~/stores/getProducts";
 const { addToCart } = useCart();
 const router = useRouter();
 let isLoading = ref(false)
-
-/*
+import { getProductsStore } from "~/stores/getProducts";
 useHead({
   title: `Vente outillage professionnel Algérie`,
   meta: [{ name: 'description', content: "Vente outillage professionnel Algérie" }],
   link: [{ rel: 'canonical', href: 'https://wp.gamaoutillage.net/' }]
 });
-*/
-useSeoMeta({
-  title: `Home`,
-  ogTitle: `Gama Outillage`,
-  description: `Vente outillage professionnel Algérie`,
-  ogDescription: `Vente outillage professionnel Algérie`,
-  ogImage: `https://wp.gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg`,
-  twitterCard: `summary_large_image`,
-});
+
 const ProductsStore = getProductsStore()
 //const router = useRouter()
 let topProducts = ref({ data: '', isLoading: true })
