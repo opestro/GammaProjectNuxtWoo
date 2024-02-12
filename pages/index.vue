@@ -175,7 +175,7 @@ const router = useRouter();
 let isLoading = ref(false)
 import { getProductsStore } from "~/stores/getProducts";
 useHead({
-  title: `Home page`,
+  title: `Vente outillage professionnel Algérie`,
   meta: [{ name: 'description', content: "Vente outillage professionnel Algérie" }],
   link: [{ rel: 'canonical', href: 'https://wp.gamaoutillage.net/' }]
 });
