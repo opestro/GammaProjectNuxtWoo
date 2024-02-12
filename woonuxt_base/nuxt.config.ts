@@ -16,7 +16,7 @@ export default defineNuxtConfig({
 
   components: [{ path: resolve('./components'), pathPrefix: false }],
 
-  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/image', '@nuxtjs/i18n' , '@pinia/nuxt'],
+  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/image', '@nuxtjs/i18n' , '@pinia/nuxt',   'nuxt3-meta-pixel',],
   image: {
     domains: process.env.NUXT_IMAGE_DOMAINS ? process.env.NUXT_IMAGE_DOMAINS.replace(/ /g, '').split(',') : [],
   },
@@ -57,7 +57,15 @@ export default defineNuxtConfig({
       '/order-summary/**': { ssr: false },
     },
   },
-
+  
+  facebook: {
+    track: 'PageView',
+    pixelId: '1353387878450498',
+    autoPageView: true,
+    disabled: false
+  },
+  /** */
+  
   runtimeConfig: {
     public: {
       version: pkg.version || '0.0.0',
