@@ -41,16 +41,44 @@ export function useCheckout() {
     const { viewer } = useAuth();
     const { refreshCart, emptyCart, cart } = useCart();
     const { customer } = useAuth();
-    // console.log('cart');
+  //   console.log('cart');
 
     const shippingTotal = customer._object.$scart.shippingTotal;
     const shipingMethodId = customer._object.$scart.chosenShippingMethods[0];
     const shipingCost = parseInt(shippingTotal.replace('.', ''), 10);
     const listOfOrders = customer._object.$scart.contents;
-    const lineItems = listOfOrders.nodes.map((node) => ({
-      product_id: node.product.node.databaseId,
-      quantity: node.quantity,
-    }));
+    const customerComment = customer._object.$sorderInput.customerNote
+  //  console.log(customerComment);
+    
+   
+  //const VariationId = await getVariationId
+ // */
+ //console.log(VariationId);
+    const lineItems = listOfOrders.nodes.map((node) => {
+
+    
+        // Iterate through each variation
+      //  console.log('var id');
+       
+        for (const variation of node.product.node.variations.nodes) {
+            // Check if the variation name matches
+          //  console.log(variation);
+            if (node.variation.node.name === variation.name) {
+                // Return the variation ID if found
+          //      console.log(variation.databaseId);
+                return  {
+                  product_id: node.product.node.databaseId,
+                  quantity: node.quantity,
+                  variation_id : variation.databaseId}
+            }
+        }
+   
+        // Return null if variation with the given name is not found
+        return null;
+   
+      
+
+    });
     // console.log(lineItems);
     const billing = {
       address_1: customer.value.billing?.address1,
@@ -92,6 +120,7 @@ export function useCheckout() {
             shipping: shipping,
             set_paid: false,
             line_items: lineItems,
+            customer_note : customerComment,
             shipping_lines: [
               {
                 method_id: shipingMethodId,
