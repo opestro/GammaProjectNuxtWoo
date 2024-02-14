@@ -20,6 +20,7 @@ async function searchProducts() {
         showResults: true,
         filteredResults: toRaw(toRaw(data.productsBySearch))
     }
+    console.log(data.productsBySearch)
 
     //console.log(searchData)
 }
