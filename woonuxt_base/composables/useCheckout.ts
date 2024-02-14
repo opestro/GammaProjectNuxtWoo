@@ -59,30 +59,30 @@ export function useCheckout() {
     
         // Iterate through each variation
       //  console.log('var id');
-       
-        for (const variation of node.product.node.variations.nodes) {
+       if (node.variation?.node){
+for (const variation of node.product.node.variations.nodes) {
             // Check if the variation name matches
           //  console.log(variation);
             if (node.variation.node.name === variation.name) {
                 // Return the variation ID if found
-          //      console.log(variation.databaseId)
-if (variation.databaseId){
-return  {
+          //      console.log(variation.databaseId);
+                return  {
                   product_id: node.product.node.databaseId,
                   quantity: node.quantity,
                   variation_id : variation.databaseId}
             }
+        }
+   
+        // Return null if variation with the given name is not found
+        return null;
 } else {
 return  {
                   product_id: node.product.node.databaseId,
                   quantity: node.quantity,
                   }
-            }}
-                
-        }
-   
-        // Return null if variation with the given name is not found
-        return null;
+            }
+}
+        
    
       
 
@@ -123,7 +123,7 @@ return  {
         params: {
           data: {
             payment_method: 'cod',
-            payment_method_title: 'Paiement à la livraison',
+            payment_method_title: 'Paiement Ã  la livraison',
             billing: billing,
             shipping: shipping,
             set_paid: false,
