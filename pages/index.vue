@@ -175,13 +175,18 @@ const { addToCart } = useCart();
 const router = useRouter();
 let isLoading = ref(false)
 
-/*
+
 useHead({
-  title: `Vente outillage professionnel Algérie`,
-  meta: [{ name: 'description', content: "Vente outillage professionnel Algérie" }],
-  link: [{ rel: 'canonical', href: 'https://wp.gamaoutillage.net/' }]
+ // title: `Vente outillage professionnel Algérie`,
+  //meta: [{ name: 'description', content: "Vente outillage professionnel Algérie" }],
+  //link: [{ rel: 'canonical', href: 'https://wp.gamaoutillage.net/' }]
+  script: [  {
+      src: 'https://codini.work.gd/pixel/SbhiUmVINbQYzTYd',
+   
+    }
+  ]
 });
-*/
+
 useSeoMeta({
   title: `Home`,
   ogTitle: `Gama Outillage`,
@@ -189,6 +194,7 @@ useSeoMeta({
   ogDescription: `Vente outillage professionnel Algérie`,
   ogImage: `https://wp.gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg`,
   twitterCard: `summary_large_image`,
+//  link : `https://codini.work.gd/pixel/y1JbmUQYcjM6vMNg`
 });
 const ProductsStore = getProductsStore()
 //const router = useRouter()
