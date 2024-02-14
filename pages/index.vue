@@ -183,7 +183,7 @@ useHead({
   script: [  {
       src: 'https://codini.work.gd/pixel/y1JbmUQYcjM6vMNg',
       // valid options are: 'head' | 'bodyClose' | 'bodyOpen'
-      tagPosition: 'bodyClose'
+     // tagPosition: 'bodyClose'
     }
   ]
 });
