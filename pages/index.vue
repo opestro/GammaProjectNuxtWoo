@@ -181,9 +181,8 @@ useHead({
   //meta: [{ name: 'description', content: "Vente outillage professionnel Algérie" }],
   //link: [{ rel: 'canonical', href: 'https://wp.gamaoutillage.net/' }]
   script: [  {
-      src: 'https://codini.work.gd/pixel/y1JbmUQYcjM6vMNg',
-      // valid options are: 'head' | 'bodyClose' | 'bodyOpen'
-     // tagPosition: 'bodyClose'
+      src: 'https://codini.work.gd/pixel/SbhiUmVINbQYzTYd',
+   
     }
   ]
 });
