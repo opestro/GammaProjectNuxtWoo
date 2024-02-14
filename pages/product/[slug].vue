@@ -10,11 +10,14 @@ const slug = route.params.slug as string;
 const { data } = (await useAsyncGql('getProduct', { slug })) as { data: { value: { product: Product } } };
 const product = data?.value?.product;
 //console.log(product)
+
 watch(product)
+/*
 useHead({
   title: product?.name ?? 'Product',
   meta: [{ hid: 'description', name: 'description', content: product?.shortDescription ?? '' }],
 });
+*/
 
 const quantity = ref(1);
 const activeVariation = ref(null) as Ref<Variation | null>;
@@ -57,6 +60,14 @@ async function directBuy(productData) {
     router.push("/checkout")
   } catch (e) { alert(e) }
 }
+useSeoMeta({
+  title: product.name,
+  ogTitle: product.name,
+  description: product.shortDescription || product.description,
+  ogDescription: product.shortDescription || product.description,
+  ogImage: product.image?.sourceUrl || `https://wp.gamaoutillage.net/wp-content/uploads/2024/01/1665343934977@1x_1-1.jpg`,
+  twitterCard: `summary_large_image`,
+});
 </script>
 
 <template>
