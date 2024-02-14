@@ -4,9 +4,9 @@ export const getProductsStore = defineStore('getProducts', () => {
     let categories = ref({ data: '', isLoading: true })
     // let isLoading = ref({ topProducts: true, categories: true, newProducts: true })
     //let searchKey = ref()
-    async function getCategoriesData() {
+    async function getCategoriesData(categoryId) {
 
-            const { data: getCategories } = await useFetch('https://gama.soluve.cloud/categories', { params: { 'per_page': 24, 'page': 1, 'hide_empty': true, "parent": 0 }, })
+            const { data: getCategories } = await useFetch('https://gama.soluve.cloud/categories', { params: { 'per_page': 24, 'page': 1, 'hide_empty': true, "parent": categoryId || 0 }, })
             categories.value.data = toRaw(getCategories.value.filter(arrow => arrow.name !== 'Uncategorized'))
            // console.log(categories)
             categories.value.isLoading = false

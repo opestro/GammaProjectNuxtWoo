@@ -13,7 +13,7 @@ useHead({
 onMounted(async () => {
   const fetchCategories = await ProductsStore.getCategoriesData()
   categories.value = fetchCategories.categories.value.data
-  //console.log(categories.value)
+  console.log(categories.value)
 
 });
 watch(categories)

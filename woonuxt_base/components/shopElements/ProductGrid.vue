@@ -8,11 +8,22 @@ const props = defineProps({
   category: { type: Object, default: null }
 });
 const slug = route.params.slug || ''
-//console.log('props : ' + props.category )
+
 async function visibilityChanged() {
-  const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 20, 'stock_status': 'instock', 'orderby': 'popularity', 'category' : props?.category , 'search': slug  } });
+  if (props.category) {
+    console.log('props : ' +props.category )
+    const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 20, 'stock_status': 'instock', 'orderby': 'popularity', 'category' : props?.category  } });
   products.value = [...products.value, ...getNewProducts.value]
- // console.log(products)
+  console.log(products)
+  return products
+  } else {
+    console.log('props : ' +slug )
+    const { data: getNewProducts } = await useFetch('https://gama.soluve.cloud/products', { params: { 'page': page++, 'per_page': 20, 'stock_status': 'instock', 'orderby': 'popularity', 'search' : slug  } });
+  products.value = [...products.value, ...getNewProducts.value]
+  console.log(products)
+  return products
+  }
+
  // return products
 }
 
