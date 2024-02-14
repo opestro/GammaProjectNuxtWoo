@@ -69,7 +69,7 @@ export function useCheckout() {
                 return  {
                   product_id: node.product.node.databaseId,
                   quantity: node.quantity,
-                  variation_id : variation.databaseId}
+                  variation_id : variation.databaseId || null}
             }
         }
    
