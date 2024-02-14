@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SpeedInsights } from '@vercel/speed-insights/vue';
 const route = useRoute();
 const { isShowingCart, toggleCart } = useCart();
 const { isShowingMobileMenu, toggleMobileMenu } = useHelpers();
@@ -27,7 +28,7 @@ watch(
 
 <template>
   <div class="flex flex-col min-h-screen  " data-theme="light">
-
+    <SpeedInsights />
     <NuxtLoadingIndicator height="6" />
 
     <AppHeader />
