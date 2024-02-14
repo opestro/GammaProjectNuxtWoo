@@ -65,12 +65,20 @@ export function useCheckout() {
           //  console.log(variation);
             if (node.variation.node.name === variation.name) {
                 // Return the variation ID if found
-          //      console.log(variation.databaseId);
-                return  {
+          //      console.log(variation.databaseId)
+if (variation.databaseId){
+return  {
                   product_id: node.product.node.databaseId,
                   quantity: node.quantity,
-                  variation_id : variation.databaseId || null}
+                  variation_id : variation.databaseId}
             }
+} else {
+return  {
+                  product_id: node.product.node.databaseId,
+                  quantity: node.quantity,
+                  }
+            }}
+                
         }
    
         // Return null if variation with the given name is not found
