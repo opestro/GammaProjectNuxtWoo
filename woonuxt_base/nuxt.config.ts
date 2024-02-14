@@ -57,7 +57,7 @@ export default defineNuxtConfig({
       '/order-summary/**': { ssr: false },
     },
   },
-  /*
+  
   facebook: {
     track: 'PageView',
     pixelId: '1353387878450498',
