@@ -8,8 +8,8 @@ const slug = route.params.slug as string;
 
 
 const { data } = (await useAsyncGql('getProduct', { slug })) as { data: { value: { product: Product } } };
-const product = data?.value?.product;
-//console.log(product)
+const product =  data?.value?.product;
+
 
 watch(product)
 /*
@@ -32,6 +32,7 @@ const disabledAddToCart = computed(() => (!activeVariation.value && !!product.va
 //console.log('activeVariation', {...activeVariation})
 //console.log('product', {...product})
 onMounted(() => {
+  console.log(product)
   if (product.variations) indexOfTypeAny.push(...checkForVariationTypeOfAny(product));
 });
 
@@ -162,7 +163,7 @@ useSeoMeta({
     </div>
     <div class="my-32" v-if="product.related">
       <div class="mb-4 text-xl font-semibold">{{ $t('messages.shop.youMayLike') }}</div>
-      <ProductRow :products="product.related.nodes" class="grid-cols-2 md:grid-cols-4 lg:grid-cols-5" />
+      <ProductRow :products="product.related" class="grid-cols-2 md:grid-cols-4 lg:grid-cols-5" />
     </div>
   </main>
 </template>
