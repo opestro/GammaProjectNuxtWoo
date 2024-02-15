@@ -6,9 +6,9 @@ const props = defineProps({
 
 <template>
   <div class="grid">
-    <div  v-if="products.nodes" v-for="product in products.nodes" :key="product"  class="grid gap-8">
+    <div  v-if="products.nodes" v-for="product in products.nodes" :key="product"  class="grid border rounded-lg m-1 shadow-sm gap-8">
       <NuxtLink :to="'/product/' + product.slug" :title="product.name">
-        <SaleBadge :node="product" class="absolute top-2 right-2" />
+        <SaleBadge :node="product" class="absolute  top-2 right-2" />
         <div v-if="product.stock_status == 'outofstock'" class="flex justify-center bg-red-500 text-white rounded-lg my-1">Out
           of Stock</div>
         <img v-if="colorVariableImage" :src="colorVariableImage" :alt="product.image?.altText ?? product.name"
