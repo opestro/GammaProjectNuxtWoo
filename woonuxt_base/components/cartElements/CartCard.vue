@@ -31,7 +31,7 @@ const removeItem = () => {
 </script>
 
 <template>
-  <SwipeCard @remove="removeItem" class="h-48">
+  <SwipeCard @remove="removeItem" class=" max-sm:h-48 h-24">
     <li v-if="productType" class="flex max-sm:flex-col items-center gap-3 ">
 
       <NuxtLink :to="productSlug">
@@ -39,7 +39,7 @@ const removeItem = () => {
           v-if="productType.image"
           width="64"
           height="64"
-          class="w-16 h-16 max-sm:w-28 max-sm:h-28 rounded-md"
+          class="w-16  max-sm:w-28 max-sm:h-28 rounded-md"
           :src="productType.image.cartSourceUrl || productType.image.sourceUrl || item.product.image.sourceUrl"
           :alt="productType.image?.altText || productType.name"
           :title="productType.image?.title || productType.name"
