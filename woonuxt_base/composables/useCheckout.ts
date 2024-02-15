@@ -145,8 +145,8 @@ return  {
       const orderId = isCheckout?.data?.value.id;
       const orderKey = isCheckout?.data?.value.order_key;
       if (isCheckout?.status.value === 'success') {
-        emptyCart();
-        refreshCart();
+       await emptyCart();
+      await  refreshCart();
         router.push(`/checkout/order-received/${orderId}/?key=${orderKey}`);
       } else {
         alert('There was an error processing your order. Please try again.');
