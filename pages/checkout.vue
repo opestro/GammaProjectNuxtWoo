@@ -56,7 +56,7 @@ const payNow = async () => {
     
   }
  // console.log(customer.value.billing.email)
- const phoneLength = phoneNumber.value
+ //const phoneLength = phoneNumber.value
  //console.log(phoneLength)
  if ( phoneLength?.length >= 10) {
   proccessCheckout();

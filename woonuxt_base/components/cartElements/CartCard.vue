@@ -11,21 +11,35 @@ const productSlug = computed(() => `/product/${formatURI(props.item.product.node
 const updateQuantity = () => {
   updateItemQuantity(props.item.key, quantity.value);
 };
+function  changeQuantity (method)  {
+  //increaseQuantity
+  if (method == 1) {
+    quantity.value++
+  updateItemQuantity(props.item.key, quantity.value);
+  } else {
+    quantity.value--
+  updateItemQuantity(props.item.key, quantity.value);
+  }
+ 
+}
+const decreaseQuantity = () => {
 
+}
 const removeItem = () => {
   updateItemQuantity(props.item.key, 0);
 };
 </script>
 
 <template>
-  <SwipeCard @remove="removeItem">
-    <li v-if="productType" class="flex items-center gap-3">
+  <SwipeCard @remove="removeItem" class="h-48">
+    <li v-if="productType" class="flex max-sm:flex-col items-center gap-3 ">
+
       <NuxtLink :to="productSlug">
         <img
           v-if="productType.image"
           width="64"
           height="64"
-          class="w-16 h-16 rounded-md"
+          class="w-16 h-16 max-sm:w-28 max-sm:h-28 rounded-md"
           :src="productType.image.cartSourceUrl || productType.image.sourceUrl || item.product.image.sourceUrl"
           :alt="productType.image?.altText || productType.name"
           :title="productType.image?.title || productType.name"
@@ -40,21 +54,31 @@ const removeItem = () => {
           :title="productType.image?.title || productType.name"
           loading="lazy" />
       </NuxtLink>
-      <div class="flex-1">
-        <NuxtLink class="leading-tight" :to="productSlug">{{ productType.name }}</NuxtLink>
-        <ProductPrice class="mt-1 text-xs" :sale-price="productType.salePrice" :regular-price="productType.regularPrice" />
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex-1">
+          <NuxtLink class="leading-tight" :to="productSlug">{{ productType.name }}</NuxtLink>
+          <ProductPrice class="mt-1 text-xs" :sale-price="productType.salePrice" :regular-price="productType.regularPrice" />
+        </div>
+        <div class="flex">
+          <div class="btn  sm:hidden"  @click="changeQuantity(1)">+</div>
+          <input
+            v-model.number="quantity"
+            @change="updateQuantity"
+            type="number"
+            min="0"
+            aria-label="Quantity"
+            class="flex items-center justify-center w-16 gap-4 p-2 text-left bg-white border rounded-md focus:outline-none"
+            :disabled="isUpdatingCart"
+            @input="updateQuantity" />
+            <div class="btn sm:hidden"   @click="changeQuantity(0)">-</div>
+            <button title="Remove Item" aria-label="Remove Item" @click="removeItem" type="button">
+              <Icon name="ion:close-outline" class="removeItem hover:text-red-500 cursor-pointer p-1.5" size="34" />
+            </button>
+        </div>
+       
+       
       </div>
-      <input
-        v-model.number="quantity"
-        type="number"
-        min="0"
-        aria-label="Quantity"
-        class="flex items-center justify-center w-16 gap-4 p-2 text-left bg-white border rounded-md focus:outline-none"
-        :disabled="isUpdatingCart"
-        @input="updateQuantity" />
-      <button title="Remove Item" aria-label="Remove Item" @click="removeItem" type="button">
-        <Icon name="ion:close-outline" class="removeItem hover:text-red-500 cursor-pointer p-1.5" size="34" />
-      </button>
+    
     </li>
   </SwipeCard>
 </template>
