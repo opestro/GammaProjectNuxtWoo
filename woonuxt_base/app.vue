@@ -8,7 +8,7 @@ const { addBodyClass, removeBodyClass } = useHelpers();
 //import { useNuxtApp } 
 const nuxtApp = useNuxtApp()
 //console.log(nuxtApp.$fb)
-nuxtApp.$fb.enable()
+//nuxtApp.$fb.enable()
 const closeCartAndMenu = () => {
   toggleCart(false);
   toggleMobileMenu(false);
